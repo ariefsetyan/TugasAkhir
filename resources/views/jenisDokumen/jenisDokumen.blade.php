@@ -71,7 +71,8 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" method="post" action="{{url('simpan')}}">
+                            {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>No. Takah</label>
@@ -83,14 +84,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Jenis</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="PP.AP.P">
+                                    <input type="text" class="form-control" id="nama" placeholder="PP/AP/P">
                                 </div>
 
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>

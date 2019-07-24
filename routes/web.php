@@ -15,9 +15,8 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/jenis-dokumen', function () {
-    return view('jenisDokumen');
-});
+Route::get('/jenis-dokumen', 'JenisDokumenController@FormJenisData');
+Route::get('/simpan', 'JenisDokumenController@FormJenisData');
 
 Route::get('/Lokasi-simpan', function () {
     return view('lokasiSimpan');
@@ -33,4 +32,12 @@ Route::get('/penyimpanan', function () {
 
 Route::get('/daftar-penyimpanan', function () {
     return view('penyimpanan/daftarPenyimpanan');
+});
+
+Route::get('/form-peminjaman', function () {
+    return view('peminjaman/formPeminjaman');
+});
+
+Route::get('/form-pengembalian', function () {
+    return view('pengembalian/pengembalian');
 });
