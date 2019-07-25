@@ -16,7 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/jenis-dokumen', 'JenisDokumenController@FormJenisData');
-Route::get('/simpan', 'JenisDokumenController@FormJenisData');
+Route::post('/simpan', 'JenisDokumenController@Simpan');
+Route::get('/delete/{no_takah}', 'JenisDokumenController@Delete');
 
 Route::get('/Lokasi-simpan', function () {
     return view('lokasiSimpan');

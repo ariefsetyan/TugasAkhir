@@ -76,15 +76,15 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>No. Takah</label>
-                                    <input type="text" class="form-control" id="noTakah" placeholder="1">
+                                    <input type="text" class="form-control" name="noTakah" placeholder="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Kode Jenis</label>
-                                    <input type="text" class="form-control" id="kode" placeholder="No PP.No AP.No P">
+                                    <input type="text" class="form-control" name="kode" placeholder="No PP.No AP.No P" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Jenis</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="PP/AP/P">
+                                    <input type="text" class="form-control" name="nama" placeholder="PP/AP/P" required>
                                 </div>
 
                             </div>
@@ -115,80 +115,25 @@
 
                         </tr>
                         </thead>
+                        @if(empty($cekdata))
+                            @else
                         <tbody>
+                        @foreach($datas as $data)
                         <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
+                            <td>{{$data->no_takah}}</td>
+                            <td>{{$data->kode_jenis}}</td>
+                            <td>{{$data->nama_jenis}}</td>
+                            <td>
+                                <a href="{{url('jenis-dokumen').$data->no_takah}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>/
+                                <a href="{{url('delete/'.$data->no_takah)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
 
                         </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5</td>
+                        @endforeach
 
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5.5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 6
-                            </td>
-                            <td>Win 98+</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet Explorer 7</td>
-                            <td>Win XP SP2+</td>
-                            <td>7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>AOL browser (AOL desktop)</td>
-                            <td>Win XP</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 2.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
 
                         </tbody>
+                        @endif
                         <tfoot>
                         <tr>
                             <th>No Takah</th>
@@ -428,6 +373,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
+
+{{--sweetalter--}}
+
+    @include('sweetalert::alert')
+
 
 <script>
     $(document).ready(function () {

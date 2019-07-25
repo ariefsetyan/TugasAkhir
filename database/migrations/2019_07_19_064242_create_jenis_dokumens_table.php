@@ -14,7 +14,7 @@ class CreateJenisDokumensTable extends Migration
     public function up()
     {
         Schema::create('jenis_dokumens', function (Blueprint $table) {
-            $table->Integer('no_takah');
+            $table->string('no_takah');
             $table->string('kode_jenis');
             $table->string('nama_jenis');
             $table->primary('no_takah');
