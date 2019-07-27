@@ -17,14 +17,13 @@ Route::get('/', function () {
 
 Route::get('/jenis-dokumen', 'JenisDokumenController@FormJenisData');
 Route::post('/simpan', 'JenisDokumenController@Simpan');
+Route::post('/edit', 'JenisDokumenController@Update');
 Route::get('/delete/{no_takah}', 'JenisDokumenController@Delete');
+
+Route::get('/jra', 'JRAController@index');
 
 Route::get('/Lokasi-simpan', function () {
     return view('lokasiSimpan');
-});
-
-Route::get('/jra', function () {
-    return view('jra');
 });
 
 Route::get('/penyimpanan', function () {

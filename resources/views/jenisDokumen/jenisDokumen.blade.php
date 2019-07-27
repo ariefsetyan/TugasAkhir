@@ -31,6 +31,22 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+    <style>
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -124,13 +140,62 @@
                             <td>{{$data->kode_jenis}}</td>
                             <td>{{$data->nama_jenis}}</td>
                             <td>
-                                <a href="{{url('jenis-dokumen').$data->no_takah}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>/
+                                <a href="#" class="on-default edit-row" data-notakah="{{$data->no_takah}}" data-kdjenis="{{$data->kode_jenis}}" data-nmjenis="{{$data->nama_jenis}}" data-toggle="modal" data-target="#modal-default">
+                                    <i class="fa fa-pencil" ></i>
+                                </a>
+                                <a>/</a>
                                 <a href="{{url('delete/'.$data->no_takah)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             </td>
 
                         </tr>
                         @endforeach
 
+                        <!-- ===================Modal Edit============================ -->
+
+                        <div class="modal fade" id="modal-default">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Default Modal</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <form class="form-horizontal" action="{{url('edit')}}" method="post">
+{{--                                            {{method_field("patch")}}--}}
+                                            {{csrf_field()}}
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label>No. Takah</label>
+                                                    <input type="text" class="form-control" name="noTakah" id="noTakah" placeholder="1" required >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Kode Jenis</label>
+                                                    <input type="text" class="form-control" name="kode" id="kode" placeholder="No PP.No AP.No P" required >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Nama Jenis</label>
+                                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="PP/AP/P" required >
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
 
                         </tbody>
                         @endif
@@ -378,7 +443,20 @@
 
     @include('sweetalert::alert')
 
+<script>
+    $('#modal-default').on('show.bs.modal', function (event) {
+        // console.log('open modals');
+        var button = $(event.relatedTarget)
+        var noTakah = button.data('notakah')
+        var kdJenis = button.data('kdjenis')
+        var nmJenis = button.data('nmjenis')
+        var modal = $(this)
 
+        modal.find('.modal-body #noTakah').val(noTakah)
+        modal.find('.modal-body #kode').val(kdJenis)
+        modal.find('.modal-body #nama').val(nmJenis)
+    })
+</script>
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()

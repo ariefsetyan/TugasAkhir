@@ -17,6 +17,8 @@ class JenisDokumenController extends Controller
             Alert::success('Data Berhasil Disimpan', session('Success Message'));
         }elseif (session('success')){
             alert()->success('Data Berhasil dihapus','');
+        }elseif (session('success1')){
+            alert()->success('Data Berhasil Diupdate','');
         }
 
         return view('jenisDokumen.jenisDokumen',compact('datas','cekdata'));
@@ -34,9 +36,17 @@ class JenisDokumenController extends Controller
         return back()->withSuccess('Successfully delete');
 
     }
-    public function ViewData($no_takah){
-        $datas = DB::table('jenis_dokumens')->where('no_takah','=',$no_takah)->get();
-//        return
+    public function Update(Request $request){
+        $upadate = DB::table('jenis_dokumens')
+            ->where('no_takah','=',$request->noTakah)
+            ->update([
+           'no_takah' => $request->noTakah,
+           'kode_jenis' => $request->kode,
+           'nama_jenis' => $request->nama,
+        ]);
+
+//        dd($request->all());
+        return back()->withSuccess1('Successfully update');
 
     }
 }
