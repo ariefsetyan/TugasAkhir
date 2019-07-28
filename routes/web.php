@@ -21,6 +21,13 @@ Route::post('/edit', 'JenisDokumenController@Update');
 Route::get('/delete/{no_takah}', 'JenisDokumenController@Delete');
 
 Route::get('/jra', 'JRAController@index');
+Route::post('/simpan-jra', 'JRAController@Simpan');
+Route::post('/edit-jra', 'JRAController@Update');
+Route::get('/delete-jra/{id}', 'JRAController@Delete');
+
+Route::get('karyawan','KaryawanController@index');
+Route::post('simpan-karyawan','KaryawanController@simpan');
+Route::get('delete-karyawan/{nip}','KaryawanController@delete');
 
 Route::get('/Lokasi-simpan', function () {
     return view('lokasiSimpan');

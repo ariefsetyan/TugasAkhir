@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -32,6 +30,22 @@
 
     <!-- Google Font -->
 {{--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">--}}
+
+    <style>
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -73,49 +87,43 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{url('simpan-jra')}}" method="post">
+                        <form role="form" method="post" action="{{url('simpan-karyawan')}}">
                             {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>Kode Jenis</label>
-                                    <select class="form-control select2" style="width: 100%;" name="kdjenis" required>
-                                        <option selected="selected">Select...</option>
-                                        @if(!empty($jenisDoc))
-                                        @foreach($jenisDoc as $jenis)
-                                            <option value="{{$jenis->no_takah}}">{{$jenis->kode_jenis}}/ {{$jenis->nama_jenis}}</option>
-                                        @endforeach
-                                        @else
-                                        @endif
-                                    </select>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Nama Jenis</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="PP.AP.P" name="nama" required>
+                                    <label>NIP</label>
+                                    <input type="number" class="form-control" name="nip" placeholder="1" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Aktif</label>
-                                    <input type="text" class="form-control" id="aktif" placeholder="PP.AP.P" name="aktif" required>
+                                    <label>Nama</label>
+                                    <input type="text" class="form-control" name="nama" placeholder="Ex: Areif" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Inaktif</label>
-                                    <input type="text" class="form-control" id="inaktif" placeholder="PP.AP.P" name="inaktif" required>
+                                    <label>Alamat</label>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat"></textarea>
                                 </div>
-
                                 <div class="form-group">
-                                    <label>Sifat Dokumen</label>
-                                    <select class="form-control select2" style="width: 100%;" name="sifat" id="sifat" required>
-                                        <option selected="selected" value="Permanen">Permanen</option>
-                                        <option value="Musnah">Musnah</option>
-                                        <option value="Ditinjau Ulang">Ditinjau Ulang</option>
+                                    <label>Jenis Kelamin</label>
+                                    <select class="form-control" name="jkl" required>
+                                        <option value="pria">Pria</option>
+                                        <option value="wanita">Wanita</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Ex: Arief@ymail.com" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Telp</label>
+                                    <input type="number" class="form-control" name="telp" placeholder="Ex: 08921XXX" required>
+                                </div>
+
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -132,121 +140,152 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Kode Jenis</th>
-                            <th>nama Jenis</th>
-                            <th>aktif</th>
-                            <th>inaktif</th>
-                            <th>sifat</th>
+                            <th>Nip</th>
+                            <th>Nama </th>
+                            <th>Email </th>
+                            <th>Telp </th>
                             <th>Tools</th>
 
                         </tr>
                         </thead>
-                        <tbody>
-                        @if(!empty($jra))
-                            @foreach($jra as $data)
-                        <tr>
-                            <td>{{$data->kode_jenis}}</td>
-                            <td>{{$data->nm_jenis_jra}}</td>
-                            <td>{{$data->aktif}}</td>
-                            <td>{{$data->inaktif}}</td>
-                            <td>{{$data->sifat_dokumen}}</td>
-                            <td>
-                                <a href="#" class="on-default edit-row" data-kodejenis="{{$data->kode_jenis}}" data-id="{{$data->id}}"
-                                   data-nama="{{$data->nm_jenis_jra}}" data-aktif="{{$data->aktif}}" data-inaktif="{{$data->inaktif}}" data-sifat="{{$data->sifat_dokumen}}"
-                                   data-toggle="modal" data-target="#modal-default">
-                                    <i class="fa fa-pencil" ></i>
-                                </a>
-                                <a>/</a>
-                                <a href="{{url('delete-jra/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                        </tr>
+                        @if(empty($karyawan))
+                        @else
+                            <tbody>
+                            @foreach($karyawan as $data)
+                                <tr>
+                                    <td>{{$data->nip}}</td>
+                                    <td>{{$data->nama_pegawai}}</td>
+                                    <td>{{$data->email_pegawai}}</td>
+                                    <td>{{$data->tlp_pegawai}}</td>
+                                    <td>
+                                        <a href="#" class="on-default edit-row" data-nip="{{$data->nip}}" data-nama="{{$data->nama_pegawai}}"
+                                          data-alamat="{{$data->alamat_pegawai}}" data-jkl="{{$data->jkl_pegawai}}" data-email="{{$data->email_pegawai}}"
+                                          data-telp="{{$data->tlp_pegawai}}" data-toggle="modal" data-target="#modal-view">
+                                            <i class="fa fa-eye" ></i>
+                                        </a>
+                                        <a>/</a>
+                                        <a href="#" class="on-default edit-row" data-toggle="modal" data-target="#modal-default">
+                                            <i class="fa fa-pencil" ></i>
+                                        </a>
+                                        <a>/</a>
+                                        <a href="{{url('delete-karyawan/'.$data->nip)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                    </td>
 
-                        <div class="modal fade" id="modal-default">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title">Default Modal</h4>
+                                </tr>
+                            @endforeach
+
+
+                            <!-- ===================Modal Edit============================ -->
+
+                            <div class="modal fade" id="modal-default">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Default Modal</h4>
+                                        </div>
+
+                                        <div class="modal-body">
+
+                                            <form class="form-horizontal" action="#" method="post">
+
+                                                {{csrf_field()}}
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label>NIP</label>
+                                                        <input type="number" class="form-control" name="nip" id="nip" placeholder="1" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Kode Jenis</label>
+                                                        <input type="text" class="form-control" name="kode" id="kode" placeholder="No PP.No AP.No P" required >
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Nama Jenis</label>
+                                                        <input type="text" class="form-control" name="nama" id="nama" placeholder="PP/AP/P" required >
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-body -->
+                                                <div class="box-footer">
+                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
                                     </div>
 
-                                    <div class="modal-body">
-
-                                        <form class="form-horizontal" action="{{url('edit-jra')}}" method="post">
-                                            {{csrf_field()}}
-
-                                            <input type="text" class="hidden" id="id" placeholder="PP.AP.P" name="id">
-
-                                            <div class="box-body">
-                                                <div class="form-group">
-                                                    <label>Kode Jenis</label>
-                                                    <select class="form-control select2" style="width: 100%;" name="kdjenis" required>
-                                                        <option selected="selected" value="">Select...</option>
-                                                        @if(!empty($jenisDoc))
-                                                            @foreach($jenisDoc as $jenis)
-                                                                <option value="{{$jenis->no_takah}}">{{$jenis->kode_jenis}}/ {{$jenis->nama_jenis}}</option>
-                                                            @endforeach
-                                                        @else
-                                                        @endif
-                                                    </select>
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Nama Jenis</label>
-                                                    <input type="text" class="form-control" id="nama" placeholder="PP.AP.P" name="nama">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Aktif</label>
-                                                    <input type="text" class="form-control" id="aktif" placeholder="PP.AP.P" name="aktif">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Inaktif</label>
-                                                    <input type="text" class="form-control" id="inaktif" placeholder="PP.AP.P" name="inaktif">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Sifat Dokumen</label>
-                                                    <select class="form-control select2" style="width: 100%;" name="sifat" id="sifat">
-                                                        <option value="Permanen">Permanen</option>
-                                                        <option value="Musnah">Musnah</option>
-                                                        <option value="Ditinjau Ulang">Ditinjau Ulang</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- /.box-body -->
-                                            <div class="box-footer">
-                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-info pull-right">Sign in</button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
+                                    <!-- /.modal-content -->
                                 </div>
-
-                                <!-- /.modal-content -->
+                                <!-- /.modal-dialog -->
                             </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        @endforeach
+                            <!-- /.modal -->
+
+                            </tbody>
                         @endif
-
-
-                        </tbody>
                         <tfoot>
                         <tr>
-                            <th>No Takah</th>
-                            <th>nama Jenis</th>
-                            <th>aktif</th>
-                            <th>inaktif</th>
-                            <th>sifat</th>
+                            <th>Nip</th>
+                            <th>Nama </th>
+                            <th>Email </th>
+                            <th>Telp </th>
                             <th>Tools</th>
                         </tr>
                         </tfoot>
                     </table>
                 </div>
                 <!-- /.box-body -->
+            </div>
+
+            <!-- ===================Modal View============================ -->
+            <div class="modal fade" id="modal-view">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">view Modal</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Nip</th>
+                                    <th id="tnip"> </th>
+
+
+                                </tr>
+                                <tr>
+                                    <th>Nama </th>
+                                    <th id="tnama"> </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Email </th>
+                                    <th id="temail"> </th>
+
+                                </tr>
+                                <tr>
+
+                                    <th>Telp </th>
+                                    <th id="ttlp"></th>
+
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                        </div>
+
+                    </div>
+
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
             </div>
 
         </section>
@@ -459,8 +498,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('sweetalert::alert')
-
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -478,31 +515,40 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 
+{{--sweetalter--}}
+
+@include('sweetalert::alert')
 
 <script>
     $('#modal-default').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
-        var kodejenis = button.data('kodejenis') // Extract info from data-* attributes
-        var namajenis = button.data('nama') // Extract info from data-* attributes
-        var aktif = button.data('aktif') // Extract info from data-* attributes
-        var inaktif = button.data('inaktif') // Extract info from data-* attributes
-        var sifat = button.data('sifat') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        // console.log('open modals');
+        var button = $(event.relatedTarget)
+        var noTakah = button.data('notakah')
+        var kdJenis = button.data('kdjenis')
+        var nmJenis = button.data('nmjenis')
         var modal = $(this)
-        // modal.find('.modal-title').text('New message to ' + recipient)
-        console.log(id)
-        console.log(sifat)
-        modal.find('.modal-body #id').val(id)
-        modal.find('.modal-body #kdjenis').val(kodejenis)
-        modal.find('.modal-body #nama').val(namajenis)
-        modal.find('.modal-body #aktif').val(aktif)
-        modal.find('.modal-body #inaktif').val(inaktif)
-        modal.find('.modal-body #sifat').val(sifat)
+
+        modal.find('.modal-body #noTakah').val(noTakah)
+        modal.find('.modal-body #kode').val(kdJenis)
+        modal.find('.modal-body #nama').val(nmJenis)
+    });
+
+    <!-- ===================Modal View============================ -->
+    $('#modal-view').on('show.bs.modal', function (event) {
+        // console.log('open modals');
+        var button = $(event.relatedTarget)
+        var nip = button.data('nip')
+        var nama = button.data('nama')
+        var jkl = button.data('jkl')
+        var email = button.data('email')
+        var telp = button.data('telp')
+        var modal = $(this)
+
+        modal.find('.modal-body #tnip').val(nip)
+        modal.find('.modal-body #kode').val(kdJenis)
+        modal.find('.modal-body #nama').val(nmJenis)
     })
 </script>
-
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
@@ -518,77 +564,6 @@
             'ordering'    : true,
             'info'        : true,
             'autoWidth'   : false
-        })
-    })
-</script>
-
-<!-- Select2 -->
-<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
-
-<script>
-    $(function () {
-        //Initialize Select2 Elements
-        $('.select2').select2()
-
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-        //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-        //Money Euro
-        $('[data-mask]').inputmask()
-
-        //Date range picker
-        $('#reservation').daterangepicker()
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
-            {
-                ranges   : {
-                    'Today'       : [moment(), moment()],
-                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate  : moment()
-            },
-            function (start, end) {
-                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            }
-        )
-
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        })
-
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass   : 'iradio_minimal-blue'
-        })
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            checkboxClass: 'icheckbox_minimal-red',
-            radioClass   : 'iradio_minimal-red'
-        })
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass   : 'iradio_flat-green'
-        })
-
-        //Colorpicker
-        $('.my-colorpicker1').colorpicker()
-        //color picker with addon
-        $('.my-colorpicker2').colorpicker()
-
-        //Timepicker
-        $('.timepicker').timepicker({
-            showInputs: false
         })
     })
 </script>
