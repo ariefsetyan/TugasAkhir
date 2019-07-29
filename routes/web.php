@@ -27,11 +27,15 @@ Route::get('/delete-jra/{id}', 'JRAController@Delete');
 
 Route::get('karyawan','KaryawanController@index');
 Route::post('simpan-karyawan','KaryawanController@simpan');
+Route::post('edit-karyawan','KaryawanController@update');
 Route::get('delete-karyawan/{nip}','KaryawanController@delete');
+Route::get('show/{nip}','KaryawanController@show');
 
-Route::get('/Lokasi-simpan', function () {
-    return view('lokasiSimpan');
-});
+
+Route::get('/lokasi', 'LokasiController@index');
+Route::post('/lokasi-simpan', 'LokasiController@simpan');
+Route::post('/update-lokasi', 'LokasiController@update');
+Route::get('/hapus-lokasi/{id}', 'LokasiController@delete');
 
 Route::get('/penyimpanan', function () {
     return view('penyimpanan/penyimpanan');

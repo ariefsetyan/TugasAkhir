@@ -158,13 +158,13 @@
                                     <td>{{$data->email_pegawai}}</td>
                                     <td>{{$data->tlp_pegawai}}</td>
                                     <td>
-                                        <a href="#" class="on-default edit-row" data-nip="{{$data->nip}}" data-nama="{{$data->nama_pegawai}}"
-                                          data-alamat="{{$data->alamat_pegawai}}" data-jkl="{{$data->jkl_pegawai}}" data-email="{{$data->email_pegawai}}"
-                                          data-telp="{{$data->tlp_pegawai}}" data-toggle="modal" data-target="#modal-view">
+                                        <a href="{{url('show/'.$data->nip)}}" class="on-default edit-row">
                                             <i class="fa fa-eye" ></i>
                                         </a>
                                         <a>/</a>
-                                        <a href="#" class="on-default edit-row" data-toggle="modal" data-target="#modal-default">
+                                        <a href="#" class="on-default edit-row" data-nip="{{$data->nip}}" data-nama="{{$data->nama_pegawai}}"
+                                           data-alamat="{{$data->alamat_pegawai}}" data-jkl="{{$data->jkl_pegawai}}" data-email="{{$data->email_pegawai}}" data-telp="{{$data->tlp_pegawai}}"
+                                           data-toggle="modal" data-target="#modal-default">
                                             <i class="fa fa-pencil" ></i>
                                         </a>
                                         <a>/</a>
@@ -172,6 +172,7 @@
                                     </td>
 
                                 </tr>
+
                             @endforeach
 
 
@@ -188,22 +189,39 @@
 
                                         <div class="modal-body">
 
-                                            <form class="form-horizontal" action="#" method="post">
+                                            <form class="form-horizontal" action="{{url('edit-karyawan')}}" method="post">
 
                                                 {{csrf_field()}}
                                                 <div class="box-body">
                                                     <div class="form-group">
                                                         <label>NIP</label>
-                                                        <input type="number" class="form-control" name="nip" id="nip" placeholder="1" required >
+                                                        <input type="number" class="form-control" name="nip" id="nip" placeholder="1" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Kode Jenis</label>
-                                                        <input type="text" class="form-control" name="kode" id="kode" placeholder="No PP.No AP.No P" required >
+                                                        <label>Nama</label>
+                                                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Ex: Areif" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Nama Jenis</label>
-                                                        <input type="text" class="form-control" name="nama" id="nama" placeholder="PP/AP/P" required >
+                                                        <label>Alamat</label>
+                                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="alamat" id="alamat"></textarea>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label>
+                                                        <select class="form-control" name="jkl" id="jkl" required>
+                                                            <option value="pria">Pria</option>
+                                                            <option value="wanita">Wanita</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" name="email" id="email" placeholder="Ex: Arief@ymail.com" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Telp</label>
+                                                        <input type="number" class="form-control" name="telp" id="telp" placeholder="Ex: 08921XXX" required>
+                                                    </div>
+
                                                 </div>
                                                 <!-- /.box-body -->
                                                 <div class="box-footer">
@@ -223,6 +241,8 @@
                             <!-- /.modal -->
 
                             </tbody>
+
+
                         @endif
                         <tfoot>
                         <tr>
@@ -236,56 +256,6 @@
                     </table>
                 </div>
                 <!-- /.box-body -->
-            </div>
-
-            <!-- ===================Modal View============================ -->
-            <div class="modal fade" id="modal-view">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">view Modal</h4>
-                        </div>
-
-                        <div class="modal-body">
-
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>Nip</th>
-                                    <th id="tnip"> </th>
-
-
-                                </tr>
-                                <tr>
-                                    <th>Nama </th>
-                                    <th id="tnama"> </th>
-
-                                </tr>
-                                <tr>
-                                    <th>Email </th>
-                                    <th id="temail"> </th>
-
-                                </tr>
-                                <tr>
-
-                                    <th>Telp </th>
-                                    <th id="ttlp"></th>
-
-                                </tr>
-                            </table>
-
-                        </div>
-                        <div class="box-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-info pull-right">Sign in</button>
-                        </div>
-
-                    </div>
-
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
             </div>
 
         </section>
@@ -523,32 +493,25 @@
     $('#modal-default').on('show.bs.modal', function (event) {
         // console.log('open modals');
         var button = $(event.relatedTarget)
-        var noTakah = button.data('notakah')
-        var kdJenis = button.data('kdjenis')
-        var nmJenis = button.data('nmjenis')
-        var modal = $(this)
-
-        modal.find('.modal-body #noTakah').val(noTakah)
-        modal.find('.modal-body #kode').val(kdJenis)
-        modal.find('.modal-body #nama').val(nmJenis)
-    });
-
-    <!-- ===================Modal View============================ -->
-    $('#modal-view').on('show.bs.modal', function (event) {
-        // console.log('open modals');
-        var button = $(event.relatedTarget)
         var nip = button.data('nip')
         var nama = button.data('nama')
+        var alamat = button.data('alamat')
         var jkl = button.data('jkl')
         var email = button.data('email')
         var telp = button.data('telp')
         var modal = $(this)
+        console.log(alamat)
+        modal.find('.modal-body #nip').val(nip)
+        modal.find('.modal-body #nama').val(nama)
+        modal.find('.modal-body #alamat').val(alamat)
+        modal.find('.modal-body #jkl').val(jkl)
+        modal.find('.modal-body #email').val(email)
+        modal.find('.modal-body #telp').val(telp)
+    });
 
-        modal.find('.modal-body #tnip').val(nip)
-        modal.find('.modal-body #kode').val(kdJenis)
-        modal.find('.modal-body #nama').val(nmJenis)
-    })
+
 </script>
+
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()

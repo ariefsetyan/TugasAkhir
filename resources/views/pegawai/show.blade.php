@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -30,7 +28,6 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -40,7 +37,7 @@
 
 @include('menu.menu')
 
-<!-- =============================================== -->
+    <!-- =============================================== -->
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -59,156 +56,98 @@
 
         <!-- Main content -->
         <section class="content">
-
-            <!-- Default box -->
             <div class="row">
-
+                <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <a href="{{url('karyawan')}}"><i class="fa  fa-mail-reply"></i>
+                                <span class="badge bg-light-blue">kembali</span>
+                            </a>
                         </div>
-                        <!-- /.box-header -->
-                        <!-- form start -->
-                        <form role="form">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Gedung</label>
-                                    <input type="text" class="form-control" id="gedung" placeholder="1">
-                                </div>
-                                <div class="form-group">
-                                    <label>Rak</label>
-                                    <input type="text" class="form-control" id="rak" placeholder="No PP.No AP.No P">
-                                </div>
-                                <div class="form-group">
-                                    <label>Baris</label>
-                                    <input type="text" class="form-control" id="baris" placeholder="PP.AP.P">
-                                </div>
-                                <div class="form-group">
-                                    <label>Boks</label>
-                                    <input type="text" class="form-control" id="boks" placeholder="PP.AP.P">
-                                </div>
-                                <div class="form-group">
-                                    <label>Folder</label>
-                                    <input type="text" class="form-control" id="folder" placeholder="PP.AP.P">
-                                </div>
+                        <div class="box-body">
+                            <table class="">
+                            @foreach($karyawan as $data)
+                            <tr>
+                                <td>
+                                    <p>nip </p>
+                                </td>
+                                <td>
+                                    <p>:    </p>
+                                </td>
+                                <td>
+                                    <p>{{$data->nip}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>nama_pegawai </p>
+                                </td>
+                                <td>
+                                    <p>:    </p>
+                                </td>
+                                <td>
+                                    <p>{{$data->nama_pegawai}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>alamat_pegawai </p>
+                                </td>
+                                <td>
+                                    <p>:    </p>
+                                </td>
+                                <td>
+                                    <p>{{$data->alamat_pegawai}}</p>
+                                </td>
+                            </tr>
+                                    <tr>
+                                <td>
+                                    <p>jkl_pegawai </p>
+                                </td>
+                                <td>
+                                    <p>:    </p>
+                                </td>
+                                <td>
+                                    <p>{{$data->jkl_pegawai}}</p>
+                                </td>
+                            </tr>
+                                    <tr>
+                                <td>
+                                    <p>email_pegawai </p>
+                                </td>
+                                <td>
+                                    <p>:    </p>
+                                </td>
+                                <td>
+                                    <p>{{$data->email_pegawai}}</p>
+                                </td>
+                            </tr>
+                                    <tr>
+                                <td>
+                                    <p>tlp_pegawai </p>
+                                </td>
+                                <td>
+                                    <p>:    </p>
+                                </td>
+                                <td>
+                                    <p>{{$data->tlp_pegawai}}</p>
+                                </td>
+                            </tr>
 
-                            </div>
-                            <!-- /.box-body -->
-
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                            @endforeach
+                        </table>
+                        </div>
                     </div>
+                    <!-- /.box -->
+
                 </div>
+                <!--/.col (left) -->
+                <!-- right column -->
 
             </div>
-            <!-- /.box -->
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
-                            <th>Tools</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5.5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 6
-                            </td>
-                            <td>Win 98+</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet Explorer 7</td>
-                            <td>Win XP SP2+</td>
-                            <td>7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>AOL browser (AOL desktop)</td>
-                            <td>Win XP</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 2.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
-                            <th>Tools</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-            </div>
-
+            <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
@@ -423,9 +362,6 @@
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -434,24 +370,9 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
-
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
-    })
-</script>
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        })
     })
 </script>
 </body>

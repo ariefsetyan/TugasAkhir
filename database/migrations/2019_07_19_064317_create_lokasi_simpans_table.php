@@ -15,6 +15,11 @@ class CreateLokasiSimpansTable extends Migration
     {
         Schema::create('lokasi_simpans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('gedung');
+            $table->string('rak');
+            $table->string('baris');
+            $table->string('bok');
+            $table->string('folder');
             $table->timestamps();
         });
     }
