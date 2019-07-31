@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
+
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+
+
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -73,42 +78,40 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" action="{{url('simpan-dokumen')}}" method="post">
+                            {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Kode Dokumen</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode">
+                                        <option selected="selected">select ...</option>
+                                        @if(!empty($nomerdoc))
+                                        @foreach($nomerdoc as $datano)
+{{--                                        @foreach($nomerdoc as $key=>$value)--}}
+                                        <option value="{{$datano->no_takah}}">{{$datano->kode_jenis}}/{{$datano->nama_jenis}}</option>
+{{--                                                <option value="{{$key}}">{{$value}}</option>--}}
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Dokumen</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode">
+                                        <option selected="selected">Select ...</option>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Kurun Waktu</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="tahun">
+                                    <input type="text" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun">
                                 </div>
                                 <div class="form-group">
                                     <label>Tingkat perkembangan</label>
-                                    <select class="form-control select2" style="width: 100%;">
+                                    <select class="form-control select2" style="width: 100%;" name="tPerkembangan">
                                         <option selected="selected">Asli</option>
                                         <option>Copy</option>
 
@@ -116,14 +119,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Media Arsip</label>
-                                    <select class="form-control select2" style="width: 100%;">
+                                    <select class="form-control select2" style="width: 100%;" name="media">
                                         <option selected="selected">Kertas</option>
                                         <option>Asli</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Kondisi</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="">
+                                    <input type="text" class="form-control" id="nama" placeholder="" name="kondisi">
                                 </div>
 
                                 <div class="form-group">
@@ -390,5 +393,31 @@
         })
     })
 </script>
+<script>
+    $(document).ready(function () {
+        $('select[name="kode"]').on('change', function () {
+            var id_jra = $(this).val();
+            if (id_jra){
+                // console.log(id_jra);
+                $.ajax({
+                    url:'dynamic/'+id_jra,
+                    type:'GET',
+                    dataType:'json',
+                    success:function (data) {
+                        console.log(data.length)
+                        console.log(data)
+                        $('select[name="jenis"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="jenis"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                })
+            }else {
+                $('select[name="jenis"]').empty();
+            }
+        })
+    })
+</script>
 </body>
 </html>
+

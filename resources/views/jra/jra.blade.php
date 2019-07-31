@@ -182,7 +182,7 @@
                                                     <label>Kode Jenis</label>
                                                     <input type="text" class="form-control" id="kdjenis" placeholder="PP.AP.P" name="kdjenis" disabled>
 {{--                                                    <select class="form-control select2" style="width: 100%;" name="kdjenis" required>--}}
-{{--                                                        <option selected="selected" value="">Select...</option>--}}
+{{--                                                        <option selected="selected" >Select...</option>--}}
 {{--                                                        <option value="{{$jenis->no_takah}}">{{$jenis->kode_jenis}}/ {{$jenis->nama_jenis}}</option>--}}
 {{--                                                        @if(!empty($jenisDoc))--}}
 {{--                                                            @foreach($jenisDoc as $jenis)--}}
