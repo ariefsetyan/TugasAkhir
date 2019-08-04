@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
-    <!-- Tell the browser to be responsive to screen width -->
+
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+
+
+
+<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -15,6 +20,8 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -67,183 +74,198 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a class="btn btn-social btn-bitbucket">
+                                        <i class="fa fa-reply"></i> Back
+                                    </a>
+                                </div>
+                                <div class="col-md-8"><h3 class="box-title center">Lokasi Dokumen Disimpan</h3></div>
+
+                            </div>
+
+
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{url('lokasi-simpan')}}" method="post">
-                            {{csrf_field()}}
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="form-control select2" style="width: 100%;" id="jenis" name="jenis">
-                                        <option class="selected">Select ...</option>
-                                        @if(!empty($jenisDokumen))
-                                            @foreach($jenisDokumen as $datajenis)
-                                                <option class="selected" value="{{$datajenis->no_takah}}">{{$datajenis->kode_jenis}}/{{$datajenis->nama_jenis}}</option>
-                                            @endforeach
-                                        @else
-                                        @endif
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Gedung</label>
-                                    <input type="text" class="form-control" id="gedung" name="gedung" placeholder="1">
-                                </div>
-                                <div class="form-group">
-                                    <label>Rak</label>
-                                    <input type="text" class="form-control" id="rak" name="rak" placeholder="No PP.No AP.No P">
-                                </div>
-                                <div class="form-group">
-                                    <label>Baris</label>
-                                    <input type="text" class="form-control" id="baris" name="baris" placeholder="PP.AP.P">
-                                </div>
-                                <div class="form-group">
-                                    <label>Boks</label>
-                                    <input type="text" class="form-control" id="boks" name="boks" placeholder="PP.AP.P">
-                                </div>
-                                <div class="form-group">
-                                    <label>Folder</label>
-                                    <input type="text" class="form-control" id="folder" name="folder" placeholder="PP.AP.P">
-                                </div>
+                        <div class="box-body">
+                            @foreach($dokumen as $data)
+                                <table class="">
 
-                            </div>
-                            <!-- /.box-body -->
+                                    <tr>
+                                        <td>
+                                            <p>Kode Dokumen </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->kode_jenis}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Nama Jenis Dokumen </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->nama_jenis}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Sub Nama Jenis Dokumen </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->nm_jenis_jra}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Diskripsi </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->diskripsi}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Kurun Waktu </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->kurun_waktu}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Tingkat Perkembangan </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->tingkat_perkembangan}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Media Arsip </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->media_arsip}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Kondisi </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->kondisi}}</p>
+                                        </td>
+                                    </tr>
+                                    @foreach($lokasiarsip as $lokasi)
+                                    <tr>
+                                        <td>
+                                            <p>Gedung </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$lokasi->gedung}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Rak </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$lokasi->rak}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Baris </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$lokasi->baris}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Boks </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$lokasi->bok}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Folder </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$lokasi->folder}}</p>
+                                        </td>
+                                    </tr>
+                                        @endforeach
+                                </table>
+                            @endforeach
+                        </div>
+                        <div class="box-footer">
+                            {{--                            <a class="btn btn-block btn-social btn-bitbucket">--}}
+                            {{--                                <i class="fa fa-bitbucket"></i> Sign in with Bitbucket--}}
+                            {{--                            </a>--}}
+                        </div>
 
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Horizontal Form</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+{{--                        {{$file}}--}}
+                        <embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+{{--                        <embed width="535" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>--}}
+                            <!-- /.box-footer -->
                         </form>
                     </div>
                 </div>
 
             </div>
             <!-- /.box -->
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Gedung</th>
-                            <th>Rak</th>
-                            <th>Baris</th>
-                            <th>Boks</th>
-                            <th>Folder</th>
-                            <th>Tools</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if(!empty($lokasi))
-                            @foreach($lokasi as $data)
-                                <tr>
-                                    <td>{{$data->gedung}}</td>
-                                    <td>{{$data->rak}}</td>
-                                    <td>{{$data->baris}}</td>
-                                    <td>{{$data->bok}}</td>
-                                    <td>{{$data->folder}}</td>
-                                    <td>
-                                        <a href="#" class="on-default edit-row" data-id="{{$data->id}}" data-gedung="{{$data->gedung}}" data-rak="{{$data->rak}}" data-baris="{{$data->baris}}" data-boks="{{$data->bok}}" data-folder="{{$data->folder}}" data-toggle="modal" data-target="#modal-default">
-                                            <i class="fa fa-pencil" ></i>
-                                        </a>
-                                        <a>/</a>
-                                        <a href="{{url('hapus-lokasi/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-
-                                </tr>
-                            @endforeach
-                        @else
-                        @endif
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Gedung</th>
-                            <th>Rak</th>
-                            <th>Baris</th>
-                            <th>Boks</th>
-                            <th>Folder</th>
-                            <th>Tools</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-
-                    <!-- ===================Modal Edit============================ -->
-                    <div class="modal fade" id="modal-default">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Default Modal</h4>
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <form class="form-horizontal" action="{{url('update-lokasi')}}" method="post">
-                                        {{csrf_field()}}
-
-                                        <div class="box-body">
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Lokasi</label>
-                                                <select class="form-control select2" style="width: 100%;" id="jenis" name="jenis">
-                                                    <option class="selected">Select ...</option>
-                                                    @if(!empty($jenisDokumen))
-                                                        @foreach($jenisDokumen as $datajenis)
-                                                            <option class="selected" value="{{$datajenis->no_takah}}">{{$datajenis->kode_jenis}}/{{$datajenis->nama_jenis}}</option>
-                                                        @endforeach
-                                                    @else
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gedung</label>
-                                                <input type="text" class="form-control" id="gedung" name="gedung" placeholder="1" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Rak</label>
-                                                <input type="text" class="form-control" id="rak" name="rak" placeholder="No PP.No AP.No P" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Baris</label>
-                                                <input type="text" class="form-control" id="baris" name="baris" placeholder="PP.AP.P" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Boks</label>
-                                                <input type="text" class="form-control" id="boks" name="boks" placeholder="PP.AP.P" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Folder</label>
-                                                <input type="text" class="form-control" id="folder" name="folder" placeholder="PP.AP.P" required>
-                                            </div>
-
-                                        </div>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-info pull-right">Sign in</button>
-                                        </div>
-
-                                    </form>
-                                </div>
-
-                            </div>
-
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-
-                </div>
-                <!-- /.box-body -->
-            </div>
 
         </section>
         <!-- /.content -->
@@ -455,8 +477,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('sweetalert::alert')
-
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -473,31 +493,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-
-<script>
-    $('#modal-default').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
-        var no_takah = button.data('jenis') // Extract info from data-* attributes
-        var gedung = button.data('gedung') // Extract info from data-* attributes
-        var rak = button.data('rak') // Extract info from data-* attributes
-        var baris = button.data('baris') // Extract info from data-* attributes
-        var boks = button.data('boks') // Extract info from data-* attributes
-        var folder = button.data('folder') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        console.log(id)
-        // modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body #id').val(id)
-        modal.find('.modal-body #jenis').val(jenis)
-        modal.find('.modal-body #gedung').val(gedung)
-        modal.find('.modal-body #rak').val(rak)
-        modal.find('.modal-body #baris').val(baris)
-        modal.find('.modal-body #boks').val(boks)
-        modal.find('.modal-body #folder').val(folder)
-    })
-</script>
 
 <script>
     $(document).ready(function () {
@@ -517,5 +512,7 @@
         })
     })
 </script>
+
 </body>
 </html>
+

@@ -22,9 +22,9 @@ class CreateDokumensTable extends Migration
             $table->string('kondisi');
             $table->string('file');
             $table->string('kode_dokumen');
-            $table->string('jenis_dokumen');
+            $table->unsignedBigInteger('jenis_dokumen');
             $table->foreign('kode_dokumen')->references('no_takah')->on('jenis_dokumens');
-//            $table->foreign('kode_dokumen')->references('no_takah')->on('jenis_dokumens');
+            $table->foreign('jenis_dokumen')->references('id')->on('j_r_a_s');
             $table->timestamps();
         });
     }

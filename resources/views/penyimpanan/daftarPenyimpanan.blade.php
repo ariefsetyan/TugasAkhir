@@ -73,92 +73,40 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
+                            <th>Kode Arsip</th>
+                            <th>Deskripsi</th>
+                            <th>Media</th>
                             <th>Tools</th>
 
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($dokumen as $data)
                         <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
+                            <td>{{$data->kode_jenis}}</td>
+                            <td>{{$data->diskripsi}}</td>
+                            <td>{{$data->media_arsip}}</td>
+                            <td>
+                                <a href="{{url('detil-penyimpanan/'.$data->id)}}" class="on-default edit-row">
+                                    <i class="fa fa-eye" ></i>
+                                </a>
+                                <a>/</a>
+                                <a href="{{url('form-edit-penyimpanan/'.$data->id)}}" class="on-default edit-row">
+                                    <i class="fa fa-pencil" ></i>
+                                </a>
+                                <a>/</a>
+                                <a href="" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
 
                         </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5.5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 6
-                            </td>
-                            <td>Win 98+</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet Explorer 7</td>
-                            <td>Win XP SP2+</td>
-                            <td>7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>AOL browser (AOL desktop)</td>
-                            <td>Win XP</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 2.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
+                        @endforeach
 
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
+                            <th>Kode Arsip</th>
+                            <th>Deskripsi</th>
+                            <th>Media</th>
                             <th>Tools</th>
                         </tr>
                         </tfoot>

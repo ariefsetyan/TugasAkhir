@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JenisDokumen;
 use App\LokasiSimpan;
 use Illuminate\Http\Request;
 Use Alert;
@@ -10,6 +11,7 @@ class LokasiController extends Controller
 {
     public function index(){
         $lokasi = LokasiSimpan::all();
+        $jenisDokumen = JenisDokumen::all();
         if (session('success')){
             Alert::success('Success Add', 'Data Berhasil Disimpan');
         }elseif (session('success1')){
@@ -17,11 +19,12 @@ class LokasiController extends Controller
         }elseif(session('success2')){
             Alert::success('Success Update', 'Data Berhasil Disimpan');
         }
-        return view('lokasiSimpan.lokasiSimpan',compact('lokasi'));
+        return view('lokasiSimpan.lokasiSimpan',compact('lokasi','jenisDokumen'));
     }
     public function simpan(Request $request){
 //        dd($request->all());
         $lokasi = new LokasiSimpan();
+        $lokasi->no_takah = $request->jenis;
         $lokasi->gedung = $request->gedung;
         $lokasi->rak = $request->rak;
         $lokasi->baris = $request->baris;
@@ -36,6 +39,7 @@ class LokasiController extends Controller
     }
     public function update(Request $request){
         $lokasi = LokasiSimpan::find($request->id);
+        $lokasi->no_takah = $request->jenis;
         $lokasi->gedung = $request->gedung;
         $lokasi->rak = $request->rak;
         $lokasi->baris = $request->baris;

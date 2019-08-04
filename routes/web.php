@@ -40,11 +40,16 @@ Route::get('/hapus-lokasi/{id}', 'LokasiController@delete');
 Route::get('/penyimpanan', 'DokumenController@index');
 Route::get('dynamic/{id_jra}', 'DokumenController@show');
 Route::post('simpan-dokumen', 'DokumenController@store');
+Route::get('lokasi-penyimpanan', 'DokumenController@lokasiSimpan');
+Route::get('daftar-penyimpanan', 'DokumenController@daftar');
+Route::get('detil-penyimpanan/{id}', 'DokumenController@detil');
+Route::get('form-edit-penyimpanan/{id}', 'DokumenController@edit');
+Route::post('update-dokumen', 'DokumenController@update');
 
 
-Route::get('/daftar-penyimpanan', function () {
-    return view('penyimpanan/daftarPenyimpanan');
-});
+//Route::get('/daftar-penyimpanan', function () {
+//    return view('penyimpanan/daftarPenyimpanan');
+//});
 
 Route::get('/form-peminjaman', function () {
     return view('peminjaman/formPeminjaman');

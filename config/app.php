@@ -176,7 +176,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         //sweet alter
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        //API Dropbox
+        BC\Laravel\DropboxDriver\ServiceProvider::class,
 
+        App\Providers\DropboxServiceProvider::class,
     ],
 
     /*

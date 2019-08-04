@@ -78,7 +78,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{url('simpan-dokumen')}}" method="post">
+                        <form role="form" action="{{url('simpan-dokumen')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
@@ -107,7 +107,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kurun Waktu</label>
-                                    <input type="text" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun">
+                                    <select class="form-control select2" style="width: 100%;" name="tahun">
+                                        {{$thn_skr = date('Y')}}
+                                        @for ($i = 1870; $i <= $thn_skr; $i++)
+                                            <option selected="selected">{{$i}}</option>
+                                        @endfor
+
+                                    </select>
+{{--                                    <input type="date" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun">--}}
                                 </div>
                                 <div class="form-group">
                                     <label>Tingkat perkembangan</label>
@@ -131,7 +138,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputFile">File input</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="file" name="file">
 
                                 </div>
                             </div>

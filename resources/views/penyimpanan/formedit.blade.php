@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
-    <!-- Tell the browser to be responsive to screen width -->
+
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+
+
+
+<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -15,6 +20,8 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -71,47 +78,86 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{url('lokasi-simpan')}}" method="post">
+                        <form role="form" action="{{url('update-dokumen')}}" method="post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="box-body">
+                                @foreach($dokumen as $data)
+                                    <input type="hidden" name="id" value="{{$data->id}}">
                                 <div class="form-group">
-                                    <label>Lokasi</label>
-                                    <select class="form-control select2" style="width: 100%;" id="jenis" name="jenis">
-                                        <option class="selected">Select ...</option>
-                                        @if(!empty($jenisDokumen))
-                                            @foreach($jenisDokumen as $datajenis)
-                                                <option class="selected" value="{{$datajenis->no_takah}}">{{$datajenis->kode_jenis}}/{{$datajenis->nama_jenis}}</option>
-                                            @endforeach
-                                        @else
-                                        @endif
+                                    <label>Kode Dokumen</label>
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode" disabled>
+                                        <option selected="selected">{{$data->kode_jenis}}</option>
+{{--                                        @if(!empty($nomerdoc))--}}
+{{--                                            @foreach($nomerdoc as $datano)--}}
+{{--                                                --}}{{--                                        @foreach($nomerdoc as $key=>$value)--}}
+{{--                                                <option value="{{$datano->no_takah}}">{{$datano->kode_jenis}}/{{$datano->nama_jenis}}</option>--}}
+{{--                                                --}}{{--                                                <option value="{{$key}}">{{$value}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        @endif--}}
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Gedung</label>
-                                    <input type="text" class="form-control" id="gedung" name="gedung" placeholder="1">
+                                    <label>Jenis Dokumen</label>
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode" disabled>
+                                        <option selected="selected">{{$data->nm_jenis_jra}}</option>
+
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Rak</label>
-                                    <input type="text" class="form-control" id="rak" name="rak" placeholder="No PP.No AP.No P">
+                                    <label>Deskripsi</label>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required>{{$data->diskripsi}}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Baris</label>
-                                    <input type="text" class="form-control" id="baris" name="baris" placeholder="PP.AP.P">
+                                    <label>Kurun Waktu</label>
+                                    <select class="form-control select2" style="width: 100%;" name="tahun" required>
+                                            <option selected="selected">{{$data->kurun_waktu}}</option>
+                                        {{$thn_skr = date('Y')}}
+                                        @for ($i = 1870; $i <= $thn_skr; $i++)
+                                            <option>{{$i}}</option>
+                                        @endfor
+
+                                    </select>
+                                    {{--                                    <input type="date" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun">--}}
                                 </div>
                                 <div class="form-group">
-                                    <label>Boks</label>
-                                    <input type="text" class="form-control" id="boks" name="boks" placeholder="PP.AP.P">
+                                    <label>Tingkat perkembangan</label>
+                                    <select class="form-control select2" style="width: 100%;" name="tPerkembangan" required>
+                                        <option selected="selected">{{$data->tingkat_perkembangan}}</option>
+                                        <option >Asli</option>
+                                        <option>Copy</option>
+
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Folder</label>
-                                    <input type="text" class="form-control" id="folder" name="folder" placeholder="PP.AP.P">
+                                    <label>Media Arsip</label>
+                                    <select class="form-control select2" style="width: 100%;" name="media" required>
+                                        <option>{{$data->media_arsip}}</option>
+                                        <option selected="selected">Kertas</option>
+                                        <option>Asli</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kondisi</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="" name="kondisi" value="{{$data->kondisi}}" required>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File</label><br>
+                                    <a>{{$data->file}}</a>
+
+                                </div>
+                                    <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <input type="file" id="file" name="file">
+
+                                </div>
+                                @endforeach
                             </div>
+
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -119,131 +165,6 @@
 
             </div>
             <!-- /.box -->
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Gedung</th>
-                            <th>Rak</th>
-                            <th>Baris</th>
-                            <th>Boks</th>
-                            <th>Folder</th>
-                            <th>Tools</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if(!empty($lokasi))
-                            @foreach($lokasi as $data)
-                                <tr>
-                                    <td>{{$data->gedung}}</td>
-                                    <td>{{$data->rak}}</td>
-                                    <td>{{$data->baris}}</td>
-                                    <td>{{$data->bok}}</td>
-                                    <td>{{$data->folder}}</td>
-                                    <td>
-                                        <a href="#" class="on-default edit-row" data-id="{{$data->id}}" data-gedung="{{$data->gedung}}" data-rak="{{$data->rak}}" data-baris="{{$data->baris}}" data-boks="{{$data->bok}}" data-folder="{{$data->folder}}" data-toggle="modal" data-target="#modal-default">
-                                            <i class="fa fa-pencil" ></i>
-                                        </a>
-                                        <a>/</a>
-                                        <a href="{{url('hapus-lokasi/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-
-                                </tr>
-                            @endforeach
-                        @else
-                        @endif
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Gedung</th>
-                            <th>Rak</th>
-                            <th>Baris</th>
-                            <th>Boks</th>
-                            <th>Folder</th>
-                            <th>Tools</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-
-                    <!-- ===================Modal Edit============================ -->
-                    <div class="modal fade" id="modal-default">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Default Modal</h4>
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <form class="form-horizontal" action="{{url('update-lokasi')}}" method="post">
-                                        {{csrf_field()}}
-
-                                        <div class="box-body">
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Lokasi</label>
-                                                <select class="form-control select2" style="width: 100%;" id="jenis" name="jenis">
-                                                    <option class="selected">Select ...</option>
-                                                    @if(!empty($jenisDokumen))
-                                                        @foreach($jenisDokumen as $datajenis)
-                                                            <option class="selected" value="{{$datajenis->no_takah}}">{{$datajenis->kode_jenis}}/{{$datajenis->nama_jenis}}</option>
-                                                        @endforeach
-                                                    @else
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Gedung</label>
-                                                <input type="text" class="form-control" id="gedung" name="gedung" placeholder="1" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Rak</label>
-                                                <input type="text" class="form-control" id="rak" name="rak" placeholder="No PP.No AP.No P" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Baris</label>
-                                                <input type="text" class="form-control" id="baris" name="baris" placeholder="PP.AP.P" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Boks</label>
-                                                <input type="text" class="form-control" id="boks" name="boks" placeholder="PP.AP.P" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Folder</label>
-                                                <input type="text" class="form-control" id="folder" name="folder" placeholder="PP.AP.P" required>
-                                            </div>
-
-                                        </div>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-info pull-right">Sign in</button>
-                                        </div>
-
-                                    </form>
-                                </div>
-
-                            </div>
-
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-
-                </div>
-                <!-- /.box-body -->
-            </div>
 
         </section>
         <!-- /.content -->
@@ -455,8 +376,6 @@
 </div>
 <!-- ./wrapper -->
 
-@include('sweetalert::alert')
-
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -473,31 +392,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-
-<script>
-    $('#modal-default').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
-        var no_takah = button.data('jenis') // Extract info from data-* attributes
-        var gedung = button.data('gedung') // Extract info from data-* attributes
-        var rak = button.data('rak') // Extract info from data-* attributes
-        var baris = button.data('baris') // Extract info from data-* attributes
-        var boks = button.data('boks') // Extract info from data-* attributes
-        var folder = button.data('folder') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        console.log(id)
-        // modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body #id').val(id)
-        modal.find('.modal-body #jenis').val(jenis)
-        modal.find('.modal-body #gedung').val(gedung)
-        modal.find('.modal-body #rak').val(rak)
-        modal.find('.modal-body #baris').val(baris)
-        modal.find('.modal-body #boks').val(boks)
-        modal.find('.modal-body #folder').val(folder)
-    })
-</script>
 
 <script>
     $(document).ready(function () {
@@ -517,5 +411,31 @@
         })
     })
 </script>
+<script>
+    $(document).ready(function () {
+        $('select[name="kode"]').on('change', function () {
+            var id_jra = $(this).val();
+            if (id_jra){
+                // console.log(id_jra);
+                $.ajax({
+                    url:'dynamic/'+id_jra,
+                    type:'GET',
+                    dataType:'json',
+                    success:function (data) {
+                        console.log(data.length)
+                        console.log(data)
+                        $('select[name="jenis"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="jenis"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                })
+            }else {
+                $('select[name="jenis"]').empty();
+            }
+        })
+    })
+</script>
 </body>
 </html>
+
