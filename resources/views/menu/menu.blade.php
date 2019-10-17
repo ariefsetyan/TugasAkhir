@@ -84,7 +84,7 @@
                     <span class="pull-right-container"></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('form-pengembalian')}}"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+                    <li><a href="{{url('form-pengembalian')}}"><i class="fa fa-circle-o"></i> Pengembalian</a></li>
                     <li><a href="{{url('daftar-pengembalian')}}"><i class="fa fa-circle-o"></i> Daftar pengembalian</a></li>
 
                 </ul>
