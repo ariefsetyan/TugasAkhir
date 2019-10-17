@@ -15,13 +15,13 @@ class CreateLokasiSimpansTable extends Migration
     {
         Schema::create('lokasi_simpans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_takah');
+//            $table->string('no_takah');
             $table->string('gedung');
             $table->string('rak');
             $table->string('baris');
             $table->string('bok');
             $table->string('folder');
-            $table->foreign('no_takah')->references('no_takah')->on('jenis_dokumens');
+//            $table->foreign('no_takah')->references('no_takah')->on('jenis_dokumens');
             $table->timestamps();
         });
     }
@@ -34,5 +34,6 @@ class CreateLokasiSimpansTable extends Migration
     public function down()
     {
         Schema::dropIfExists('lokasi_simpans');
+//        Schema::dropIfExists('');
     }
 }

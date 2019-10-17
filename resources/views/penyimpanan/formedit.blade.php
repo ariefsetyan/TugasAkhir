@@ -86,12 +86,12 @@
                                 <div class="form-group">
                                     <label>Kode Dokumen</label>
                                     <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode" disabled>
-                                        <option selected="selected">{{$data->kode_jenis}}</option>
+                                        <option selected="selected" value="{{$data->no_takah}}">{{$data->kode_jenis}}/{{$data->nama_jenis}}</option>
 {{--                                        @if(!empty($nomerdoc))--}}
 {{--                                            @foreach($nomerdoc as $datano)--}}
-{{--                                                --}}{{--                                        @foreach($nomerdoc as $key=>$value)--}}
+{{--                                                                                        @foreach($nomerdoc as $key=>$value)--}}
 {{--                                                <option value="{{$datano->no_takah}}">{{$datano->kode_jenis}}/{{$datano->nama_jenis}}</option>--}}
-{{--                                                --}}{{--                                                <option value="{{$key}}">{{$value}}</option>--}}
+{{--                                                                                                <option value="{{$key}}">{{$value}}</option>--}}
 {{--                                            @endforeach--}}
 {{--                                        @endif--}}
                                     </select>
@@ -100,6 +100,9 @@
                                     <label>Jenis Dokumen</label>
                                     <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode" disabled>
                                         <option selected="selected">{{$data->nm_jenis_jra}}</option>
+{{--                                        @foreach($jenis_jra as $jenisJra)--}}
+{{--                                            <option value="{{$jenisJra->id}}">{{$jenisJra->nm_jenis_jra}}</option>--}}
+{{--                                        @endforeach--}}
 
                                     </select>
                                 </div>

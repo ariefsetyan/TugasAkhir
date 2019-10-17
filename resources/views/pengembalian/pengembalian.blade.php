@@ -61,112 +61,39 @@
 
         <!-- Main content -->
         <section class="content">
-
             <!-- Default box -->
+            <div class="row">
 
-            <!-- /.box -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Quick Example</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form role="form" action="{{url('cari-pengembalian')}}">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" name="cari">
+                                        <span class="input-group-btn">
+                                          <button type="submit" class="btn btn-info btn-flat">Cari</button>
+                                        </span>
+                                    </div>
+                                </div>
 
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                            </div>
+
+                            <!-- /.box-body -->
+
+{{--                            <div class="box-footer">--}}
+{{--                                <button type="submit" class="btn btn-primary">Simpan</button>--}}
+{{--                            </div>--}}
+                        </form>
+                    </div>
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
-                            <th>Tools</th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5.5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 6
-                            </td>
-                            <td>Win 98+</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet Explorer 7</td>
-                            <td>Win XP SP2+</td>
-                            <td>7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>AOL browser (AOL desktop)</td>
-                            <td>Win XP</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 2.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
-                            <th>Tools</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <!-- /.box-body -->
             </div>
 
         </section>

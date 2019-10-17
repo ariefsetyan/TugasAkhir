@@ -127,6 +127,17 @@
                                     </tr>
                                     <tr>
                                         <td>
+                                            <p>Nama Dokumen </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->nama_dokumen}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                             <p>Diskripsi </p>
                                         </td>
                                         <td>
@@ -180,7 +191,7 @@
                                             <p>{{$data->kondisi}}</p>
                                         </td>
                                     </tr>
-                                    @foreach($lokasiarsip as $lokasi)
+{{--                                    @foreach($lokasiarsip as $lokasi)--}}
                                     <tr>
                                         <td>
                                             <p>Gedung </p>
@@ -189,7 +200,7 @@
                                             <p>:    </p>
                                         </td>
                                         <td>
-                                            <p>{{$lokasi->gedung}}</p>
+                                            <p>{{$data->gedung}}</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -200,7 +211,7 @@
                                             <p>:    </p>
                                         </td>
                                         <td>
-                                            <p>{{$lokasi->rak}}</p>
+                                            <p>{{$data->rak}}</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -211,7 +222,7 @@
                                             <p>:    </p>
                                         </td>
                                         <td>
-                                            <p>{{$lokasi->baris}}</p>
+                                            <p>{{$data->baris}}</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -222,7 +233,7 @@
                                             <p>:    </p>
                                         </td>
                                         <td>
-                                            <p>{{$lokasi->bok}}</p>
+                                            <p>{{$data->bok}}</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -233,10 +244,32 @@
                                             <p>:    </p>
                                         </td>
                                         <td>
-                                            <p>{{$lokasi->folder}}</p>
+                                            <p>{{$data->folder}}</p>
                                         </td>
                                     </tr>
-                                        @endforeach
+{{--                                        @endforeach--}}
+                                    <tr>
+                                        <td>
+                                            <p>aktif </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->aktif}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Inaktif </p>
+                                        </td>
+                                        <td>
+                                            <p>:    </p>
+                                        </td>
+                                        <td>
+                                            <p>{{$data->inaktif}}</p>
+                                        </td>
+                                    </tr>
                                 </table>
                             @endforeach
                         </div>

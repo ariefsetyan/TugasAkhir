@@ -113,6 +113,10 @@
                                     <label>Email</label>
                                     <input type="email" class="form-control" name="email" placeholder="Ex: Arief@ymail.com" required>
                                 </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" class="form-control" name="password" placeholder="Ex: Arief@ymail.com" required>
+                                </div>
 
                                 <div class="form-group">
                                     <label>Telp</label>
@@ -154,16 +158,16 @@
                             @foreach($karyawan as $data)
                                 <tr>
                                     <td>{{$data->nip}}</td>
-                                    <td>{{$data->nama_pegawai}}</td>
-                                    <td>{{$data->email_pegawai}}</td>
-                                    <td>{{$data->tlp_pegawai}}</td>
+                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->email}}</td>
+                                    <td>{{$data->tlp}}</td>
                                     <td>
                                         <a href="{{url('show/'.$data->nip)}}" class="on-default edit-row">
                                             <i class="fa fa-eye" ></i>
                                         </a>
                                         <a>/</a>
-                                        <a href="#" class="on-default edit-row" data-nip="{{$data->nip}}" data-nama="{{$data->nama_pegawai}}"
-                                           data-alamat="{{$data->alamat_pegawai}}" data-jkl="{{$data->jkl_pegawai}}" data-email="{{$data->email_pegawai}}" data-telp="{{$data->tlp_pegawai}}"
+                                        <a href="#" class="on-default edit-row" data-nip="{{$data->nip}}" data-nama="{{$data->name}}"
+                                           data-alamat="{{$data->address}}" data-jkl="{{$data->gender}}" data-email="{{$data->email}}" data-telp="{{$data->tlp}}"
                                            data-toggle="modal" data-target="#modal-default">
                                             <i class="fa fa-pencil" ></i>
                                         </a>
@@ -216,6 +220,11 @@
                                                         <label>Email</label>
                                                         <input type="email" class="form-control" name="email" id="email" placeholder="Ex: Arief@ymail.com" required>
                                                     </div>
+
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label>Password</label>--}}
+{{--                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Ex: Arief@ymail.com" required>--}}
+{{--                                                    </div>--}}
 
                                                     <div class="form-group">
                                                         <label>Telp</label>

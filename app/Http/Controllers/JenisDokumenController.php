@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\JenisDokumen;
+use App\LokasiSimpan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -10,9 +11,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class JenisDokumenController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function FormJenisData(){
+        $lokasi = LokasiSimpan::all();
+//        dd($lokasi);
         $cekdata = DB::table('jenis_dokumens')->count('no_takah');
-        $datas = JenisDokumen::all();
+//        $datas = JenisDokumen::all();
+        $datas = DB::table('jenis_dokumens as jd')->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')->get();
         if (session('success_message')){
             Alert::success('Data Berhasil Disimpan', session('Success Message'));
         }elseif (session('success')){
@@ -20,14 +28,16 @@ class JenisDokumenController extends Controller
         }elseif (session('success1')){
             alert()->success('Data Berhasil Diupdate','');
         }
-
-        return view('jenisDokumen.jenisDokumen',compact('datas','cekdata'));
+//        dd($datas);
+        return view('jenisDokumen.jenisDokumen',compact('datas','cekdata','lokasi'));
     }
     public function Simpan(Request $request){
         $datas = new JenisDokumen();
+        $datas->id_lokasi = $request->lokasi;
         $datas->no_takah = $request->noTakah;
         $datas->kode_jenis = $request->kode;
         $datas->nama_jenis = $request->nama;
+//        dd($datas);
         $datas->save();
         return redirect('jenis-dokumen')->withSuccessMessage('Successfully added');
     }

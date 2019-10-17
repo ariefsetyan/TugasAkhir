@@ -102,6 +102,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label>Nama Dokumen</label>
+                                    <input type="text" class="form-control" id="nama" name="nama">
+                                </div>
+                                <div class="form-group">
                                     <label>Deskripsi</label>
                                     <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi"></textarea>
                                 </div>

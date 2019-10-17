@@ -15,9 +15,11 @@ class CreateJenisDokumensTable extends Migration
     {
         Schema::create('jenis_dokumens', function (Blueprint $table) {
             $table->string('no_takah');
+            $table->unsignedBigInteger('id_lokasi');
             $table->string('kode_jenis');
             $table->string('nama_jenis');
             $table->primary('no_takah');
+            $table->foreign('id_lokasi')->references('id')->on('lokasi_simpans');
             $table->timestamps();
         });
     }

@@ -9,6 +9,10 @@ Use Alert;
 
 class LokasiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         $lokasi = LokasiSimpan::all();
         $jenisDokumen = JenisDokumen::all();
@@ -24,7 +28,7 @@ class LokasiController extends Controller
     public function simpan(Request $request){
 //        dd($request->all());
         $lokasi = new LokasiSimpan();
-        $lokasi->no_takah = $request->jenis;
+//        $lokasi->no_takah = $request->jenis;
         $lokasi->gedung = $request->gedung;
         $lokasi->rak = $request->rak;
         $lokasi->baris = $request->baris;
@@ -39,7 +43,6 @@ class LokasiController extends Controller
     }
     public function update(Request $request){
         $lokasi = LokasiSimpan::find($request->id);
-        $lokasi->no_takah = $request->jenis;
         $lokasi->gedung = $request->gedung;
         $lokasi->rak = $request->rak;
         $lokasi->baris = $request->baris;

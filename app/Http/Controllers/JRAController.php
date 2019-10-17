@@ -10,6 +10,10 @@ Use Alert;
 
 class JRAController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
         if (session('warning')){
             alert()->warning('Warning','Kode Jenis tidak bileh kosong');

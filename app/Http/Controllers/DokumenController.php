@@ -19,6 +19,7 @@ class DokumenController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
         //Penyiapkan Client Disk Dropbox
         $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
@@ -90,17 +91,23 @@ class DokumenController extends Controller
 //            'jenis_dokumen' => $request->jenis
 //        ]);
         $dokumen = new Dokumen();
+        $dokumen->nama_dokumen = $request->nama;
         $dokumen->diskripsi = $request->deskripsi;
         $dokumen->kurun_waktu = $request->tahun;
         $dokumen->tingkat_perkembangan = $request->tPerkembangan;
         $dokumen->media_arsip = $request->media;
         $dokumen->kondisi = $request->kondisi;
         $dokumen->file = $namaBerkas;
-        $dokumen->kode_dokumen = $request->kode;
-        $dokumen->jenis_dokumen = $request->jenis;
+        $dokumen->no_takah = $request->kode;
+        $dokumen->jenis_dok_jra = $request->jenis;
+//        dd($dokumen);
         $dokumen->save();
 
-        $lokasiSimpan = DB::table('lokasi_simpans as ls')->select('jd.kode_jenis','gedung','rak','baris','bok','folder')->join('jenis_dokumens as jd','ls.no_takah','=','jd.no_takah')->get();
+        $lokasiSimpan = DB::table('lokasi_simpans as ls')
+            ->select('jd.kode_jenis','gedung','rak','baris','bok','folder')
+            ->join('jenis_dokumens as jd','ls.id','=','jd.id_lokasi')
+            ->where('no_takah','=',$request->kode)
+            ->get();
 
         return view('penyimpanan.tampilLokasiSimpan',compact('lokasiSimpan'));
 
@@ -128,17 +135,23 @@ class DokumenController extends Controller
     public function edit($id)
     {
         $dokumen = DB::table('dokumens as d')->select(
-            'd.id','no_takah','jd.kode_jenis','nama_jenis','nm_jenis_jra','aktif','inaktif','sifat_dokumen','diskripsi','kurun_waktu',
-            'tingkat_perkembangan','media_arsip','kondisi','file')
-            ->join('jenis_dokumens as jd','d.kode_dokumen','=','jd.no_takah')
-            ->join('j_r_a_s as j','j.id','=','d.jenis_dokumen')
+//            'no_takah','jd.kode_jenis','nama_jenis','nm_jenis_jra','aktif','inaktif','sifat_dokumen','diskripsi','kurun_waktu',
+//            'tingkat_perkembangan','media_arsip','kondisi','file'
+            'd.id','d.nama_dokumen','diskripsi','kurun_waktu','tingkat_perkembangan','media_arsip','kondisi',
+            'd.no_takah','jd.kode_jenis','jd.nama_jenis','j.nm_jenis_jra','file'
+        )
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->join('j_r_a_s as j','j.id','=','d.jenis_dok_jra')
             ->where('d.id','=',$id)->get();
-        $decode = json_decode($dokumen,true);
-        $kd_arsip = $decode[0]['no_takah'];
-        $berkas = $decode[0]['file'];
-        $lokasiarsip = LokasiSimpan::where('no_takah',$kd_arsip)->get();
 //        dd($dokumen);
-        return view('penyimpanan.formedit',compact('dokumen'));
+//        $decode = json_decode($dokumen,true);
+//        $kd_arsip = $decode[0]['no_takah'];
+//        $berkas = $decode[0]['file'];
+//        $lokasiarsip = LokasiSimpan::where('no_takah',$kd_arsip)->get();
+//        dd($dokumen);
+        $nomerdoc = JenisDokumen::all();
+        $jenis_jra = JRA::all();
+        return view('penyimpanan.formedit',compact('dokumen','jenis_jra','nomerdoc'));
     }
 
     /**
@@ -154,11 +167,12 @@ class DokumenController extends Controller
 
         if(empty($request->file)){
             $dokumen = Dokumen::find($id)->update([
+                'nama_dokumen'=>$request->nama,
                 'diskripsi'=>$request->deskripsi,
-                'kurun_waktu'=>$request->deskripsi,
-                'tingkat_perkembangan'=>$request->deskripsi,
-                'media_arsip'=>$request->deskripsi,
-                'kondisi'=>$request->deskripsi,
+                'kurun_waktu'=>$request->tahun,
+                'tingkat_perkembangan'=>$request->tPerkembangan,
+                'media_arsip'=>$request->media,
+                'kondisi'=>$request->kondisi,
 
             ]);
         }else{
@@ -178,10 +192,11 @@ class DokumenController extends Controller
             $response = $this->dropbox->createSharedLinkWithSettings('/public/berkas/'.$namaBerkas);
 
             $dokumen = Dokumen::find($id)->update([
+                'nama_dokumen'=>$request->nama,
                 'diskripsi'=>$request->deskripsi,
-                'kurun_waktu'=>$request->deskripsi,
-                'tingkat_perkembangan'=>$request->deskripsi,
-                'media_arsip'=>$request->deskripsi,
+                'kurun_waktu'=>$request->tahun,
+                'tingkat_perkembangan'=>$request->tPerkembangan,
+                'media_arsip'=>$request->media,
                 'kondisi'=>$request->kondisi,
                 'file'=>$namaBerkas,
             ]);
@@ -199,16 +214,23 @@ class DokumenController extends Controller
      */
     public function detil($id)
     {
-        $dokumen = DB::table('dokumens as d')->select(
-            'no_takah','jd.kode_jenis','nama_jenis','nm_jenis_jra','aktif','inaktif','sifat_dokumen','diskripsi','kurun_waktu',
-            'tingkat_perkembangan','media_arsip','kondisi','file')
-            ->join('jenis_dokumens as jd','d.kode_dokumen','=','jd.no_takah')
-            ->join('j_r_a_s as j','j.id','=','d.jenis_dokumen')
+        $dokumen = DB::table('dokumens as d')
+            ->select('nama_dokumen','diskripsi','kurun_waktu','tingkat_perkembangan','media_arsip','kondisi','file','d.id',
+                'jd.kode_jenis','jd.nama_jenis',
+                'j.aktif','j.inaktif','j.sifat_dokumen','j.nm_jenis_jra',
+                'gedung','rak','baris','bok','folder'
+            )
+//            ->select('d.no_takah','jd.kode_jenis','nama_jenis','nm_jenis_jra','aktif','inaktif','sifat_dokumen','diskripsi','kurun_waktu',
+//            'tingkat_perkembangan','media_arsip','kondisi','file')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->join('j_r_a_s as j','j.id','=','d.jenis_dok_jra')
+            ->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')
             ->where('d.id','=',$id)->get();
+//        dd($id,$dokumen);
         $decode = json_decode($dokumen,true);
-        $kd_arsip = $decode[0]['no_takah'];
+//        $kd_arsip = $decode[0]['no_takah'];
         $berkas = $decode[0]['file'];
-        $lokasiarsip = LokasiSimpan::where('no_takah',$kd_arsip)->get();
+//        $lokasiarsip = LokasiSimpan::where('no_takah',$kd_arsip)->get();
 //        dd($file);
 
         try {
@@ -230,12 +252,27 @@ class DokumenController extends Controller
             return abort(404);
         }
 
-        return view('penyimpanan.detilPenyimpanan',compact('dokumen','lokasiarsip','file','gambar'));
+        return view('penyimpanan.detilPenyimpanan',compact('dokumen','file','gambar'));
     }
 
     public function daftar(){
-        $dokumen = DB::table('dokumens as d')->join('jenis_dokumens as jd','jd.no_takah','=','d.kode_dokumen')->get();
+        $dokumen = DB::table('dokumens as d')
+            ->join('jenis_dokumens as jd','jd.no_takah','=','d.no_takah')
+            ->get();
 //        dd($dokumen);
         return view('penyimpanan.daftarPenyimpanan',compact('dokumen'));
+    }
+
+    public function delete($id){
+        $dokumen=Dokumen::where('id',$id)->get();
+        $decode = json_decode($dokumen,true);
+        $berkas = $decode[0]['file'];
+//        dd($file);
+        //hapus file di dropbox
+        $this->dropbox->delete('public/berkas/'.$berkas);
+        //hapus data di database
+        $dokumen = Dokumen::where('id',$id)->delete();
+//        $berkas->delete();
+        return redirect('daftar-penyimpanan');
     }
 }

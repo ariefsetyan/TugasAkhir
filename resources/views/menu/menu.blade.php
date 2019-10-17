@@ -22,6 +22,12 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{url('cari')}}">
+                    <i class="fa fa-dashboard"></i> <span>Cari Dokumen</span>
+                </a>
+            </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
@@ -31,10 +37,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="{{url('karyawan')}}"><i class="fa fa-circle-o"></i> Karyawan</a></li>
+                    <li><a href="{{url('lokasi')}}"><i class="fa fa-circle-o"></i> Lokasi</a></li>
                     <li><a href="{{url('jenis-dokumen')}}"><i class="fa fa-circle-o"></i> Jenis Dokumen</a></li>
                     <li><a href="{{url('jra')}}"><i class="fa fa-circle-o"></i> JRA</a></li>
-                    <li><a href="{{url('lokasi')}}"><i class="fa fa-circle-o"></i> Lokasi</a></li>
-                    <li><a href="{{url('karyawan')}}"><i class="fa fa-circle-o"></i> Karyawan</a></li>
                 </ul>
             </li>
 
@@ -47,8 +53,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Form Penyimpanan</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Daftar Penyimpanan</a></li>
+                    <li><a href="{{url('penyimpanan')}}"><i class="fa fa-circle-o"></i> Form Penyimpanan</a></li>
+                    <li><a href="{{url('daftar-penyimpanan')}}"><i class="fa fa-circle-o"></i> Daftar Penyimpanan</a></li>
                     
                 </ul>
             </li>
@@ -56,22 +62,32 @@
 
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{url('form-peminjaman')}}">
                     <i class="fa fa-files-o"></i>
                     <span>Peminjaman</span>
-{{--                    <span class="pull-right-container">--}}
-{{--                        <span class="label label-primary pull-right">4</span>--}}
-{{--                    </span>--}}
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right">4</span>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('form-peminjaman')}}"><i class="fa fa-circle-o"></i> Form Peminjaman</a></li>
+                    <li><a href="{{url('daftar-peminjaman')}}"><i class="fa fa-circle-o"></i> Daftar Peminjaman</a></li>
+
+                </ul>
 
             </li>
 
-            <li>
+            <li class="treeview">
                 <a href="../widgets.html">
                     <i class="fa fa-th"></i>
                     <span>Pengembalian</span>
                     <span class="pull-right-container"></span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('form-pengembalian')}}"><i class="fa fa-circle-o"></i> Peminjaman</a></li>
+                    <li><a href="{{url('daftar-pengembalian')}}"><i class="fa fa-circle-o"></i> Daftar pengembalian</a></li>
+
+                </ul>
             </li>
 
             <li>

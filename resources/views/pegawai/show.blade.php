@@ -88,7 +88,7 @@
                                     <p>:    </p>
                                 </td>
                                 <td>
-                                    <p>{{$data->nama_pegawai}}</p>
+                                    <p>{{$data->name}}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -99,7 +99,7 @@
                                     <p>:    </p>
                                 </td>
                                 <td>
-                                    <p>{{$data->alamat_pegawai}}</p>
+                                    <p>{{$data->address}}</p>
                                 </td>
                             </tr>
                                     <tr>
@@ -110,7 +110,7 @@
                                     <p>:    </p>
                                 </td>
                                 <td>
-                                    <p>{{$data->jkl_pegawai}}</p>
+                                    <p>{{$data->gender}}</p>
                                 </td>
                             </tr>
                                     <tr>
@@ -121,7 +121,7 @@
                                     <p>:    </p>
                                 </td>
                                 <td>
-                                    <p>{{$data->email_pegawai}}</p>
+                                    <p>{{$data->email}}</p>
                                 </td>
                             </tr>
                                     <tr>
@@ -132,7 +132,7 @@
                                     <p>:    </p>
                                 </td>
                                 <td>
-                                    <p>{{$data->tlp_pegawai}}</p>
+                                    <p>{{$data->tlp}}</p>
                                 </td>
                             </tr>
 

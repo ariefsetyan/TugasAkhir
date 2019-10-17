@@ -23,6 +23,17 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="../../plugins/iCheck/all.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -73,50 +84,49 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" action="{{url('simpan-peminjaman')}}">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>Nama Karyawan</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                                    <label>NIP Karyawan</label>
+                                    <select class="form-control select2" style="width: 100%;" name="nip">
+                                        <option selected="selected">Select ...</option>
+                                        @foreach($karyawans as $karyawan)
+                                        <option value="{{$karyawan->id}}">{{$karyawan->nip}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Jenis Dokumen</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
+                                    <label>Nama Dokumen</label>
+                                    <select class="form-control select2" style="width: 100%;" name="dokumen">
+                                        <option selected="selected">Select ...</option>
+                                        @foreach($dokumens as $dokumen)
+                                        <option value="{{$dokumen->id}}">{{$dokumen->diskripsi}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <label>Nama Dokumen</label>--}}
+{{--                                    <input type="text" class="form-control" id="nama" placeholder="">--}}
+{{--                                </div>--}}
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Waktu Pinjam</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="tahun">
+                                    <input type="date" class="form-control" name="wPinjam" >
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Kembali</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="tahun">
+                                    <input type="date" class="form-control" name="wKembali" >
                                 </div>
-                                <div class="form-group">
-                                    <label>Media Arsip</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Kertas</option>
-                                        <option>Asli</option>
-                                    </select>
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <label>Media Arsip</label>--}}
+{{--                                    <select class="form-control select2" style="width: 100%;">--}}
+{{--                                        <option selected="selected">Kertas</option>--}}
+{{--                                        <option>Asli</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
 {{--                                <div class="form-group">--}}
 {{--                                    <label>Kondisi</label>--}}
 {{--                                    <input type="text" class="form-control" id="nama" placeholder="">--}}
@@ -150,94 +160,31 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
+                            <th>karyawan</th>
+                            <th>kode dokumen</th>
+                            <th>nama dokumen</th>
                             <th>Tools</th>
 
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($datas as $data)
                         <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 4.0
+                            <td>{{$data->name}}</td>
+                            <td>{{$data->nama_dokumen}}</td>
+                            <td>{{$data->kode_jenis}}</td>
+                            <td>
+                                <a href="{{url('detil-peminjaman/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-eye"></i></a>
+                                <a>/</a>
+                                <a href="#" class="on-default edit-row"
+                                   data-toggle="modal" data-target="#modal-default">
+                                    <i class="fa fa-pencil" ></i>
+                                </a>
                             </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
 
                         </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5</td>
+                        @endforeach
 
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5.5</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                                Explorer 6
-                            </td>
-                            <td>Win 98+</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>Internet Explorer 7</td>
-                            <td>Win XP SP2+</td>
-                            <td>7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>AOL browser (AOL desktop)</td>
-                            <td>Win XP</td>
-                            <td>6</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-                        <tr>
-                            <td>Gecko</td>
-                            <td>Firefox 2.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-
-                        </tr>
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>No Takah</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
-                            <th>Tools</th>
-                        </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -469,6 +416,26 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<!-- Select2 -->
+<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="../../bower_components/moment/min/moment.min.js"></script>
+<script src="../../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap color picker -->
+<script src="../../bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+
 <!-- page script -->
 
 <script>
@@ -489,5 +456,75 @@
         })
     })
 </script>
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges   : {
+                    'Today'       : [moment(), moment()],
+                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate  : moment()
+            },
+            function (start, end) {
+                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }
+        )
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        })
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass   : 'iradio_minimal-blue'
+        })
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass   : 'iradio_minimal-red'
+        })
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass   : 'iradio_flat-green'
+        })
+
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker()
+        //color picker with addon
+        $('.my-colorpicker2').colorpicker()
+
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+    })
+</script>
+
+
 </body>
 </html>

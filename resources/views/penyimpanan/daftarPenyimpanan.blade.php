@@ -95,7 +95,7 @@
                                     <i class="fa fa-pencil" ></i>
                                 </a>
                                 <a>/</a>
-                                <a href="" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                <a href="{{url('hapus-dokumen/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                             </td>
 
                         </tr>

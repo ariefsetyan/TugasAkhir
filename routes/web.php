@@ -12,6 +12,10 @@
 */
 
 Route::get('/', function () {
+    return redirect('login');
+});
+
+Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
@@ -45,16 +49,31 @@ Route::get('daftar-penyimpanan', 'DokumenController@daftar');
 Route::get('detil-penyimpanan/{id}', 'DokumenController@detil');
 Route::get('form-edit-penyimpanan/{id}', 'DokumenController@edit');
 Route::post('update-dokumen', 'DokumenController@update');
+Route::get('hapus-dokumen/{id}', 'DokumenController@delete');
 
-
+Route::get('cari','CariDokController@index');
+Route::get('prosescari','CariDokController@cari');
+Route::get('hasilcari','CariDokController@hasilcari');
+Route::get('detil-dokumen/{id}','CariDokController@detil');
 //Route::get('/daftar-penyimpanan', function () {
 //    return view('penyimpanan/daftarPenyimpanan');
 //});
 
-Route::get('/form-peminjaman', function () {
-    return view('peminjaman/formPeminjaman');
-});
+Route::get('/form-peminjaman2', 'PeminjamanController@coba');
+Route::get('/form-peminjaman', 'PeminjamanController@index');
+Route::get('/simpan-peminjaman', 'PeminjamanController@create');
+Route::get('/daftar-peminjaman', 'PeminjamanController@daftar');
+Route::get('/detil-peminjaman/{id}', 'PeminjamanController@show');
+Route::get('/edit-peminjaman/{id}', 'PeminjamanController@edit');
+Route::get('/update-peminjaman/{id}', 'PeminjamanController@update');
+Route::get('/delete-peminjaman/{id}', 'PeminjamanController@destroy');
 
-Route::get('/form-pengembalian', function () {
-    return view('pengembalian/pengembalian');
-});
+Route::get('/form-pengembalian', 'PengembalianController@index');
+Route::get('/cari-pengembalian', 'PengembalianController@cari');
+Route::get('/daftar-pengembalian', 'PengembalianController@daftar');
+
+Route::get('/daftar-retensi', 'RetensiController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
