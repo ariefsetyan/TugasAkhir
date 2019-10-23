@@ -71,9 +71,18 @@ Route::get('/delete-peminjaman/{id}', 'PeminjamanController@destroy');
 Route::get('/form-pengembalian', 'PengembalianController@index');
 Route::get('/cari-pengembalian', 'PengembalianController@cari');
 Route::get('/daftar-pengembalian', 'PengembalianController@daftar');
+Route::get('/pengembalian', 'PengembalianController@kembali');
 
 Route::get('/daftar-retensi', 'RetensiController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//karyawan
+Route::get('/home-karyawan', 'KaryawanController@index');
+Route::get('/form-pengajuan', 'KaryawanController@pengajuan');
+Route::post('/proses-pengajuan', 'KaryawanController@prosesPengajuan');
+Route::get('/daftar-pengajuan', 'KaryawanController@daftarPengajuan');
+Route::get('/edit-pengajuan/{id}', 'KaryawanController@formEdit');
+Route::get('/hapus-pengajuan/{id}', 'KaryawanController@hapus');

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Karyawan;
+use App\Peminjaman;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KaryawanController extends Controller
@@ -59,4 +62,85 @@ class KaryawanController extends Controller
             ]);
         return back()->withSuccess2('Successfully update');
     }
+
+    public function pengajuan(){
+        $dokumens = DB::table('dokumens as d')->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')->get();
+//        dd($dokumens);
+        return view('karyawan.formPengajuan',compact('dokumens'));
+    }
+    public function prosesPengajuan(Request $request){
+        $datas = new Peminjaman();
+        $datas->diskripsi_peminjaman = $request->deskripsi;
+        $datas->tgl_pinjam = $request->tglpinjam;
+        $datas->tgl_kembali = $request->tglkembali;
+        $datas->id_karyawan = $request->idUser;
+        $datas->id_dokumen = $request->dokumen;
+        $datas->id_status = 3;
+
+
+        $namakaryawan = $request->nama;
+        $email = $request->email;
+         $namaDokumen = DB::table('dokumens')
+             ->select('nama_dokumen')
+             ->where('id','=',$request->dokumen)
+             ->get();
+         $dokumen = json_decode($namaDokumen, true);
+         $nmDokumen = $dokumen[0]['nama_dokumen'];
+//        dd($datas,$namaDokumen,$nmDokumen);
+        $data = array('name'=>"Kepada Bapak Admin", "body" => "Saya Mengajukan permohonan peminjaman dokuemna ".$nmDokumen." ".$request->deskripsi.
+            "pada ".$request->tglkembali." hingga ".$request->tglkembali);
+        Mail::send('email.mail',$data,function ($message) use ($namakaryawan, $email) {
+            $message->from('ariefsetyan@gmail.com',$namakaryawan);
+            // $message->sender('john@johndoe.com', 'John Doe');
+            $message->to($email,'Arief Setya');
+            // $message->cc('john@johndoe.com', 'John Doe');
+            // $message->bcc('john@johndoe.com', 'John Doe');
+            // $message->replyTo('john@johndoe.com', 'John Doe');
+            $message->subject('Permohonan Peminjaman Dokumen');
+//            $message->priority(3);
+            // $message->attach('pathToFile');
+        });
+
+        $datas->save();
+
+//        return redirect('')
+
+    }
+    public function daftarPengajuan(){
+        $datas = DB::table('peminjamen as p')
+            ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali','d.nama_dokumen')
+            ->join('users as u','p.id_karyawan','=','u.id')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->where([
+                ['id_status','=','3'],
+                ['id_karyawan','=',Auth::user()->id]
+            ])
+            ->get();
+//        $datas = Auth::user()->id;
+//        dd($datas);
+
+        return view('karyawan.daftar',compact('datas'));
+    }
+    public function formEdit($id){
+        $datas = DB::table('peminjamen as p')
+            ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali',
+                'd.nama_dokumen','jd.kode_jenis')
+            ->join('users as u','p.id_karyawan','=','u.id')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where(
+//                ['id_status','=','3'],
+                'p.id','=',$id
+            )
+            ->get();
+
+        $dokumens = DB::table('dokumens as d')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->get();
+        dd($datas);
+        return view('karyawan.formEdit', compact('datas','dokumens'));
+    }
+//    public function hapus($id){
+//        dd($id);
+//    }
 }

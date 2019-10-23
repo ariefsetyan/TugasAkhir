@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +12,6 @@
     <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -32,7 +27,6 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -40,7 +34,7 @@
 
 @include('navbar.navbar')
 
-@include('menu.menu')
+@include('karyawan.menu')
 
 <!-- =============================================== -->
 
@@ -62,52 +56,29 @@
         <!-- Main content -->
         <section class="content">
 
-
-            <!-- /.box -->
+            <!-- Default box -->
             <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Title</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                            <i class="fa fa-minus"></i></button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                            <i class="fa fa-times"></i></button>
+                    </div>
                 </div>
-                <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>NIP</th>
-                            <th>Nama</th>
-                            <th>Dokumen</th>
-                            <th>Tanggal kembali</th>
-{{--                            <th>S</th>--}}
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($datas as $data)
-                            <tr>
-                                <td>{{$data->nip}}</td>
-                                <td>{{$data->name}}</td>
-                                <td>{{$data->nama_dokumen}}</td>
-                                <td>{{$data->updated_at}}</td>
-{{--                                <td>--}}
-{{--                                    --}}
-{{--                                </td>--}}
-
-                            </tr>
-                        @endforeach
-
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Kode Arsip</th>
-                            <th>Deskripsi</th>
-                            <th>Media</th>
-                            <th>Tools</th>
-                        </tr>
-                        </tfoot>
-                    </table>
+                    Start creating your amazing application!
                 </div>
                 <!-- /.box-body -->
+                <div class="box-footer">
+                    Footer
+                </div>
+                <!-- /.box-footer-->
             </div>
+            <!-- /.box -->
 
         </section>
         <!-- /.content -->
@@ -133,9 +104,6 @@
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -144,24 +112,9 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
-
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
-    })
-</script>
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        })
     })
 </script>
 </body>

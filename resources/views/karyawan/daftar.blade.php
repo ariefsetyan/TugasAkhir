@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +14,6 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -32,7 +29,6 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -40,7 +36,7 @@
 
 @include('navbar.navbar')
 
-@include('menu.menu')
+@include('karyawan.menu')
 
 <!-- =============================================== -->
 
@@ -61,97 +57,61 @@
 
         <!-- Main content -->
         <section class="content">
-            <!-- Default box -->
             <div class="row">
-
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Data Table With Full Features</h3>
                         </div>
                         <!-- /.box-header -->
-                        <!-- form start -->
-                        <form role="form" action="{{url('cari-pengembalian')}}">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="cari">
-                                        <span class="input-group-btn">
-                                          <button type="submit" class="btn btn-info btn-flat">Cari</button>
-                                        </span>
-                                    </div>
-                                </div>
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Dokumen</th>
+                                    <th>Dokumen</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                            </div>
+                                    <?php $i = 0; ?>
+                                @foreach($datas as $data)
+                                    <?php $i++; ?>
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$data->nama_dokumen}}</td>
+                                    <td>{{$data->diskripsi_peminjaman}}</td>
+                                    <td>{{$data->tgl_pinjam}}</td>
+                                    <td>{{$data->tgl_kembali}}</td>
+                                    <td>
+                                        <span class="label label-warning">Pending</span></td>
+{{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
+{{--                                        <a>/</a>--}}
+{{--                                        <a href="{{url('hapus-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash"></i></a>--}}
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                            <!-- /.box-body -->
-
-                            {{--                            <div class="box-footer">--}}
-                            {{--                                <button type="submit" class="btn btn-primary">Simpan</button>--}}
-                            {{--                            </div>--}}
-                        </form>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Dokumen</th>
+                                    <th>Tools</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
                 </div>
-
-            </div>
-
-            <!-- /.box -->
-
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            <th>NIP</th>
-                            <th>Nama</th>
-                            <th>Dokumen</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Tanggal Kembali</th>
-                            <th>tools</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($peminjaman as $data)
-                        <tr>
-                            <td>{{$data->nip}}</td>
-                            <td>{{$data->name}}</td>
-                            <td>{{$data->nama_dokumen}}</td>
-                            <td>{{$data->tgl_pinjam}}</td>
-                            <td>{{$data->tgl_kembali}}</td>
-                            <td>
-{{--                                <a class="btn btn-app">--}}
-{{--                                    <i class="fa fa-edit"></i> Edit--}}
-{{--                                </a>--}}
-{{--                                <a href="#" type="submit" class="fa fa-check"></a>--}}
-                                <form role="form" action="{{url('pengembalian')}}" method="get">
-                                    <input type="text" hidden value="{{$data->id}}" name="id">
-{{--                                    <input type="text" hidden value="{{$data->id_karyawan}}" name="idkaryawan">--}}
-{{--                                    <input type="text" hidden value="{{$data->id_dokumen}}" name="iddokumen">--}}
-{{--                                    <input type="text" hidden value="{{$data->id}}" name="idpeminjaman">--}}
-                                    <button type="submit" class="fa fa-check"></button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>NIP</th>
-                            <th>Nama</th>
-                            <th>Dokumen</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Tanggal Kembali</th>
-                            <th>tools</th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <!-- /.box-body -->
             </div>
 
         </section>
@@ -189,13 +149,12 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
-
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
     })
 </script>
+<!-- page script -->
 <script>
     $(function () {
         $('#example1').DataTable()

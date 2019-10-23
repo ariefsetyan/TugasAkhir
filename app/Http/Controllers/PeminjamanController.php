@@ -44,9 +44,10 @@ class PeminjamanController extends Controller
         $peminjaman = new Peminjaman();
         $peminjaman->id_karyawan = $request->nip;
         $peminjaman->id_dokumen = $request->dokumen;
-        $peminjaman->diskripsi = $request->deskripsi;
+        $peminjaman->diskripsi_peminjaman = $request->deskripsi;
         $peminjaman->tgl_pinjam = $request->wPinjam;
         $peminjaman->tgl_kembali = $request->wKembali;
+        $peminjaman->id_status = 1;
 //        dd($peminjaman);
         $peminjaman->save();
         return redirect('daftar-peminjaman');
@@ -63,9 +64,13 @@ class PeminjamanController extends Controller
         $karyawans = User::all();
         $dokumens = Dokumen::all();
         $datas = DB::table('peminjamen as p')
+            ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali','p.id_karyawan','p.id_dokumen',
+                'u.nip','u.name','u.address','u.email','u.tlp',
+                'd.nama_dokumen','kode_jenis')
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where('id_status','=','1')
             ->get();
 //        dd($datas);
         return view('peminjaman.daftar',compact('datas','karyawans','dokumens'));
