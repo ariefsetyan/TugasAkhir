@@ -54,5 +54,8 @@ class PengembalianController extends Controller
 //        dd($datas);
         return view('pengembalian.daftar',compact('datas'));
     }
+//    public function kembaliDigital(){
+//
+//    }
 }
 

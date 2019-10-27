@@ -48,28 +48,34 @@
                     </ul>
                 </li>
                 <!-- Notifications: style can be found in dropdown.less -->
-                @if(!empty(DB::table('peminjamen as p')->where('id_status','=',3)->count()))
-                <li class="dropdown notifications-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">{{DB::table('peminjamen as p')->where('id_status','=',3)->count()}}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">You have {{DB::table('peminjamen as p')->where('id_status','=',3)->count()}} notifications</li>
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-aqua"></i> {{DB::table('peminjamen as p')->where('id_status','=',3)->count()}} permohonan peminjaman dokumen
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="{{url('daftar-permohonan')}}">View all</a></li>
-                    </ul>
-                </li>
-                @else
+{{--                @if(!empty(DB::table('peminjamen as p')->where('id_status','=',3)->count()))--}}
+{{--                <li class="dropdown notifications-menu">--}}
+{{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+{{--                        <i class="fa fa-bell-o"></i>--}}
+{{--                        <span class="label label-warning">--}}
+{{--                            {{DB::table('peminjamen as p')->where('id_status','=',3)->count()}}--}}
+{{--                        </span>--}}
+{{--                    </a>--}}
+{{--                    <ul class="dropdown-menu">--}}
+{{--                        <li class="header">You have--}}
+{{--                            {{DB::table('peminjamen as p')->where('id_status','=',3)->count()}}--}}
+{{--                            notifications</li>--}}
+{{--                        <li>--}}
+{{--                            <!-- inner menu: contains the actual data -->--}}
+{{--                            <ul class="menu">--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">--}}
+{{--                                        <i class="fa fa-users text-aqua"></i>--}}
+{{--                                        0--}}
+{{--                                        permohonan peminjaman dokumen--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                        <li class="footer"><a href="{{url('daftar-permohonan')}}">View all</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                @else--}}
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
@@ -90,7 +96,7 @@
                             <li class="footer"><a href="#">View all</a></li>
                         </ul>
                     </li>
-                @endif
+{{--                @endif--}}
                 <!-- Tasks: style can be found in dropdown.less -->
                 <li class="dropdown tasks-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

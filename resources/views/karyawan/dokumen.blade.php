@@ -1,10 +1,17 @@
+{{--<embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>--}}
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
-    <!-- Tell the browser to be responsive to screen width -->
+
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+
+
+
+<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -14,6 +21,8 @@
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -29,6 +38,7 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -57,68 +67,27 @@
 
         <!-- Main content -->
         <section class="content">
+
+            <!-- Default box -->
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Horizontal Form</h3>
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>
-                                        dokumen
-                                    </th>
-                                    <th>deskripsi</th>
-                                    <th>tanggal Pinjam</th>
-                                    <th>tanggal kembali</th>
-                                    <th>Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                    <?php $i = 0; ?>
-                                @foreach($datas as $data)
-                                    <?php $i++; ?>
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$data->nama_dokumen}}</td>
-                                    <td><a href="{{url('view-dokumen/'.$data->id)}}"> {{$data->diskripsi_peminjaman}} </a></td>
-                                    <td>{{$data->tgl_pinjam}}</td>
-                                    <td>{{$data->tgl_kembali}}</td>
-                                    <td>
-                                        @if($data->id_status == 3)
-                                        <span class="label label-warning">Pending</span>
-                                        @elseif($data->id_status == 1)
-                                            <span class="label label-success">Approved</span>
-                                        @endif
-{{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
-{{--                                        <a>/</a>--}}
-{{--                                        <a href="{{url('hapus-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash"></i></a>--}}
-                                    </td>
-                                </tr>
-                                @endforeach
-
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NIP</th>
-                                    <th>Nama</th>
-                                    <th>Dokumen</th>
-                                    <th>Tools</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
+                        <!-- form start -->
+                        {{--                        {{$file}}--}}
+                        <embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+                    {{--                        <embed width="535" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>--}}
+                    <!-- /.box-footer -->
+                        </form>
                     </div>
-                    <!-- /.box -->
                 </div>
+
             </div>
+            <!-- /.box -->
 
         </section>
         <!-- /.content -->
@@ -155,12 +124,13 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- page script -->
+
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
     })
 </script>
-<!-- page script -->
 <script>
     $(function () {
         $('#example1').DataTable()
@@ -174,5 +144,7 @@
         })
     })
 </script>
+
 </body>
 </html>
+

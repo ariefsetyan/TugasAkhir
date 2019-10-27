@@ -72,6 +72,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{url('form-peminjaman')}}"><i class="fa fa-circle-o"></i> Form Peminjaman</a></li>
                     <li><a href="{{url('daftar-peminjaman')}}"><i class="fa fa-circle-o"></i> Daftar Peminjaman</a></li>
+{{--                    <li><a href="{{url('daftar-persetujuan')}}"><i class="fa fa-circle-o"></i> Daftar Permohonan</a></li>--}}
 
                 </ul>
 

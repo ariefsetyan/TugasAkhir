@@ -8,6 +8,7 @@ use App\Karyawan;
 use App\Peminjaman;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
@@ -139,5 +140,56 @@ class PeminjamanController extends Controller
     {
         $peminjaman = DB::table('peminjamen')->where('id','=',$id)->delete();
         return redirect('daftar-peminjam');
+    }
+
+    public function pengajuan(){
+        $pengajuan = DB::table('peminjamen as p')
+            ->select('p.id','nip','name','nama_dokumen','tgl_pinjam','tgl_kembali')
+            ->where('id_status','=',3)
+            ->join('users as u','p.id_karyawan','=','u.id')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->get();
+//        dd($pengajuan);
+        return view('peminjaman.pengajuan',compact('pengajuan'));
+    }
+    public function detil_pengajuan($id){
+//        dd($id);
+        $pengajuan = DB::table('peminjamen as p')
+            ->select('p.id','nip','name','nama_dokumen','tgl_pinjam','tgl_kembali','diskripsi_peminjaman')
+            ->where('id_status','=',3)
+            ->join('users as u','p.id_karyawan','=','u.id')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->where('p.id','=',$id)
+            ->get();
+        return view('peminjaman.detailPengajuan',compact('pengajuan'));
+    }
+    public function terima($id){
+
+        $terima = DB::table('peminjamen')->where('id',$id)
+            ->update(
+                ['id_status' => 1]
+            );
+        return redirect('daftar-permohonan');
+    }
+    public function tolak($id){
+
+        $terima = DB::table('peminjamen')->where('id',$id)
+            ->update(
+                ['id_status' => 4]
+            );
+        return redirect('daftar-permohonan');
+    }
+    public function daftarPengajuan(){
+        $datas = DB::table('peminjamen as p')
+            ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali','d.nama_dokumen','p.id_status')
+            ->join('users as u','p.id_karyawan','=','u.id')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+//            ->where([
+//                ['id_status','=','3'],
+//                ['id_status','=',4]
+//            ])
+            ->get();
+//        dd($datas);
+        return view('peminjaman.daftarpengajuan',compact('datas'));
     }
 }

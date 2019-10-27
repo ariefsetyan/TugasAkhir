@@ -34,9 +34,9 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-@include('karyawan.navbar.navbar')
+@include('navbar.navbar')
 
-@include('karyawan.menu')
+@include('menu.menu')
 
 <!-- =============================================== -->
 
@@ -69,37 +69,35 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>
-                                        dokumen
-                                    </th>
-                                    <th>deskripsi</th>
-                                    <th>tanggal Pinjam</th>
-                                    <th>tanggal kembali</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Dokumen</th>
+                                    <th>Dokumen</th>
                                     <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                    <?php $i = 0; ?>
+                                <?php $i = 0; ?>
                                 @foreach($datas as $data)
                                     <?php $i++; ?>
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$data->nama_dokumen}}</td>
-                                    <td><a href="{{url('view-dokumen/'.$data->id)}}"> {{$data->diskripsi_peminjaman}} </a></td>
-                                    <td>{{$data->tgl_pinjam}}</td>
-                                    <td>{{$data->tgl_kembali}}</td>
-                                    <td>
-                                        @if($data->id_status == 3)
-                                        <span class="label label-warning">Pending</span>
-                                        @elseif($data->id_status == 1)
-                                            <span class="label label-success">Approved</span>
-                                        @endif
-{{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
-{{--                                        <a>/</a>--}}
-{{--                                        <a href="{{url('hapus-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash"></i></a>--}}
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$i}}</td>
+                                        <td>{{$data->nama_dokumen}}</td>
+                                        <td>{{$data->diskripsi_peminjaman}}</td>
+                                        <td>{{$data->tgl_pinjam}}</td>
+                                        <td>{{$data->tgl_kembali}}</td>
+                                        <td>
+                                            @if($data->id_status == 3)
+                                                <span class="label label-warning">Pending</span>
+                                            @elseif($data->id_status == 1)
+                                                <span class="label label-success">Approved</span>
+                                            @endif
+                                            {{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
+                                            {{--                                        <a>/</a>--}}
+                                            {{--                                        <a href="{{url('hapus-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash"></i></a>--}}
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                                 </tbody>

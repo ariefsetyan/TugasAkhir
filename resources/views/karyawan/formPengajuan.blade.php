@@ -44,7 +44,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-@include('navbar.navbar')
+@include('karyawan.navbar.navbar')
 
 @include('karyawan.menu')
 

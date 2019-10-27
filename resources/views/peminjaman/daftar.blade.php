@@ -77,8 +77,8 @@
                         <tr>
                             <th>NIP</th>
                             <th>karyawan</th>
-                            <th>kode dokumen</th>
                             <th>nama dokumen</th>
+                            <th>tanggal pinjam</th>
                             <th>Tools</th>
 
                         </tr>
@@ -89,7 +89,7 @@
                                 <td>{{$data->nip}}</td>
                                 <td>{{$data->name}}</td>
                                 <td>{{$data->nama_dokumen}}</td>
-                                <td>{{$data->kode_jenis}}</td>
+                                <td>{{$data->tgl_pinjam}}</td>
                                 <td>
                                     <a href="{{url('detil-peminjaman/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-eye"></i></a>
                                     <a>/</a>

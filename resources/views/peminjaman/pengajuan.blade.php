@@ -34,9 +34,9 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-@include('karyawan.navbar.navbar')
+@include('navbar.navbar')
 
-@include('karyawan.menu')
+@include('menu.menu')
 
 <!-- =============================================== -->
 
@@ -69,38 +69,42 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>
-                                        dokumen
-                                    </th>
-                                    <th>deskripsi</th>
-                                    <th>tanggal Pinjam</th>
-                                    <th>tanggal kembali</th>
-                                    <th>Status</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Dokumen</th>
+                                    <th>Tgl Peinjam</th>
+                                    <th>Tgl Kembali</th>
+                                    <th>Actoin</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                    <?php $i = 0; ?>
-                                @foreach($datas as $data)
-                                    <?php $i++; ?>
+                                @if(!empty($pengajuan))
+                                    <?php $i=1; ?>
+                                @foreach($pengajuan as $data)
                                 <tr>
                                     <td>{{$i}}</td>
+                                    <td>{{$data->nip}}</td>
+                                    <td>{{$data->name}}</td>
                                     <td>{{$data->nama_dokumen}}</td>
-                                    <td><a href="{{url('view-dokumen/'.$data->id)}}"> {{$data->diskripsi_peminjaman}} </a></td>
                                     <td>{{$data->tgl_pinjam}}</td>
                                     <td>{{$data->tgl_kembali}}</td>
                                     <td>
-                                        @if($data->id_status == 3)
-                                        <span class="label label-warning">Pending</span>
-                                        @elseif($data->id_status == 1)
-                                            <span class="label label-success">Approved</span>
-                                        @endif
-{{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
-{{--                                        <a>/</a>--}}
-{{--                                        <a href="{{url('hapus-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash"></i></a>--}}
+{{--                                        $data->id--}}
+                                        <a href="{{url('detil-pengajuan/'.$data->id)}}"><button type="button" >Proses</button></a>
                                     </td>
                                 </tr>
+                                    <?php $i++; ?>
                                 @endforeach
+                                    @else
+                                <tr>
+                                    <td>Misc</td>
+                                    <td>NetFront 3.1</td>
+                                    <td>Embedded devices</td>
+                                    <td>-</td>
+                                    <td>C</td>
+                                </tr>
+                                @endif
+
 
                                 </tbody>
                                 <tfoot>

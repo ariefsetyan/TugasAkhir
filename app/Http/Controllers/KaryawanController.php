@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KaryawanController extends Controller
@@ -17,6 +18,8 @@ class KaryawanController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        //Penyiapkan Client Disk Dropbox
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
     public function index(){
         if (session('success')){
@@ -103,22 +106,21 @@ class KaryawanController extends Controller
 
         $datas->save();
 
-//        return redirect('')
+//        return redirect('https://wa.me/no_WA?text=message');
 
     }
     public function daftarPengajuan(){
         $datas = DB::table('peminjamen as p')
-            ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali','d.nama_dokumen')
+            ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali','d.nama_dokumen','p.id_status')
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->where([
-                ['id_status','=','3'],
+//                ['id_status','=','3'],
                 ['id_karyawan','=',Auth::user()->id]
             ])
             ->get();
-//        $datas = Auth::user()->id;
 //        dd($datas);
-
+//
         return view('karyawan.daftar',compact('datas'));
     }
     public function formEdit($id){
@@ -137,10 +139,37 @@ class KaryawanController extends Controller
         $dokumens = DB::table('dokumens as d')
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
             ->get();
-        dd($datas);
+//        dd($datas);
         return view('karyawan.formEdit', compact('datas','dokumens'));
     }
-//    public function hapus($id){
-//        dd($id);
-//    }
+    public function viewDokumen($id){
+        $data = DB::table('peminjamen as p')
+            ->select('file')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->where('p.id','=',$id)
+            ->get();
+//        dd($data);
+        $decode = json_decode($data,true);
+        $berkas = $decode[0]['file'];
+
+        try {
+            //menyiapkan link
+            $link = $this->dropbox->listSharedLinks('public/berkas/'.$berkas);
+            //membuat link untuk melihat berkas
+            $raw = explode("?", $link[0]['url']);
+            $gambar = $raw[0].'?raw=1';
+//            dd($gambar);
+            $tempGambar = tempnam(sys_get_temp_dir(), $berkas);
+            copy($gambar, $tempGambar);
+            //menampilkan berkas
+            $file = response()->file($tempGambar);
+//            dd(file($tempGambar));
+//            return response()->file($tempGambar);
+
+        } catch (Exception $e) {
+            //abort jika tidak ada berkas
+            return abort(404);
+        }
+        return view('karyawan.dokumen',compact('gambar'));
+    }
 }

@@ -68,6 +68,11 @@ Route::get('/edit-peminjaman/{id}', 'PeminjamanController@edit');
 Route::get('/update-peminjaman/{id}', 'PeminjamanController@update');
 Route::get('/delete-peminjaman/{id}', 'PeminjamanController@destroy');
 
+Route::get('/daftar-permohonan', 'PeminjamanController@pengajuan');
+Route::get('/detil-pengajuan/{id}', 'PeminjamanController@detil_pengajuan');
+Route::get('/menerima-pengajuan/{id}', 'PeminjamanController@terima');
+Route::get('/daftar-persetujuan', 'PeminjamanController@daftarPengajuan');
+
 Route::get('/form-pengembalian', 'PengembalianController@index');
 Route::get('/cari-pengembalian', 'PengembalianController@cari');
 Route::get('/daftar-pengembalian', 'PengembalianController@daftar');
@@ -85,4 +90,5 @@ Route::get('/form-pengajuan', 'KaryawanController@pengajuan');
 Route::post('/proses-pengajuan', 'KaryawanController@prosesPengajuan');
 Route::get('/daftar-pengajuan', 'KaryawanController@daftarPengajuan');
 Route::get('/edit-pengajuan/{id}', 'KaryawanController@formEdit');
-Route::get('/hapus-pengajuan/{id}', 'KaryawanController@hapus');
+//Route::get('/hapus-pengajuan/{id}', 'KaryawanController@hapus');
+Route::get('/view-dokumen/{id}', 'KaryawanController@viewDokumen');
