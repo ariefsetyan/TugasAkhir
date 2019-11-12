@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Peminjaman;
 use App\Pengembalian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,7 @@ class PengembalianController extends Controller
     }
 
     public function kembali(Request $request){
+
 //        $datas = new Pengembalian();
 //        $datas->id_peminjaman = $request->idpeminjaman;
 //        $datas->id_dokumen = $request->iddokumen;
@@ -41,6 +43,7 @@ class PengembalianController extends Controller
         $datas = DB::table('peminjamen')->where('id','=',$request->id)
             ->update(['id_status' => 2]);
 //        dd($datas);
+
         return redirect('daftar-pengembalian');
     }
 

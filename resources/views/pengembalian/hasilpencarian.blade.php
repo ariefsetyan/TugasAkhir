@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +48,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Pengamblian
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -68,7 +66,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Cari Karyawan</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -87,9 +85,6 @@
 
                             <!-- /.box-body -->
 
-                            {{--                            <div class="box-footer">--}}
-                            {{--                                <button type="submit" class="btn btn-primary">Simpan</button>--}}
-                            {{--                            </div>--}}
                         </form>
                     </div>
                 </div>
@@ -100,7 +95,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">Data Peminjaman</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -133,7 +128,7 @@
 {{--                                    <input type="text" hidden value="{{$data->id_karyawan}}" name="idkaryawan">--}}
 {{--                                    <input type="text" hidden value="{{$data->id_dokumen}}" name="iddokumen">--}}
 {{--                                    <input type="text" hidden value="{{$data->id}}" name="idpeminjaman">--}}
-                                    <button type="submit" class="fa fa-check"></button>
+                                    <button type="submit"> Kembali</button>
                                 </form>
                             </td>
                         </tr>

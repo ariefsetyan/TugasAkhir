@@ -64,25 +64,26 @@
 
 
             <!-- /.box -->
-{{--                {{csrf_field()}}--}}
+            {{--                {{csrf_field()}}--}}
             <div class="box">
                 <div class="box-header">
-{{--                    <h3 class="box-title">Data Table With Full Features</h3>--}}
-{{--                    <form action="{{url('aju-retensi')}}">--}}
-{{--                        @foreach($datas as $data)--}}
+                    {{--                    <h3 class="box-title">Data Table With Full Features</h3>--}}
+                    {{--                    <form action="{{url('aju-retensi')}}">--}}
+                    {{--                        @foreach($datas as $data)--}}
 
-{{--                        @endforeach--}}
-                    <a href="{{url('aju-retensi')}}"><button type="submit" class="btn btn-default">Kirim</button></a>
-{{--                    </form>--}}
-{{--                    <div class="box-tools">--}}
-{{--                    <div class="input-group input-group-sm hidden-xs" style="width: 150px;">--}}
-{{--                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">--}}
+                    {{--                        @endforeach--}}
+                    <a href="{{url('eksekusi')}}"><button type="submit" class="btn btn-default">Eksekusi</button></a>
+                    <a href="{{url('pdf')}}"><button type="submit" class="btn btn-default">Print</button></a>
+                    {{--                    </form>--}}
+                    {{--                    <div class="box-tools">--}}
+                    {{--                    <div class="input-group input-group-sm hidden-xs" style="width: 150px;">--}}
+                    {{--                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">--}}
 
-{{--                        <div class="input-group-btn">--}}
-{{--                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    </div>--}}
+                    {{--                        <div class="input-group-btn">--}}
+                    {{--                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
+                    {{--                    </div>--}}
 
                 </div>
                 <!-- /.box-header -->
@@ -104,46 +105,46 @@
                         </thead>
                         <tbody>
                         <?php $i=1?>
-                            @foreach($datas as $data)
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$data->kode_jenis}}</td>
-                                    <td>{{$data->nama_dokumen}}</td>
-                                    <td>{{$data->kurun_waktu}}</td>
-                                    <td>{{$data->tingkat_perkembangan}}</td>
-                                    <td>{{$data->kondisi}}</td>
-                                    <td>{{$data->media_arsip}}</td>
-                                    <form role="form" action="{{url('/update-status/'.$data->id)}}">
+                        @foreach($datas as $data)
+                            <tr>
+                                <td>{{$i}}</td>
+                                <td>{{$data->kode_jenis}}</td>
+                                <td>{{$data->nama_dokumen}}</td>
+                                <td>{{$data->kurun_waktu}}</td>
+                                <td>{{$data->tingkat_perkembangan}}</td>
+                                <td>{{$data->kondisi}}</td>
+                                <td>{{$data->media_arsip}}</td>
+{{--                                <form role="form" action="{{url('/'.$data->id)}}">--}}
 
                                     <td>
-                                        <select name="status">
-                                            @if($data->status == 'musnah' || $data->status == 'Musnah')
-                                                <option selected="selected">{{$data->status}}</option>
-                                                <option>ditinjau ulang</option>
-                                            @elseif(($data->status == 'ditinjau ulang' || $data->status == 'Ditinjau Ulang'))
-                                                <option selected="selected">{{$data->status}}</option>
-                                                <option>musnah</option>
+{{--                                        <select name="status">--}}
+{{--                                            @if($data->status == 'musnah' || $data->status == 'Musnah')--}}
+{{--                                                <option selected="selected">{{$data->status}}</option>--}}
+{{--                                                <option>ditinjau ulang</option>--}}
+{{--                                            @elseif(($data->status == 'ditinjau ulang' || $data->status == 'Ditinjau Ulang'))--}}
+{{--                                                <option selected="selected">{{$data->status}}</option>--}}
+{{--                                                <option>musnah</option>--}}
+{{--                                            @endif--}}
+{{--                                        </select>--}}
+
+                                            @if($data->status == 'musnah')
+                                                <span class="label label-danger">{{$data->status}}</span>
+                                            @elseif($data->status == 'ditinjau ulang')
+                                                <span class="label label-warning">{{$data->status}}</span>
                                             @endif
-                                        </select>
-
-{{--                                        @if($data->status == 'musnah')--}}
-{{--                                            <span class="label label-danger">{{$data->status}}</span>--}}
-{{--                                        @elseif($data->status == 'ditinjau ulang')--}}
-{{--                                            <span class="label label-warning">{{$data->status}}</span>--}}
-{{--                                        @endif--}}
                                     </td>
                                     <td>
 
-                                        <button> save</button>
-{{--                                        <a href="{{url('/update-status/'.$data->id)}}" class="on-default edit-row">--}}
-{{--                                            <i class="fa fa-save" > save</i>--}}
-{{--                                        </a>--}}
+{{--                                        <button> Eksekusi</button>--}}
+                                        <a href="{{url('/'.$data->id)}}" class="on-default edit-row">
+                                            <i class="fa fa-eye" > View</i>
+                                        </a>
                                     </td>
-                                    </form>
+{{--                                </form>--}}
 
-                                </tr>
-                                <?php $i++ ?>
-                            @endforeach
+                            </tr>
+                            <?php $i++ ?>
+                        @endforeach
 
                         </tbody>
                         <tfoot>
@@ -164,7 +165,7 @@
                 </div>
                 <!-- /.box-body -->
             </div>
-{{--            </form>--}}
+            {{--            </form>--}}
         </section>
         <!-- /.content -->
     </div>

@@ -92,6 +92,8 @@
                                                 <span class="label label-warning">Pending</span>
                                             @elseif($data->id_status == 1)
                                                 <span class="label label-success">Approved</span>
+                                            @elseif($data->id_status == 4)
+                                                <span class="label label-danger">Approved</span>
                                             @endif
                                             {{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
                                             {{--                                        <a>/</a>--}}

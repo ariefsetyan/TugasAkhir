@@ -6,10 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
 
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
-
-
-
 <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +50,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Lokasi
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+                <li><a href="{{url('penyimpanan')}}">Page Simpan Dokumen </a></li>
+                <li class="active">Page view Pegawai</li>
             </ol>
         </section>
 
@@ -76,14 +71,13 @@
                         <div class="box-header with-border">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a class="btn btn-social btn-bitbucket">
-                                        <i class="fa fa-reply"></i> Back
-                                    </a>
+{{--                                    <a class="btn btn-social btn-bitbucket">--}}
+{{--                                        <i class="fa fa-reply"></i> Back--}}
+{{--                                    </a>--}}
                                 </div>
-                                <div class="col-md-8"><h3 class="box-title center">Lokasi Dokumen Disimpan</h3></div>
+                                <div class="col-md-8"><h3 class="box-title center">Lokasi Simpan Dokumen</h3></div>
 
                             </div>
-
 
                         </div>
                         <!-- /.box-header -->

@@ -85,8 +85,18 @@
                                     <?php $i++; ?>
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td>{{$data->nama_dokumen}}</td>
-                                    <td><a href="{{url('view-dokumen/'.$data->id)}}"> {{$data->diskripsi_peminjaman}} </a></td>
+                                    <td>
+                                        @if($data->id_status == 3)
+                                            {{$data->nama_dokumen}}
+                                        @elseif($data->id_status == 4)
+                                            {{$data->nama_dokumen}}
+                                        @else
+                                            <a href="{{url('view-dokumen/'.$data->id)}}"> {{$data->nama_dokumen}} </a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                            {{$data->diskripsi_peminjaman}}
+                                    </td>
                                     <td>{{$data->tgl_pinjam}}</td>
                                     <td>{{$data->tgl_kembali}}</td>
                                     <td>
@@ -94,10 +104,10 @@
                                         <span class="label label-warning">Pending</span>
                                         @elseif($data->id_status == 1)
                                             <span class="label label-success">Approved</span>
+                                        @elseif($data->id_status == 4)
+                                            <span class="label label-danger">Ditolak</span>
                                         @endif
-{{--                                        <a href="{{url('edit-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>--}}
-{{--                                        <a>/</a>--}}
-{{--                                        <a href="{{url('hapus-pengajuan/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-trash"></i></a>--}}
+
                                     </td>
                                 </tr>
                                 @endforeach

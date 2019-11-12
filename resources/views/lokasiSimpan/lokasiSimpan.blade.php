@@ -47,13 +47,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Lokasi Simpan
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+{{--                <li><a href="#">Master</a></li>--}}
+                <li class="active">Page Simpan</li>
             </ol>
         </section>
 
@@ -67,51 +66,39 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Form Tambah Lokasi</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form role="form" action="{{url('lokasi-simpan')}}" method="post">
                             {{csrf_field()}}
                             <div class="box-body">
-{{--                                <div class="form-group">--}}
-{{--                                    <label>Lokasi</label>--}}
-{{--                                    <select class="form-control select2" style="width: 100%;" id="jenis" name="jenis">--}}
-{{--                                        <option class="selected">Select ...</option>--}}
-{{--                                        @if(!empty($jenisDokumen))--}}
-{{--                                            @foreach($jenisDokumen as $datajenis)--}}
-{{--                                                <option class="selected" value="{{$datajenis->no_takah}}">{{$datajenis->kode_jenis}}/{{$datajenis->nama_jenis}}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        @else--}}
-{{--                                        @endif--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
                                 <div class="form-group">
                                     <label>Gedung</label>
                                     <input type="text" class="form-control" id="gedung" name="gedung" placeholder="1">
                                 </div>
                                 <div class="form-group">
                                     <label>Rak</label>
-                                    <input type="text" class="form-control" id="rak" name="rak" placeholder="No PP.No AP.No P">
+                                    <input type="text" class="form-control" id="rak" name="rak" placeholder="1">
                                 </div>
                                 <div class="form-group">
                                     <label>Baris</label>
-                                    <input type="text" class="form-control" id="baris" name="baris" placeholder="PP.AP.P">
+                                    <input type="text" class="form-control" id="baris" name="baris" placeholder="1">
                                 </div>
                                 <div class="form-group">
                                     <label>Boks</label>
-                                    <input type="text" class="form-control" id="boks" name="boks" placeholder="PP.AP.P">
+                                    <input type="text" class="form-control" id="boks" name="boks" placeholder="1">
                                 </div>
                                 <div class="form-group">
                                     <label>Folder</label>
-                                    <input type="text" class="form-control" id="folder" name="folder" placeholder="PP.AP.P">
+                                    <input type="text" class="form-control" id="folder" name="folder" placeholder="1">
                                 </div>
 
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -121,7 +108,7 @@
             <!-- /.box -->
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">Data Lokasi</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -181,7 +168,7 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Default Modal</h4>
+                                    <h4 class="modal-title">Form Update Lokasi</h4>
                                 </div>
 
                                 <div class="modal-body">
@@ -218,7 +205,7 @@
                                         <!-- /.box-body -->
                                         <div class="box-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                                            <button type="submit" class="btn btn-info pull-right">Simpan</button>
                                         </div>
 
                                     </form>
@@ -248,11 +235,6 @@
         reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->

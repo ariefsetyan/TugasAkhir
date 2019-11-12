@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Peminjaman;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class KembaliCommand extends Command
+class scheduleCommend extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'minute:update';
+    protected $signature = 'command:name';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'done';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -39,18 +38,13 @@ class KembaliCommand extends Command
      */
     public function handle()
     {
-        $tglnow=date('Y-m-d');
-        $datas = Peminjaman::all();
-        foreach ($datas as $data){
-            if ($tglnow >= $data->tgl_kembali){
-//                var_dump('asa');
-                $update = DB::table('peminjamen')
-                    ->where('id','=',$data->id)
-                    ->update(['id_status' => '2']);
-
-            }
-        }
-        echo 'done';
-
+//        $tglnow=date('Y-m-d');
+//        $datas = DB::table('peminjamen')->select('tgl_kembali')->get();
+//        foreach ($datas as $data){
+//            if ($tglnow >= $data->tgl_kembali){
+//                $update = DB::table('peminjamen')->update(['id_status' => '2']);
+//            }
+//        }
+//        echo 'done';
     }
 }

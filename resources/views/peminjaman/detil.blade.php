@@ -1,14 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
-
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
-
-
 
 <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -54,13 +49,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Detil
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+                <li><a href="{{url('daftar-peminjaman')}}">Page daftar peminjaman</a></li>
+                <li class="active">Page detil</li>
             </ol>
         </section>
 
@@ -76,11 +70,11 @@
                         <div class="box-header with-border">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a class="btn btn-social btn-bitbucket">
-                                        <i class="fa fa-reply"></i> Back
-                                    </a>
+{{--                                    <a class="btn btn-social btn-bitbucket">--}}
+{{--                                        <i class="fa fa-reply"></i> Back--}}
+{{--                                    </a>--}}
                                 </div>
-                                <div class="col-md-8"><h3 class="box-title center">Lokasi Dokumen Disimpan</h3></div>
+                                <div class="col-md-8"><h3 class="box-title center">Detil Peminjaman</h3></div>
 
                             </div>
 
@@ -196,12 +190,12 @@
                 <div class="col-md-6">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Horizontal Form</h3>
+                            <h3 class="box-title">Preview Dokumen</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
                         {{--                        {{$file}}--}}
-{{--                        <embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>--}}
+                        <embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
                     {{--                        <embed width="535" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>--}}
                     <!-- /.box-footer -->
                         </form>

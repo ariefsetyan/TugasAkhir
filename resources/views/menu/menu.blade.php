@@ -3,15 +3,6 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
@@ -30,7 +21,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i>
+                    <i class="fa fa-database"></i>
                     <span>Master</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -46,7 +37,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i>
+                    <i class="fa fa-files-o"></i>
                     <span>Penyimpanan</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -59,14 +50,12 @@
                 </ul>
             </li>
 
-
-
             <li class="treeview">
                 <a href="{{url('form-peminjaman')}}">
                     <i class="fa fa-files-o"></i>
                     <span>Peminjaman</span>
                     <span class="pull-right-container">
-                        <span class="label label-primary pull-right">4</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -80,9 +69,11 @@
 
             <li class="treeview">
                 <a href="../widgets.html">
-                    <i class="fa fa-th"></i>
+                    <i class="fa fa-folder-open-o"></i>
                     <span>Pengembalian</span>
-                    <span class="pull-right-container"></span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{url('form-pengembalian')}}"><i class="fa fa-circle-o"></i> Pengembalian</a></li>
@@ -91,29 +82,47 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="../widgets.html">
-                    <i class="fa fa-th"></i>
-                    <span>Jadwal Pemusnahan</span>
-                    <span class="pull-right-container"></span>
-                </a>
-            </li>
-
             <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i>
-                    <span>Laporan</span>
+                <a href="{{url('')}}">
+                    <i class="fa fa-fire"></i>
+                    <span>Pemusnahan</span>
+                    <span class="pull-right-container"></span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> dokumen tidak aktif</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> dokumen aktif</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> peminjaman</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> pengembalian</a></li>
+                    <li><a href="{{url('jadwal-retensi')}}"><i class="fa fa-circle-o"></i> Jadwal Pemusnahan</a></li>
+                    <li><a href="{{url('daftar-retensi')}}"><i class="fa fa-circle-o"></i> Daftar Retensi</a></li>
                 </ul>
             </li>
+
+{{--            <li>--}}
+{{--                <a href="{{url('#')}}">--}}
+{{--                    <i class="fa fa-th"></i>--}}
+{{--                    <span>Dokumen Retensi</span>--}}
+{{--                    <span class="pull-right-container"></span>--}}
+{{--                    <span class="pull-right-container">--}}
+{{--                        <i class="fa fa-angle-left pull-right"></i>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+
+{{--            <li class="treeview">--}}
+{{--                <a href="#">--}}
+{{--                    <i class="fa fa-dashboard"></i>--}}
+{{--                    <span>Laporan</span>--}}
+{{--                    <span class="pull-right-container">--}}
+{{--                        <i class="fa fa-angle-left pull-right"></i>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <ul class="treeview-menu">--}}
+{{--                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> dokumen tidak aktif</a></li>--}}
+{{--                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> dokumen aktif</a></li>--}}
+{{--                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> peminjaman</a></li>--}}
+{{--                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> pengembalian</a></li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
 {{--            ===============================--}}
         </ul>
     </section>

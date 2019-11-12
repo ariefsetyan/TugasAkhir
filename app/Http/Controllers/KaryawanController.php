@@ -106,7 +106,7 @@ class KaryawanController extends Controller
 
         $datas->save();
 
-//        return redirect('https://wa.me/no_WA?text=message');
+        return redirect('https://wa.me/'.$request->nomer.'?text=test connet app to WhatsApp');
 
     }
     public function daftarPengajuan(){
@@ -115,8 +115,13 @@ class KaryawanController extends Controller
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->where([
-//                ['id_status','=','3'],
+                ['id_status','=','1'],
                 ['id_karyawan','=',Auth::user()->id]
+            ])->orWhere([
+                ['id_status','=','3']
+            ])
+            ->orWhere([
+                ['id_status','=','4']
             ])
             ->get();
 //        dd($datas);

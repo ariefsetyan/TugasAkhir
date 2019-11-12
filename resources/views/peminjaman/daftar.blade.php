@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +48,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page daftar peminjaman
+
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+{{--                <li><a href="#">Examples</a></li>--}}
+                <li class="active">Page daftar peminjaman</li>
             </ol>
         </section>
 
@@ -68,7 +67,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">Data Peminjaman</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

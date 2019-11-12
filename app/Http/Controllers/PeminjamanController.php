@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PeminjamanController extends Controller
 {
@@ -17,6 +18,11 @@ class PeminjamanController extends Controller
         $dokumens = Dokumen::all();
         return view('peminjaman.formpeminjaman2',compact('dokumens'));
     }
+    public function __construct()
+    {
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -91,7 +97,30 @@ class PeminjamanController extends Controller
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
             ->get();
 //        dd($datas);
-        return view('peminjaman.detil',compact('datas'));
+
+        $decode = json_decode($datas,true);
+        $berkas = $decode[0]['file'];
+
+        try {
+            //menyiapkan link
+            $link = $this->dropbox->listSharedLinks('public/berkas/'.$berkas);
+            //membuat link untuk melihat berkas
+            $raw = explode("?", $link[0]['url']);
+            $gambar = $raw[0].'?raw=1';
+//            dd($gambar);
+            $tempGambar = tempnam(sys_get_temp_dir(), $berkas);
+            copy($gambar, $tempGambar);
+            //menampilkan berkas
+            $file = response()->file($tempGambar);
+//            dd(file($tempGambar));
+//            return response()->file($tempGambar);
+
+        } catch (Exception $e) {
+            //abort jika tidak ada berkas
+            return abort(404);
+        }
+
+        return view('peminjaman.detil',compact('datas','gambar'));
     }
 
     /**

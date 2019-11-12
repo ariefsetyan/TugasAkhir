@@ -63,13 +63,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Jenis Dokumen
+
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+{{--                <li><a href="#">Examples</a></li>--}}
+                <li class="active">page Jenis Dokumen</li>
             </ol>
         </section>
 
@@ -83,7 +83,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Form Jenis Dokumen</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -129,7 +129,7 @@
             <!-- /.box -->
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">Data Jenis Dokumen</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -173,7 +173,7 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title">Default Modal</h4>
+                                        <h4 class="modal-title">Form Update Jenis Dokumen</h4>
                                     </div>
 
                                     <div class="modal-body">
@@ -213,7 +213,7 @@
                                             <!-- /.box-body -->
                                             <div class="box-footer">
                                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                                                <button type="submit" class="btn btn-info pull-right">Simpan</button>
                                             </div>
 
                                         </form>

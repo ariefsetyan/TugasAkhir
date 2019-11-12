@@ -57,6 +57,11 @@ class DokumenController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
+//        $tgl=date('d-m-Y');
+//        dd($tgl);
+        $waktu = $request->kurunWaktu;
+        $kurunwaktu = explode('-',$waktu);
+//        dd($kurunwaktu,$dd[0]);
 
         $data = request()->validate([
             'file' => 'required|mimes:pdf|max:10000',
@@ -93,13 +98,15 @@ class DokumenController extends Controller
         $dokumen = new Dokumen();
         $dokumen->nama_dokumen = $request->nama;
         $dokumen->diskripsi = $request->deskripsi;
-        $dokumen->kurun_waktu = $request->tahun;
+        $dokumen->kurun_waktu = $kurunwaktu[0];
         $dokumen->tingkat_perkembangan = $request->tPerkembangan;
         $dokumen->media_arsip = $request->media;
         $dokumen->kondisi = $request->kondisi;
         $dokumen->file = $namaBerkas;
         $dokumen->no_takah = $request->kode;
         $dokumen->jenis_dok_jra = $request->jenis;
+        $dokumen->tgl_upload = $waktu;
+        $dokumen->kondisi_dokumen = '0';
 //        dd($dokumen);
         $dokumen->save();
 
@@ -122,7 +129,8 @@ class DokumenController extends Controller
     public function show($id_jra)
     {
 
-        $jra = JRA::where('kode_jenis',$id_jra)->pluck('nm_jenis_jra','id');
+        $jra = JRA::where('kode_jenis',$id_jra)->pluck('nm_jenis_jra','id','inaktif','aktif');
+//        dd($jra);
         return json_encode($jra);
     }
 

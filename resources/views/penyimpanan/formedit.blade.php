@@ -6,10 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
 
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
-
-
-
 <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -54,13 +50,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Form Edit
+
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+                <li><a href="{{url('daftar-penyimpanan')}}">Daftar Dokumen</a></li>
+                <li class="active">Page Form Edit</li>
             </ol>
         </section>
 
@@ -74,7 +70,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Quick Example</h3>
+                            <h3 class="box-title">Form Dokumen</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->

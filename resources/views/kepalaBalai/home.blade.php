@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
+    <title>AdminLTE 2 | Data Tables</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -12,6 +13,8 @@
     <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -26,65 +29,98 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
 <div class="wrapper">
 
-@include('navbar.navbar')
-
-@include('karyawan.menu')
-
-<!-- =============================================== -->
+    @include('kepalaBalai.menu.menu')
+    <!-- Left side column. contains the logo and sidebar -->
+    @include('kepalaBalai.navbar.navdar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Data Tables
+                <small>advanced tables</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+                <li><a href="#">Tables</a></li>
+                <li class="active">Data tables</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+{{--                            <h3 class="box-title">Hover Data Table</h3>--}}
+                            <a href="{{url('approve')}}"><button type="submit" class="btn btn-default">Setujui</button></a>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Dokumen</th>
+                                    <th>Dokumen</th>
+                                    <th>Kurun Waktu</th>
+                                    <th>Tingkat Perkembangan</th>
+                                    <th>Media</th>
+                                    <th>Kondisi</th>
+                                    <th>status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $no = 1?>
+                                @foreach($datas as $data)
+                                <tr>
+                                    <td>{{$no}}</td>
+                                    <td>{{$data->kode_jenis}}</td>
+                                    <td>{{$data->nama_dokumen}}</td>
+                                    <td>{{$data->kurun_waktu}}</td>
+                                    <td>{{$data->tingkat_perkembangan}}</td>
+                                    <td>{{$data->media_arsip}}</td>
+                                    <td>{{$data->kondisi}}</td>
+                                    <td>{{$data->status}}</td>
 
-            <!-- Default box -->
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Title</h3>
+                                </tr>
+                                    <?php $no++?>
+                                @endforeach
 
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fa fa-times"></i></button>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Dokumen</th>
+                                    <th>Dokumen</th>
+                                    <th>Kurun Waktu</th>
+                                    <th>Tingkat Perkembangan</th>
+                                    <th>Media</th>
+                                    <th>Kondisi</th>
+                                    <th>status</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
                 </div>
-                <div class="box-body">
-                    Start creating your amazing application!
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    Footer
-                </div>
-                <!-- /.box-footer-->
+                <!-- /.col -->
             </div>
-            <!-- /.box -->
-
+            <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.13
@@ -93,17 +129,21 @@
         reserved.
     </footer>
 
-
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
+@include('sweetalert::alert')
+
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -112,9 +152,18 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- page script -->
 <script>
-    $(document).ready(function () {
-        $('.sidebar-menu').tree()
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        })
     })
 </script>
 </body>

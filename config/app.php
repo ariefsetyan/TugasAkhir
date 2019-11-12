@@ -180,6 +180,13 @@ return [
         BC\Laravel\DropboxDriver\ServiceProvider::class,
 
         App\Providers\DropboxServiceProvider::class,
+
+//        Crabbly\FPDF\FpdfServiceProvider::class,
+
+        Codedge\Fpdf\FpdfServiceProvider::class,
+
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -231,6 +238,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
+        'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
+
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
 
     ],
 

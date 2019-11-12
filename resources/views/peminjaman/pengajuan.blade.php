@@ -45,13 +45,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                 Page Pengajuan
+
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+{{--                <li><a href="#">Examples</a></li>--}}
+                <li class="active">Daftar Pengajuan</li>
             </ol>
         </section>
 
@@ -61,7 +61,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
+                            <h3 class="box-title">Daftar pengajuan</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

@@ -25,6 +25,8 @@ class HomeController extends Controller
     {
         if(auth()->user()->isAdmin == 1){
             return redirect('/dashboard');
+        }elseif (auth()->user()->isAdmin == 2){
+            return redirect('home-kepala');
         }else{
             return view('karyawan.home');
         }
