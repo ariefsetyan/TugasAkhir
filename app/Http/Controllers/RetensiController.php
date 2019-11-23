@@ -8,6 +8,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class RetensiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
 //        $tglnow=date('Y-m-d');
 ////        dd($tglnow);

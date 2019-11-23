@@ -6,9 +6,15 @@ use App\Peminjaman;
 use App\Pengembalian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PengembalianController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         return view('pengembalian/pengembalian');
     }
@@ -44,10 +50,14 @@ class PengembalianController extends Controller
             ->update(['id_status' => 2]);
 //        dd($datas);
 
-        return redirect('daftar-pengembalian');
+        return redirect('daftar-pengembalian')->withSuccess('Successfully update');
     }
 
     public function daftar(){
+        if (session('success')){
+            Alert::success('Success Title', 'Success Message');
+        }
+
         $datas = DB::table('peminjamen as p')
             ->where('id_status','2')
             ->join('users as u','p.id_karyawan','=','u.id')

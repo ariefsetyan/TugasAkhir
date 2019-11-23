@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PeminjamanController extends Controller
 {
@@ -20,6 +22,7 @@ class PeminjamanController extends Controller
     }
     public function __construct()
     {
+        $this->middleware('auth');
         $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
 
@@ -32,13 +35,14 @@ class PeminjamanController extends Controller
     {
         $karyawans = User::all();
         $dokumens = Dokumen::all();
-        $datas = DB::table('peminjamen as p')
-            ->join('users as u','p.id_karyawan','=','u.id')
-            ->join('dokumens as d','p.id_dokumen','=','d.id')
-            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
-            ->get();
-//        dd($datas);
-        return view('peminjaman.formPeminjaman',compact('karyawans','dokumens','datas'));
+//        $datas = DB::table('peminjamen as p')
+//            ->join('users as u','p.id_karyawan','=','u.id')
+//            ->join('dokumens as d','p.id_dokumen','=','d.id')
+//            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+//            ->get();
+//        dd($dokumens);
+        $date = date('Y-m-d');
+        return view('peminjaman.formPeminjaman',compact('karyawans','dokumens','date'));
     }
 
     /**
@@ -57,7 +61,7 @@ class PeminjamanController extends Controller
         $peminjaman->id_status = 1;
 //        dd($peminjaman);
         $peminjaman->save();
-        return redirect('daftar-peminjaman');
+        return redirect('daftar-peminjaman')->withSuccess('Successfully add');
     }
 
     /**
@@ -68,6 +72,12 @@ class PeminjamanController extends Controller
      */
     public function daftar()
     {
+        if (session('success')){
+            Alert::success('Success', 'data berhasil disimpan');
+        }elseif (session('success1')){
+            Alert::success('Success', 'data berhasil diperbaruhi');
+        }
+
         $karyawans = User::all();
         $dokumens = Dokumen::all();
         $datas = DB::table('peminjamen as p')
@@ -133,9 +143,12 @@ class PeminjamanController extends Controller
     {
         $karyawans = User::all();
         $dokumens = Dokumen::all();
-        $datas = DB::table('peminjamen as p')->where('p.id',$id)
+//        dd($id);
+        $datas = DB::table('peminjamen as p')->where('p.id', '=', $id)
+            ->select('p.id','diskripsi_peminjaman','tgl_pinjam','tgl_kembali','id_karyawan','nip','id_dokumen','nama_dokumen')
             ->join('users as u','p.id_karyawan','=','u.id')
-            ->join('dokumens as d','d.id','=','p.id_dokumen')->get();
+            ->join('dokumens as d','d.id','=','p.id_dokumen')
+            ->get();
 //        dd($datas);
         return view('peminjaman.formedit',compact('datas','karyawans','dokumens'));
     }
@@ -149,14 +162,19 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = DB::table('peminjamen')->where('id',$id)->update(
-            ['diskripsi_peminjaman'=>$request->deskripsi],
-            ['tgl_pinjam'=>$request->wPinjam],
-            ['tgl_kembali'=>$request->wKembali],
-            ['id_karyawan'=>$request->nip],
-            ['id_dokumen'=>$request->dokumen]
-        );
-        return redirect('daftar-peminjaman');
+//        dd($request->deskripsi);
+//        dd($request->wPinjam);
+//        dd($request->wKembali);
+//        dd($request->nip);
+//        dd($request->dokumen);
+        $data = DB::table('peminjamen')->where('id','=',$id)->update([
+            'diskripsi_peminjaman'=>$request->deskripsi,
+            'tgl_pinjam'=>$request->wPinjam,
+            'tgl_kembali'=>$request->wKembali,
+            'id_karyawan'=>$request->nip,
+            'id_dokumen'=>$request->dokumen
+            ]);
+        return redirect('daftar-peminjaman')->withSuccess1('Successfully');
     }
 
     /**

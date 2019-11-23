@@ -95,11 +95,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Aktif</label>
-                                    <input type="text" class="form-control" id="aktif" placeholder="1" name="aktif" required>
+                                    <input type="number" class="form-control" id="aktif" placeholder="1" name="aktif" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Inaktif</label>
-                                    <input type="text" class="form-control" id="inaktif" placeholder="1" name="inaktif" required>
+                                    <input type="number" class="form-control" id="inaktif" placeholder="1" name="inaktif" required>
                                 </div>
 
                                 <div class="form-group">
@@ -195,15 +195,15 @@
 
                                                 <div class="form-group">
                                                     <label>Nama Jenis</label>
-                                                    <input type="text" class="form-control" id="nama" placeholder="PP.AP.P" name="nama">
+                                                    <input type="text" class="form-control" id="nama" placeholder="PP.AP.P" name="nama" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Aktif</label>
-                                                    <input type="text" class="form-control" id="aktif" placeholder="PP.AP.P" name="aktif">
+                                                    <input type="number" class="form-control" id="aktif" placeholder="PP.AP.P" name="aktif" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Inaktif</label>
-                                                    <input type="text" class="form-control" id="inaktif" placeholder="PP.AP.P" name="inaktif">
+                                                    <input type="number" class="form-control" id="inaktif" placeholder="PP.AP.P" name="inaktif" required>
                                                 </div>
 
                                                 <div class="form-group">
@@ -255,13 +255,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
-    </footer>
+@include('footer')
 
 
     <!-- Add the sidebar's background. This div must be placed

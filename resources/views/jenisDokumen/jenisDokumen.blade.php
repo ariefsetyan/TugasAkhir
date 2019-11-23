@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>No. Takah</label>
-                                    <input type="text" class="form-control" name="noTakah" placeholder="1" required>
+                                    <input type="number" class="form-control" name="noTakah" placeholder="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Kode Jenis</label>
@@ -154,8 +154,12 @@
                             <td>{{$data->nama_jenis}}</td>
                             <td>{{$data->gedung}}/{{$data->rak}}/{{$data->baris}}/{{$data->bok}}/{{$data->folder}}</td>
                             <td>
-                                <a href="#" class="on-default edit-row" data-id_lokasi="{{$data->id_lokasi}}/{{$data->gedung}}/{{$data->rak}}/{{$data->baris}}/{{$data->bok}}/{{$data->folder}}" data-notakah="{{$data->no_takah}}" data-kdjenis="{{$data->kode_jenis}}"
-                                   data-nmjenis="{{$data->nama_jenis}}" data-toggle="modal" data-target="#modal-default">
+                                <a href="#" class="on-default edit-row"
+                                   data-id_lokasi="{{$data->id_lokasi}}/{{$data->gedung}}/{{$data->rak}}/{{$data->baris}}/{{$data->bok}}/{{$data->folder}}"
+                                   data-notakah="{{$data->no_takah}}"
+                                   data-kdjenis="{{$data->kode_jenis}}"
+                                   data-nmjenis="{{$data->nama_jenis}}"
+                                   data-toggle="modal" data-target="#modal-default">
                                     <i class="fa fa-pencil" ></i>
                                 </a>
                                 <a>/</a>
@@ -199,7 +203,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>No. Takah</label>
-                                                    <input type="text" class="form-control" name="noTakah" id="noTakah" placeholder="1" required >
+                                                    <input type="number" class="form-control" name="noTakah" id="noTakah" placeholder="1" required >
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Kode Jenis</label>
@@ -247,13 +251,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
-    </footer>
+@include('footer')
 
     <!-- Control Sidebar -->
 
@@ -285,30 +283,33 @@
 
     @include('sweetalert::alert')
 
-<script>
-    $('#modal-default').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id') // Extract info from data-* attributes
-        var id_lokasi = button.data('id_lokasi') // Extract info from data-* attributes
-        var gedung = button.data('gedung') // Extract info from data-* attributes
-        var rak = button.data('rak') // Extract info from data-* attributes
-        var baris = button.data('baris') // Extract info from data-* attributes
-        var boks = button.data('boks') // Extract info from data-* attributes
-        var folder = button.data('folder') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        console.log(id_lokasi)
-        // modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body #id').val(id)
-        modal.find('.modal-body #lokasi').val(id_lokasi)
-        modal.find('.modal-body #gedung').val(gedung)
-        modal.find('.modal-body #rak').val(rak)
-        modal.find('.modal-body #baris').val(baris)
-        modal.find('.modal-body #boks').val(boks)
-        modal.find('.modal-body #folder').val(folder)
-    })
-</script>
+{{--<script>--}}
+{{--    $('#modal-default').on('show.bs.modal', function (event) {--}}
+{{--        var button = $(event.relatedTarget) // Button that triggered the modal--}}
+{{--        var id = button.data('id') // Extract info from data-* attributes--}}
+{{--        var id_lokasi = button.data('id_lokasi') // Extract info from data-* attributes--}}
+{{--        var no_takah = button.data('notakah') // Extract info from data-* attributes--}}
+{{--        var kode_jenis = button.data('kode_jenis') // Extract info from data-* attributes--}}
+{{--        var gedung = button.data('gedung') // Extract info from data-* attributes--}}
+{{--        var rak = button.data('rak') // Extract info from data-* attributes--}}
+{{--        var baris = button.data('baris') // Extract info from data-* attributes--}}
+{{--        var boks = button.data('boks') // Extract info from data-* attributes--}}
+{{--        var folder = button.data('folder') // Extract info from data-* attributes--}}
+{{--        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).--}}
+{{--        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.--}}
+{{--        var modal = $(this)--}}
+{{--        console.log(id_lokasi)--}}
+{{--        console.log(no_takah)--}}
+{{--        // modal.find('.modal-title').text('New message to ' + recipient)--}}
+{{--        modal.find('.modal-body #id').val(id)--}}
+{{--        modal.find('.modal-body #lokasi').val(id_lokasi)--}}
+{{--        modal.find('.modal-body #gedung').val(gedung)--}}
+{{--        modal.find('.modal-body #rak').val(rak)--}}
+{{--        modal.find('.modal-body #baris').val(baris)--}}
+{{--        modal.find('.modal-body #boks').val(boks)--}}
+{{--        modal.find('.modal-body #folder').val(folder)--}}
+{{--    })--}}
+{{--</script>--}}
 
 <script>
     $('#modal-default').on('show.bs.modal', function (event) {

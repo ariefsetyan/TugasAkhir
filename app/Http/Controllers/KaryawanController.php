@@ -69,7 +69,8 @@ class KaryawanController extends Controller
     public function pengajuan(){
         $dokumens = DB::table('dokumens as d')->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')->get();
 //        dd($dokumens);
-        return view('karyawan.formPengajuan',compact('dokumens'));
+        $date = date('Y-m-d');
+        return view('karyawan.formPengajuan',compact('dokumens','date'));
     }
     public function prosesPengajuan(Request $request){
         $datas = new Peminjaman();

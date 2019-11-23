@@ -57,8 +57,8 @@ class everDay extends Command
 
             $thnaktif = $intthnupload+$aktif;
             $thninaktif = $intthnupload+$aktif+$inaktif;
-//            var_dump($thnaktif);
-//            var_dump($thninaktif);
+//            dd($thnaktif);
+//            dd($thninaktif);
             if ($thnaktif  > $inttahun){
                 DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'aktif']);
 //                var_dump( 'Aktif');
@@ -66,7 +66,9 @@ class everDay extends Command
                 DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'inaktif']);
 //                var_dump( 'Inaktif');
             }
-            elseif ($inttahun > $thninaktif){
+//            elseif ($inttahun > $thninaktif){
+            else{
+//                var_dump('tes');
                 if ($data->sifat_dokumen == 'Musnah'){
                     DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'musnah']);
 //                    var_dump( 'Musnah');
@@ -78,6 +80,7 @@ class everDay extends Command
                 }
             }
         }
+
         echo 'done';
     }
 }

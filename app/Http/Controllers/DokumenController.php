@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 use Spatie\Dropbox\Client;
 use Illuminate\Http\File;
 
@@ -56,6 +58,8 @@ class DokumenController extends Controller
      */
     public function store(Request $request)
     {
+        Alert::success('Success', 'data berhasil disimpan');
+
 //        dd($request->all());
 //        $tgl=date('d-m-Y');
 //        dd($tgl);
@@ -210,7 +214,7 @@ class DokumenController extends Controller
             ]);
         }
 
-        return redirect('daftar-penyimpanan');
+        return redirect('daftar-penyimpanan')->withSuccess('Successfully update');
 
     }
 
@@ -264,6 +268,12 @@ class DokumenController extends Controller
     }
 
     public function daftar(){
+        if (session('success')){
+            Alert::success('Success', 'data berhasil diperbaruhi');
+        }elseif (session('success1')){
+            Alert::success('Success', 'data berhasil dihapus');
+        }
+
         $dokumen = DB::table('dokumens as d')
             ->join('jenis_dokumens as jd','jd.no_takah','=','d.no_takah')
             ->get();
@@ -281,6 +291,6 @@ class DokumenController extends Controller
         //hapus data di database
         $dokumen = Dokumen::where('id',$id)->delete();
 //        $berkas->delete();
-        return redirect('daftar-penyimpanan');
+        return redirect('daftar-penyimpanan')->withSuccess1('Successfully delete');
     }
 }

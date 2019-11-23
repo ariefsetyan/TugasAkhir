@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class Atur
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,16 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->isAdmin == 1){
-//            \Log::info("oke");
-//            return $next($request);
+        $tipe = \Auth::user()->isAdmin;
+
+        if($tipe == null){
+            return response()->json(['Kesalahan' => 'Kamu bukan admin'], 401);
+        }else if($tipe == 1){
+        } else if ($tipe == 2){
+            return redirect('r');
+
         }
-//        else{
-//            \Log::info("oke");
-//        }
-        return redirect('home')->with('error','You have not admin access');
+
+
     }
 }

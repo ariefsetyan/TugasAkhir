@@ -78,7 +78,7 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Kode Dokumen</label>
-                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode">
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode" required>
                                         <option selected="selected">select ...</option>
                                         @if(!empty($nomerdoc))
                                         @foreach($nomerdoc as $datano)
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Dokumen</label>
-                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode">
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode" required>
                                         <option selected="selected">Select ...</option>
 
                                     </select>
@@ -107,11 +107,11 @@
 
                                 <div class="form-group">
                                     <label>Nama Dokumen</label>
-                                    <input type="text" class="form-control" id="nama" name="nama">
+                                    <input type="text" class="form-control" id="nama" name="nama" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi"></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Kurun Waktu</label>
@@ -122,7 +122,7 @@
 {{--                                        @endfor--}}
 
 {{--                                    </select>--}}
-                                    <input type="date" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun">
+                                    <input type="date" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Tingkat perkembangan</label>
@@ -141,12 +141,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kondisi</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="" name="kondisi">
+                                    <input type="text" class="form-control" id="nama" placeholder="" name="kondisi" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputFile">File input</label>
-                                    <input type="file" id="file" name="file">
+                                    <input type="file" id="file" name="file" required>
 
                                 </div>
                             </div>
@@ -168,13 +168,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
-    </footer>
+@include('footer')
 
 
     <!-- Add the sidebar's background. This div must be placed
@@ -182,6 +176,8 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+{{--@include('sweetalert::alert')--}}
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>

@@ -11,14 +11,26 @@
 |
 */
 
+//    Route::get('/jenis-dokumen', 'JenisDokumenController@FormJenisData');
+//    Route::post('/simpan', 'JenisDokumenController@Simpan');
+//    Route::post('/edit', 'JenisDokumenController@Update');
+//    Route::get('/delete/{no_takah}', 'JenisDokumenController@Delete');
+//
+////Route::middleware(['karyawan'],function (){
+//    Route::get('/jra', 'JRAController@index');
+//    Route::post('/simpan-jra', 'JRAController@Simpan');
+//    Route::post('/edit-jra', 'JRAController@Update');
+//    Route::get('/delete-jra/{id}', 'JRAController@Delete');
+////});
+
 Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', 'HomeController@dashboard');
+//Route::get('updateDokumen','HomeController@coba');
 
+//
 Route::get('/jenis-dokumen', 'JenisDokumenController@FormJenisData');
 Route::post('/simpan', 'JenisDokumenController@Simpan');
 Route::post('/edit', 'JenisDokumenController@Update');

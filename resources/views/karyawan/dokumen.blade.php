@@ -55,8 +55,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page View
+{{--                <small>it all starts here</small>--}}
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -74,7 +74,7 @@
                 <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Horizontal Form</h3>
+                            <h3 class="box-title">View Dokumen</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -94,13 +94,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
-    </footer>
+@include('footer')
 
 
     <!-- Add the sidebar's background. This div must be placed

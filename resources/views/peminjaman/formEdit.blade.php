@@ -91,7 +91,7 @@
                                     <label>NIP Karyawan</label>
                                     <select class="form-control select2" style="width: 100%;" name="nip">
 {{--                                        @foreach($datas as $data)--}}
-                                        <option selected="selected" value="{{$data->id}}">{{$data->nip}}</option>
+                                        <option selected="selected" value="{{$data->id_karyawan}}">{{$data->nip}}</option>
 {{--                                        @endforeach--}}
                                         @foreach($karyawans as $karyawan)
                                             <option value="{{$karyawan->id}}">{{$karyawan->nip}}</option>
@@ -102,7 +102,7 @@
                                     <label>Nama Dokumen</label>
                                     <select class="form-control select2" style="width: 100%;" name="dokumen">
 {{--                                        @foreach($datas as $data)--}}
-                                            <option selected="selected" >{{$data->nama_dokumen}}</option>
+                                            <option selected="selected" value="{{$data->id_dokumen}}">{{$data->nama_dokumen}}</option>
 {{--                                        @endforeach--}}
                                         @foreach($dokumens as $dokumen)
                                             <option value="{{$dokumen->id}}">{{$dokumen->nama_dokumen}}</option>
@@ -145,13 +145,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
-    </footer>
+@include('footer')
 
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
