@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Blank Page</title>
 
-<!-- Tell the browser to be responsive to screen width -->
+    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{url('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -42,35 +43,48 @@
 
 @include('menu.menu')
 
+<!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Page Detil Dokumen
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
+                <li><a href="{{url('daftar-penyimpanan')}}">Daftar Dokumen</a></li>
+                <li class="active">Page Detil Dokumen</li>
             </ol>
         </section>
+
+        <!-- Main content -->
         <section class="content">
+
+            <!-- Default box -->
             <div class="row">
+
                 <div class="col-md-6">
+                    <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a class="btn btn-social btn-bitbucket">
-                                        <i class="fa fa-reply"></i> Back
-                                    </a>
+
                                 </div>
-                                <div class="col-md-8"><h3 class="box-title center">Lokasi Dokumen Disimpan</h3></div>
+                                <div class="col-md-8"><h3 class="box-title center">Detil Dokumen</h3></div>
+
                             </div>
+
+
                         </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
                         <div class="box-body">
-                            @foreach($kode as $data)
+                            @foreach($dokumen as $data)
                                 <table class="">
+
                                     <tr>
                                         <td>
                                             <p>Kode Dokumen </p>
@@ -82,28 +96,28 @@
                                             <p>{{$data->kode_jenis}}</p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Nama Jenis Dokumen </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->nama_jenis}}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Sub Nama Jenis Dokumen </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->nm_jenis_jra}}</p>
-                                        </td>
-                                    </tr>
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>Nama Jenis Dokumen </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->nama_jenis}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>Sub Nama Jenis Dokumen </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->nm_jenis_jra}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
                                     <tr>
                                         <td>
                                             <p>Nama Dokumen </p>
@@ -137,39 +151,40 @@
                                             <p>{{$data->kurun_waktu}}</p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Tingkat Perkembangan </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->tingkat_perkembangan}}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Media Arsip </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->media_arsip}}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Kondisi </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->kondisi}}</p>
-                                        </td>
-                                    </tr>
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>Tingkat Perkembangan </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->tingkat_perkembangan}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>Media Arsip </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->media_arsip}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>Kondisi </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->kondisi}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+
                                     <tr>
                                         <td>
                                             <p>Gedung </p>
@@ -225,58 +240,84 @@
                                             <p>{{$data->folder}}</p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <p>aktif </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->aktif}}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Inaktif </p>
-                                        </td>
-                                        <td>
-                                            <p>:    </p>
-                                        </td>
-                                        <td>
-                                            <p>{{$data->inaktif}}</p>
-                                        </td>
-                                    </tr>
+
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>aktif </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->aktif}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <p>Inaktif </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>:    </p>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <p>{{$data->inaktif}}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
                                 </table>
                             @endforeach
                         </div>
                         <div class="box-footer">
                         </div>
+
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Horizontal Form</h3>
+                            <h3 class="box-title">Preview Dokumen</h3>
                         </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
                         <embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+                        <!-- /.box-footer -->
                         </form>
                     </div>
                 </div>
+
             </div>
+            <!-- /.box -->
+
         </section>
+        <!-- /.content -->
     </div>
-    @include('footer')
+    <!-- /.content-wrapper -->
+
+@include('footer')
+
+<!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
 <script src="{{url('bower_components/jquery/dist/jquery.min.js')}}"></script>
+<!-- Bootstrap 3.3.7 -->
 <script src="{{url('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- DataTables -->
 <script src="{{url('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<!-- SlimScroll -->
 <script src="{{url('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- FastClick -->
 <script src="{{url('bower_components/fastclick/lib/fastclick.js')}}"></script>
+<!-- AdminLTE App -->
 <script src="{{url('dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
 <script src="{{url('dist/js/demo.js')}}"></script>
+<!-- page script -->
+
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
@@ -295,6 +336,7 @@
         })
     })
 </script>
+
 </body>
 </html>
 

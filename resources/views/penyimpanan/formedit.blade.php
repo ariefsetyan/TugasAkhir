@@ -9,20 +9,20 @@
 <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <!-- Select2 -->
-    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/select2/dist/css/select2.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,22 +83,13 @@
                                     <label>Kode Dokumen</label>
                                     <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode" disabled>
                                         <option selected="selected" value="{{$data->no_takah}}">{{$data->kode_jenis}}/{{$data->nama_jenis}}</option>
-{{--                                        @if(!empty($nomerdoc))--}}
-{{--                                            @foreach($nomerdoc as $datano)--}}
-{{--                                                                                        @foreach($nomerdoc as $key=>$value)--}}
-{{--                                                <option value="{{$datano->no_takah}}">{{$datano->kode_jenis}}/{{$datano->nama_jenis}}</option>--}}
-{{--                                                                                                <option value="{{$key}}">{{$value}}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        @endif--}}
+
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Dokumen</label>
                                     <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode" disabled>
                                         <option selected="selected">{{$data->nm_jenis_jra}}</option>
-{{--                                        @foreach($jenis_jra as $jenisJra)--}}
-{{--                                            <option value="{{$jenisJra->id}}">{{$jenisJra->nm_jenis_jra}}</option>--}}
-{{--                                        @endforeach--}}
 
                                     </select>
                                 </div>
@@ -116,7 +107,6 @@
                                         @endfor
 
                                     </select>
-                                    {{--                                    <input type="date" class="form-control" id="kurunWaktu" name="kurunWaktu" placeholder="tahun">--}}
                                 </div>
                                 <div class="form-group">
                                     <label>Tingkat perkembangan</label>
@@ -181,20 +171,20 @@
 @include('sweetalert::alert')
 
 <!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{url('bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{url('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{url('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- SlimScroll -->
-<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{url('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<script src="{{url('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="{{url('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="{{url('dist/js/demo.js')}}"></script>
 <!-- page script -->
 
 <script>

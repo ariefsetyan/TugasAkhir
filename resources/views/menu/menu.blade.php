@@ -35,6 +35,13 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="{{url('daftar-dokumen')}}">
+                    <i class="fa fa-dashboard"></i> <span>daftar dokumen</span>
+                </a>
+            </li>
+
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -95,6 +102,12 @@
                     <li><a href="{{url('jadwal-retensi')}}"><i class="fa fa-circle-o"></i> Jadwal Pemusnahan</a></li>
                     <li><a href="{{url('daftar-retensi')}}"><i class="fa fa-circle-o"></i> Daftar Retensi</a></li>
                 </ul>
+            </li>
+
+            <li>
+                <a href="{{url('arcive-dokumen')}}">
+                    <i class="fa fa-dashboard"></i> <span>arcive dokumen</span>
+                </a>
             </li>
 
 {{--            <li>--}}

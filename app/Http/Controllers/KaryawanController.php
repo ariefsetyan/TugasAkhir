@@ -28,6 +28,8 @@ class KaryawanController extends Controller
             Alert::success('Success Delete', 'Data berhasil dihapus');
         }elseif (session('success2')){
             Alert::success('Success update', 'Data berhasil diperbarui');
+        }elseif(session('info')){
+            Alert::info('Gagal simpan', 'No. Telp Harus berawalan 62');
         }
         $karyawan = User::all();
         return view('pegawai.pegawai', compact('karyawan'));
@@ -39,9 +41,14 @@ class KaryawanController extends Controller
         $karyawan->address = $request->alamat;
         $karyawan->gender = $request->jkl;
         $karyawan->email = $request->email;
-        $karyawan->password = Hash::make($request->password);
+        $karyawan->password = Hash::make('1sampai8');
         $karyawan->tlp = $request->telp;
-        $karyawan->save();
+
+//        if (strpos($karyawan->tlp,"62")){
+            $karyawan->save();
+//        }else{
+//            return redirect('karyawan')->withInfo('Successfully add');
+//        }
         return redirect('karyawan')->withSuccess('Successfully add');
     }
     public function delete($nip){
@@ -67,6 +74,9 @@ class KaryawanController extends Controller
     }
 
     public function pengajuan(){
+        if (session('info')){
+            Alert::info('Gagal simpan', 'Tanggal Pinjam tidak boleh melebihi Kanggal Kembali');
+        };
         $dokumens = DB::table('dokumens as d')->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')->get();
 //        dd($dokumens);
         $date = date('Y-m-d');
@@ -92,23 +102,26 @@ class KaryawanController extends Controller
          $nmDokumen = $dokumen[0]['nama_dokumen'];
 //        dd($datas,$namaDokumen,$nmDokumen);
         $data = array('name'=>"Kepada Bapak Admin", "body" => "Saya Mengajukan permohonan peminjaman dokuemna ".$nmDokumen." ".$request->deskripsi.
-            "pada ".$request->tglkembali." hingga ".$request->tglkembali);
+            "pada ".$request->tglpinjam." hingga ".$request->tglkembali);
         Mail::send('email.mail',$data,function ($message) use ($namakaryawan, $email) {
             $message->from('ariefsetyan@gmail.com',$namakaryawan);
             // $message->sender('john@johndoe.com', 'John Doe');
             $message->to($email,'Arief Setya');
             // $message->cc('john@johndoe.com', 'John Doe');
             // $message->bcc('john@johndoe.com', 'John Doe');
-            // $message->replyTo('john@johndoe.com', 'John Doe');
+             $message->replyTo($email, 'John Doe');
             $message->subject('Permohonan Peminjaman Dokumen');
 //            $message->priority(3);
             // $message->attach('pathToFile');
         });
+        if ( $datas->tgl_pinjam > $datas->tgl_kembali){
+            return redirect('form-pengajuan')->withInfo('Successfully add');
+        }else{
 
         $datas->save();
 
         return redirect('https://wa.me/'.$request->nomer.'?text=test connet app to WhatsApp');
-
+        }
     }
     public function daftarPengajuan(){
         $datas = DB::table('peminjamen as p')
@@ -177,5 +190,20 @@ class KaryawanController extends Controller
             return abort(404);
         }
         return view('karyawan.dokumen',compact('gambar'));
+    }
+    public function perbaruiAcoun(){
+        if (session('success')){
+            Alert::success('Success', 'Data berhasil diperbaruhi');
+        }
+        $idkar = Auth::user()->id;
+        $data = DB::table('users')->where('id','=',$idkar)->get();
+//        dd($data);
+        return view ('karyawan.formAccount',compact('data'));
+    }
+    public function ubahPss($id, Request $request){
+        $perbrui = DB::table('users')
+            ->where('id','=',$id)
+            ->update(['password'=>Hash::make($request->password)],['tlp'=>$request->telp]);
+        return redirect('account')->withSuccess('Success add');
     }
 }

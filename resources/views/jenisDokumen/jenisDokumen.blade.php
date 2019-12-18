@@ -8,18 +8,18 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -183,16 +183,12 @@
                                     <div class="modal-body">
 
                                         <form class="form-horizontal" action="{{url('edit')}}" method="post">
-{{--                                            {{method_field("patch")}}--}}
                                             {{csrf_field()}}
                                             <div class="box-body">
                                                 <div class="form-group">
                                                     <label>Lokasi</label>
                                                     <select class="form-control select2" style="width: 100%;" id="lokasi" name="lokasi">
                                                         <option class="selected" >Select...</option>
-{{--                                                        @foreach($datas as $data)--}}
-{{--                                                        <option class="selected" value="{{$data->id_lokasi}}">{{$data->gedung}}/{{$data->rak}}/{{$data->baris}}/{{$data->bok}}/{{$data->folder}}</option>--}}
-{{--                                                        @endforeach--}}
                                                         @if(!empty($lokasi))
                                                             @foreach($lokasi as $datalokasi)
                                                                 <option  class="selected" value="{{$datalokasi->id}}">{{$datalokasi->gedung}}/{{$datalokasi->rak}}/{{$datalokasi->baris}}/{{$datalokasi->bok}}/{{$datalokasi->folder}}</option>
@@ -263,53 +259,25 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{url('bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{url('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{url('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- SlimScroll -->
-<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{url('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<script src="{{url('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="{{url('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="{{url('dist/js/demo.js')}}"></script>
 <!-- page script -->
 
 {{--sweetalter--}}
 
     @include('sweetalert::alert')
-
-{{--<script>--}}
-{{--    $('#modal-default').on('show.bs.modal', function (event) {--}}
-{{--        var button = $(event.relatedTarget) // Button that triggered the modal--}}
-{{--        var id = button.data('id') // Extract info from data-* attributes--}}
-{{--        var id_lokasi = button.data('id_lokasi') // Extract info from data-* attributes--}}
-{{--        var no_takah = button.data('notakah') // Extract info from data-* attributes--}}
-{{--        var kode_jenis = button.data('kode_jenis') // Extract info from data-* attributes--}}
-{{--        var gedung = button.data('gedung') // Extract info from data-* attributes--}}
-{{--        var rak = button.data('rak') // Extract info from data-* attributes--}}
-{{--        var baris = button.data('baris') // Extract info from data-* attributes--}}
-{{--        var boks = button.data('boks') // Extract info from data-* attributes--}}
-{{--        var folder = button.data('folder') // Extract info from data-* attributes--}}
-{{--        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).--}}
-{{--        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.--}}
-{{--        var modal = $(this)--}}
-{{--        console.log(id_lokasi)--}}
-{{--        console.log(no_takah)--}}
-{{--        // modal.find('.modal-title').text('New message to ' + recipient)--}}
-{{--        modal.find('.modal-body #id').val(id)--}}
-{{--        modal.find('.modal-body #lokasi').val(id_lokasi)--}}
-{{--        modal.find('.modal-body #gedung').val(gedung)--}}
-{{--        modal.find('.modal-body #rak').val(rak)--}}
-{{--        modal.find('.modal-body #baris').val(baris)--}}
-{{--        modal.find('.modal-body #boks').val(boks)--}}
-{{--        modal.find('.modal-body #folder').val(folder)--}}
-{{--    })--}}
-{{--</script>--}}
 
 <script>
     $('#modal-default').on('show.bs.modal', function (event) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RetensiController extends Controller
@@ -11,6 +12,7 @@ class RetensiController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
 
     public function index(){
@@ -129,5 +131,46 @@ class RetensiController extends Controller
         }
             return back()->withSuccess('Successfully');
     }
+    public function view($id){
+        $dokumen = DB::table('dokumens as d')
+            ->select('nama_dokumen','diskripsi','kurun_waktu','tingkat_perkembangan','media_arsip','kondisi','file','d.id',
+                'jd.kode_jenis','jd.nama_jenis',
+                'j.aktif','j.inaktif','j.sifat_dokumen','j.nm_jenis_jra',
+                'gedung','rak','baris','bok','folder'
+            )
+//            ->select('d.no_takah','jd.kode_jenis','nama_jenis','nm_jenis_jra','aktif','inaktif','sifat_dokumen','diskripsi','kurun_waktu',
+//            'tingkat_perkembangan','media_arsip','kondisi','file')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->join('j_r_a_s as j','j.id','=','d.jenis_dok_jra')
+            ->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')
+            ->where('d.id','=',$id)->get();
+//        dd($id,$dokumen);
+        $decode = json_decode($dokumen,true);
+//        $kd_arsip = $decode[0]['no_takah'];
+        $berkas = $decode[0]['file'];
+//        $lokasiarsip = LokasiSimpan::where('no_takah',$kd_arsip)->get();
+//        dd($file);
+
+        try {
+            //menyiapkan link
+            $link = $this->dropbox->listSharedLinks('public/berkas/'.$berkas);
+            //membuat link untuk melihat berkas
+            $raw = explode("?", $link[0]['url']);
+            $gambar = $raw[0].'?raw=1';
+//            dd($gambar);
+            $tempGambar = tempnam(sys_get_temp_dir(), $berkas);
+            copy($gambar, $tempGambar);
+            //menampilkan berkas
+            $file = response()->file($tempGambar);
+//            dd(file($tempGambar));
+//            return response()->file($tempGambar);
+
+        } catch (Exception $e) {
+            //abort jika tidak ada berkas
+            return abort(404);
+        }
+        return view('retensi.viewDokumen',compact('dokumen','file','gambar'));
+    }
+
 
 }

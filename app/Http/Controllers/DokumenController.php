@@ -111,8 +111,8 @@ class DokumenController extends Controller
         $dokumen->jenis_dok_jra = $request->jenis;
         $dokumen->tgl_upload = $waktu;
         $dokumen->kondisi_dokumen = '0';
-//        dd($dokumen);
         $dokumen->save();
+//        dd($dokumen);
 
         $lokasiSimpan = DB::table('lokasi_simpans as ls')
             ->select('jd.kode_jenis','gedung','rak','baris','bok','folder')
@@ -124,12 +124,6 @@ class DokumenController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id_jra)
     {
 
@@ -138,12 +132,6 @@ class DokumenController extends Controller
         return json_encode($jra);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $dokumen = DB::table('dokumens as d')->select(
@@ -166,13 +154,7 @@ class DokumenController extends Controller
         return view('penyimpanan.formedit',compact('dokumen','jenis_jra','nomerdoc'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request)
     {
         $id = $request->id;
@@ -292,5 +274,78 @@ class DokumenController extends Controller
         $dokumen = Dokumen::where('id',$id)->delete();
 //        $berkas->delete();
         return redirect('daftar-penyimpanan')->withSuccess1('Successfully delete');
+    }
+
+    public function daftardokumen(){
+        $datas = DB::table('dokumens as d')
+            ->select('d.id','d.nama_dokumen','d.diskripsi','d.kurun_waktu','d.tingkat_perkembangan','d.media_arsip','d.kondisi','d.file','d.no_takah','d.status',
+                'jd.kode_jenis','jd.nama_jenis')
+            ->join('status_dokumens as sd','d.kondisi_dokumen','=','sd.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where('d.status','=','aktif')
+            ->orWhere('d.status','=','inaktif')
+            ->orWhere('d.status','=','ditinjau ulang')
+            ->orWhere('d.status','=',null)
+            ->get();
+//        dd($datas);
+        return view('dokumen.daftardokumen',compact('datas'));
+    }
+
+    public function arcive(){
+        $datas = DB::table('dokumens as d')
+            ->select('d.id','d.nama_dokumen','d.diskripsi','d.kurun_waktu','d.tingkat_perkembangan','d.media_arsip','d.kondisi','d.file','d.no_takah','d.status','kondisi_dokumen',
+                'jd.kode_jenis','jd.nama_jenis')
+            ->join('status_dokumens as sd','d.kondisi_dokumen','=','sd.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where([
+                ['d.status','=','musnah'],
+                ['kondisi_dokumen','=','3']
+                ])
+//            ->orwhere('kondisi_dokumen','=','3')
+            ->get();
+//        dd($datas);
+        return view('dokumen.arcive',compact('datas'));
+    }
+
+    public function ViewArc($id){
+        $dokumen = DB::table('dokumens as d')
+            ->select('nama_dokumen','diskripsi','kurun_waktu','tingkat_perkembangan','media_arsip','kondisi','file','d.id',
+                'jd.kode_jenis','jd.nama_jenis',
+                'j.aktif','j.inaktif','j.sifat_dokumen','j.nm_jenis_jra',
+                'gedung','rak','baris','bok','folder'
+            )
+//            ->select('d.no_takah','jd.kode_jenis','nama_jenis','nm_jenis_jra','aktif','inaktif','sifat_dokumen','diskripsi','kurun_waktu',
+//            'tingkat_perkembangan','media_arsip','kondisi','file')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->join('j_r_a_s as j','j.id','=','d.jenis_dok_jra')
+            ->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')
+            ->where('d.id','=',$id)->get();
+//        dd($id,$dokumen);
+        $decode = json_decode($dokumen,true);
+//        $kd_arsip = $decode[0]['no_takah'];
+        $berkas = $decode[0]['file'];
+//        $lokasiarsip = LokasiSimpan::where('no_takah',$kd_arsip)->get();
+//        dd($file);
+
+        try {
+            //menyiapkan link
+            $link = $this->dropbox->listSharedLinks('public/berkas/'.$berkas);
+            //membuat link untuk melihat berkas
+            $raw = explode("?", $link[0]['url']);
+            $gambar = $raw[0].'?raw=1';
+//            dd($gambar);
+            $tempGambar = tempnam(sys_get_temp_dir(), $berkas);
+            copy($gambar, $tempGambar);
+            //menampilkan berkas
+            $file = response()->file($tempGambar);
+//            dd(file($tempGambar));
+//            return response()->file($tempGambar);
+
+        } catch (Exception $e) {
+            //abort jika tidak ada berkas
+            return abort(404);
+        }
+
+        return view('dokumen.viewArcive',compact('dokumen','file','gambar'));
     }
 }

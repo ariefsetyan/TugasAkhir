@@ -36,7 +36,7 @@ class HomeController extends Controller
 
     public function dashboard(){
         $jumlahDokumen = DB::table('dokumens')->count();
-        $jumlahUser = DB::table('Users')->count();
+        $jumlahUser = DB::table('users')->count();
         $jumDokumenAktif = DB::table('dokumens')->where('status','=','aktif')->count();
         $jumDokumenIn = DB::table('dokumens')->where('status','=','inaktif')->count();
         $jumDokumenMusnah = DB::table('dokumens')->where('status','=','musnah')->count();

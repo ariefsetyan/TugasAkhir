@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -211,6 +212,22 @@ class PeminjamanController extends Controller
         return view('peminjaman.detailPengajuan',compact('pengajuan'));
     }
     public function terima($id){
+
+        //email
+//        $nama='Server';
+//        $mail='arief.setya57@gmail';
+//        $data = array('name'=>"Kepada Bapak john", "body" => "Saya Mengajukan permohonan peminjaman dokumen ");
+//        Mail::send('email.mail',$data,function ($message) use ($nama) {
+//            $message->from('agung@mail.id','Admin');
+//            // $message->sender('john@johndoe.com', 'John Doe');
+//            $message->to('agung.prasatu@gmail.com','');
+//            // $message->cc('john@johndoe.com', 'John Doe');
+//            // $message->bcc('john@johndoe.com', 'John Doe');
+//            $message->replyTo('ariefsetyan@gmail.com', 'John Doe');
+//            $message->subject('Permohonan Peminjaman Dokumen');
+////            $message->priority(3);
+//            // $message->attach('pathToFile');
+//        });
 
         $terima = DB::table('peminjamen')->where('id',$id)
             ->update(

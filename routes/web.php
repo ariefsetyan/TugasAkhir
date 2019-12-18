@@ -97,6 +97,8 @@ Route::get('/aju-retensi', 'RetensiController@sent');
 Route::get('/daftar-retensi', 'RetensiController@daftarRetensi');
 Route::get('/eksekusi', 'RetensiController@eksekusi');
 
+Route::get('/view/{id}', 'RetensiController@view');
+
 
 Route::get('/pdf', 'PDFController@beritaAcara');
 
@@ -110,9 +112,14 @@ Route::get('/form-pengajuan', 'KaryawanController@pengajuan');
 Route::post('/proses-pengajuan', 'KaryawanController@prosesPengajuan');
 Route::get('/daftar-pengajuan', 'KaryawanController@daftarPengajuan');
 Route::get('/edit-pengajuan/{id}', 'KaryawanController@formEdit');
-//Route::get('/hapus-pengajuan/{id}', 'KaryawanController@hapus');
 Route::get('/view-dokumen/{id}', 'KaryawanController@viewDokumen');
-
+Route::get('/account', 'KaryawanController@perbaruiAcoun');
+Route::get('/ubahdata/{id}', 'KaryawanController@ubahPss');
 //kepala balai
 Route::get('home-kepala','KepalaController@index');
 Route::get('approve','KepalaController@setuju');
+
+//dokumen
+Route::get('daftar-dokumen','DokumenController@daftardokumen');
+Route::get('arcive-dokumen','DokumenController@arcive');
+Route::get('view-arc/{id}','DokumenController@ViewArc');

@@ -8,20 +8,20 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <!-- Select2 -->
-    <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{url('bower_components/select2/dist/css/select2.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,8 +49,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Blank page
-                <small>it all starts here</small>
+                Daftar Dokumen
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -64,25 +63,10 @@
 
 
             <!-- /.box -->
-{{--                {{csrf_field()}}--}}
             <div class="box">
                 <div class="box-header">
-{{--                    <h3 class="box-title">Data Table With Full Features</h3>--}}
-{{--                    <form action="{{url('aju-retensi')}}">--}}
-{{--                        @foreach($datas as $data)--}}
 
-{{--                        @endforeach--}}
-                    <a href="{{url('aju-retensi')}}"><button type="submit" class="btn btn-default">Kirim</button></a>
-{{--                    </form>--}}
-{{--                    <div class="box-tools">--}}
-{{--                    <div class="input-group input-group-sm hidden-xs" style="width: 150px;">--}}
-{{--                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">--}}
-
-{{--                        <div class="input-group-btn">--}}
-{{--                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    </div>--}}
+                    <a href="{{url('aju-retensi')}}"><button type="submit" class="btn btn-primary">Kirim</button></a>
 
                 </div>
                 <!-- /.box-header -->
@@ -126,18 +110,11 @@
                                             @endif
                                         </select>
 
-{{--                                        @if($data->status == 'musnah')--}}
-{{--                                            <span class="label label-danger">{{$data->status}}</span>--}}
-{{--                                        @elseif($data->status == 'ditinjau ulang')--}}
-{{--                                            <span class="label label-warning">{{$data->status}}</span>--}}
-{{--                                        @endif--}}
                                     </td>
                                     <td>
 
                                         <button> save</button>
-{{--                                        <a href="{{url('/update-status/'.$data->id)}}" class="on-default edit-row">--}}
-{{--                                            <i class="fa fa-save" > save</i>--}}
-{{--                                        </a>--}}
+
                                     </td>
                                     </form>
 
@@ -160,11 +137,11 @@
                         </tr>
                         </tfoot>
                     </table>
-{{--                    <button type="submit" class="btn btn-default">Kirim</button>--}}
+
                 </div>
                 <!-- /.box-body -->
             </div>
-{{--            </form>--}}
+
         </section>
         <!-- /.content -->
     </div>
@@ -182,20 +159,20 @@
 @include('sweetalert::alert')
 
 <!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{url('bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{url('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{url('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- SlimScroll -->
-<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{url('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<script src="{{url('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="{{url('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="{{url('dist/js/demo.js')}}"></script>
 <!-- page script -->
 
 <script>

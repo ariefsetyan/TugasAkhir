@@ -63,8 +63,6 @@
             <!-- /.box -->
             <div class="box">
                 <div class="box-header">
-                    <a href="{{url('eksekusi')}}"><button type="submit" class="btn btn-primary"><i class="fa fa-file-archive-o"></i><span> Arcive</span></button></a>
-                    <a href="{{url('pdf')}}"><button type="submit" class="btn btn-primary"><i class="fa  fa-print"></i> Print</button></a>
 
                 </div>
                 <!-- /.box-header -->
@@ -96,20 +94,23 @@
                                 <td>{{$data->kondisi}}</td>
                                 <td>{{$data->media_arsip}}</td>
 
-                                    <td>
+                                <td>
+{{--                                    @if($data->status == 'musnah')--}}
+                                        <span class="label label-danger">{{$data->status}}</span>
+{{--                                    @elseif($data->status == 'ditinjau ulang')--}}
+{{--                                        <span class="label label-warning">{{$data->status}}</span>--}}
+{{--                                    @elseif($data->status == 'aktif')--}}
+{{--                                        <span class="label label-success">{{$data->status}}</span>--}}
+{{--                                    @elseif($data->status == 'inaktif')--}}
+{{--                                        <span class="label label-primary">{{$data->status}}</span>--}}
+{{--                                    @endif--}}
+                                </td>
+                                <td>
 
-                                            @if($data->status == 'musnah')
-                                                <span class="label label-danger">{{$data->status}}</span>
-                                            @elseif($data->status == 'ditinjau ulang')
-                                                <span class="label label-warning">{{$data->status}}</span>
-                                            @endif
-                                    </td>
-                                    <td>
-
-                                        <a href="{{url('/view/'.$data->id)}}" class="on-default edit-row">
-                                            <i class="fa fa-eye" > View</i>
-                                        </a>
-                                    </td>
+                                    <a href="{{url('view-arc/'.$data->id)}}" class="on-default edit-row">
+                                        <i class="fa fa-eye" > View</i>
+                                    </a>
+                                </td>
 
                             </tr>
                             <?php $i++ ?>
@@ -139,7 +140,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-@include('footer')
+    @include('footer')
 
     <div class="control-sidebar-bg"></div>
 </div>

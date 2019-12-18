@@ -30,6 +30,16 @@
 
             {{--            ===============================--}}
         </ul>
+
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">account</li>
+
+            <li>
+                <a href="{{url('account')}}">
+                    <i class="fa fa-dashboard"></i> <span>Perbarui Password</span>
+                </a>
+            </li>
+        </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
