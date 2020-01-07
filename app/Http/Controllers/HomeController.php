@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Peminjaman;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,7 +45,43 @@ class HomeController extends Controller
         $jumDokumenMusnah = DB::table('dokumens')->where('status','=','musnah')->count();
         $jumPinjam = DB::table('peminjamen')->where('id_status','=','1')->count();
 //        dd($jumPinjam);
-        return view('dashboard',compact('jumlahDokumen','jumDokumenAktif','jumDokumenIn','jumDokumenMusnah','jumlahUser','jumPinjam'));
+////        $aktif = DB::table('dokumens')->where([
+////            ['kurun_waktu','=','2019'],['status','=','aktif']
+////        ])->count();
+////        $inaktif = DB::table('dokumens')->where([['kurun_waktu','=','2019'],['status','=','inaktif']])->count();
+//        $thun = Peminjaman::all();
+        $now = date('Y-m-d');
+        $pecah = explode('-', $now);
+        $tahun = $pecah[0];
+        $bulan = $pecah[1];
+        $tgl = $pecah[2];
+        $bln = date('M, 2019-01-01' );
+//
+//        $bulan1 = $pecah[1]-1;
+//        $bulan2 = $pecah[1]-2;
+//        $bulan3 = $pecah[1]-3;
+//
+//        $periode1 = date($tahun.'-'.$bulan1.'-'.$tgl);
+//        $periode2 = date($tahun.'-'.$bulan2.'-'.$tgl);
+//        $periode3 = date($tahun.'-'.$bulan3.'-'.$tgl);
+
+        $pinjamdJan =DB::table('peminjamen')->where([['bulan','=','Jan'],['tahun','=',$tahun]])->count();
+        $pinjamnFeb =DB::table('peminjamen')->where([['bulan','=','Feb'],['tahun','=',$tahun]])->count();
+        $pinjamMar =DB::table('peminjamen')->where([['bulan','=','Mar'],['tahun','=',$tahun]])->count();
+        $pinjamApr =DB::table('peminjamen')->where([['bulan','=','Apr'],['tahun','=',$tahun]])->count();
+        $pinjamMay =DB::table('peminjamen')->where([['bulan','=','May'],['tahun','=',$tahun]])->count();
+        $pinjamJun =DB::table('peminjamen')->where([['bulan','=','Jun'],['tahun','=',$tahun]])->count();
+        $pinjamJul =DB::table('peminjamen')->where([['bulan','=','Jul'],['tahun','=',$tahun]])->count();
+        $pinjamAug =DB::table('peminjamen')->where([['bulan','=','Aug'],['tahun','=',$tahun]])->count();
+        $pinjamSep =DB::table('peminjamen')->where([['bulan','=','Sep'],['tahun','=',$tahun]])->count();
+        $pinjamOct =DB::table('peminjamen')->where([['bulan','=','Oct'],['tahun','=',$tahun]])->count();
+        $pinjamNov =DB::table('peminjamen')->where([['bulan','=','Nov'],['tahun','=',$tahun]])->count();
+        $pinjamDec =DB::table('peminjamen')->where([['bulan','=','Dec'],['tahun','=','2019']])->count();
+//        dd($tahun);
+
+        return view('dashboard',compact('jumlahDokumen','jumDokumenAktif','jumDokumenIn','jumDokumenMusnah','jumlahUser','jumPinjam',
+            'pinjamdJan','pinjamnFeb','pinjamMar','pinjamApr','pinjamMay','pinjamJun','pinjamJul','pinjamAug','pinjamSep','pinjamOct','pinjamNov','pinjamDec',
+            'tahun'));
     }
 
     public function coba(){

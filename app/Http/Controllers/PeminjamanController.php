@@ -58,6 +58,34 @@ class PeminjamanController extends Controller
         $peminjaman->id_dokumen = $request->dokumen;
         $peminjaman->diskripsi_peminjaman = $request->deskripsi;
         $peminjaman->tgl_pinjam = $request->wPinjam;
+        $pecah = explode('-', $request->wPinjam);
+        if ($pecah[1] == '01'){
+            $bln = 'Jan';
+        }elseif ($pecah[1] == '02'){
+            $bln = 'Feb';
+        }elseif ($pecah[1] == '03'){
+            $bln = 'Mar';
+        }elseif ($pecah[1] == '04'){
+            $bln = 'Apr';
+        }elseif ($pecah[1] == '05'){
+            $bln = 'May';
+        }elseif ($pecah[1] == '06'){
+            $bln = 'Jun';
+        }elseif ($pecah[1] == '07'){
+            $bln = 'Jul';
+        }elseif ($pecah[1] == '08'){
+            $bln = 'Aug';
+        }elseif ($pecah[1] == '09'){
+            $bln = 'Sep';
+        }elseif ($pecah[1] == '10'){
+            $bln = 'Oct';
+        }elseif ($pecah[1] == '11'){
+            $bln = 'Nov';
+        }elseif ($pecah[1] == '12'){
+            $bln = 'Dec';
+        }
+        $peminjaman->bulan = $bln;
+        $peminjaman->tahun = $pecah[0];
         $peminjaman->tgl_kembali = $request->wKembali;
         $peminjaman->id_status = 1;
 //        dd($peminjaman);

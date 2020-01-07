@@ -25,6 +25,11 @@
             <li>
                 <a href="{{url('daftar-pengajuan')}}">
                     <i class="fa fa-dashboard"></i> <span>Daftar Pengajuan</span>
+{{--                    <span class="pull-right-container">--}}
+{{--                      <small class="label pull-right bg-yellow">12</small>--}}
+{{--                      <small class="label pull-right bg-green">16</small>--}}
+{{--                      <small class="label pull-right bg-red">5</small>--}}
+{{--                    </span>--}}
                 </a>
             </li>
 

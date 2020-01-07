@@ -38,6 +38,8 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <script type="text/javascript" src="js/Chart.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -155,6 +157,82 @@
                 <!-- ./col -->
             </div>
             <!-- /.row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">gravik peminjaman</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Periode: Jan, {{$tahun}} - Dec, {{$tahun}}</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <!-- Sales Chart Canvas -->
+                                        <canvas id="myChart"></canvas>
+{{--                                        <canvas id="salesChart" style="height: 180px;"></canvas>--}}
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./box-body -->
+{{--                        <div class="box-footer">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-sm-3 col-xs-6">--}}
+{{--                                    <div class="description-block border-right">--}}
+{{--                                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>--}}
+{{--                                        <h5 class="description-header">$35,210.43</h5>--}}
+{{--                                        <span class="description-text">TOTAL REVENUE</span>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- /.description-block -->--}}
+{{--                                </div>--}}
+{{--                                <!-- /.col -->--}}
+{{--                                <div class="col-sm-3 col-xs-6">--}}
+{{--                                    <div class="description-block border-right">--}}
+{{--                                        <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>--}}
+{{--                                        <h5 class="description-header">$10,390.90</h5>--}}
+{{--                                        <span class="description-text">TOTAL COST</span>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- /.description-block -->--}}
+{{--                                </div>--}}
+{{--                                <!-- /.col -->--}}
+{{--                                <div class="col-sm-3 col-xs-6">--}}
+{{--                                    <div class="description-block border-right">--}}
+{{--                                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>--}}
+{{--                                        <h5 class="description-header">$24,813.53</h5>--}}
+{{--                                        <span class="description-text">TOTAL PROFIT</span>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- /.description-block -->--}}
+{{--                                </div>--}}
+{{--                                <!-- /.col -->--}}
+{{--                                <div class="col-sm-3 col-xs-6">--}}
+{{--                                    <div class="description-block">--}}
+{{--                                        <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>--}}
+{{--                                        <h5 class="description-header">1200</h5>--}}
+{{--                                        <span class="description-text">GOAL COMPLETIONS</span>--}}
+{{--                                    </div>--}}
+{{--                                    <!-- /.description-block -->--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <!-- /.row -->--}}
+{{--                        </div>--}}
+                        <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.box-footer -->
+
             <!-- Main row -->
 
             <!-- /.row (main row) -->
@@ -209,5 +287,58 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+            datasets: [{
+                label: '',
+                data: [{{$pinjamdJan}}, {{$pinjamnFeb}}, {{$pinjamMar}}, {{$pinjamApr}}, {{$pinjamMay}}, {{$pinjamJun}},
+                    {{$pinjamJul}}, {{$pinjamAug}}, {{$pinjamSep}}, {{$pinjamOct}}, {{$pinjamNov}}, {{$pinjamDec}}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 </body>
 </html>

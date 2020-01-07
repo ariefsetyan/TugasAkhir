@@ -50,6 +50,7 @@ class KembaliCommand extends Command
 
             }
         }
+
         echo 'done';
 
     }
