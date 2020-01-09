@@ -284,4 +284,14 @@ class PeminjamanController extends Controller
 //        dd($datas);
         return view('peminjaman.daftarpengajuan',compact('datas'));
     }
+    public function notifwa($id){
+        $now = date('y-m-d');
+        $datas = DB::table('peminjamen as p')
+            ->join('users as u','p.id_karyawan','=','u.id')
+            ->where('p.id','=',$id)->get();
+//        dd($datas);
+        $decode = json_decode($datas,true);
+        $tlp = $decode[0]['tlp'];
+        return redirect('https://wa.me/'.$tlp);
+    }
 }

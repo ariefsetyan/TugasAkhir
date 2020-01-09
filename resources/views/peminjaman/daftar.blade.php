@@ -75,9 +75,10 @@
                         <thead>
                         <tr>
                             <th>NIP</th>
-                            <th>karyawan</th>
-                            <th>nama dokumen</th>
-                            <th>tanggal pinjam</th>
+                            <th>Karyawan</th>
+                            <th>Nama Dokumen</th>
+                            <th>Tanggal Pinjam</th>
+                            <th>Tanggal Kembali</th>
                             <th>Tools</th>
 
                         </tr>
@@ -89,12 +90,16 @@
                                 <td>{{$data->name}}</td>
                                 <td>{{$data->nama_dokumen}}</td>
                                 <td>{{$data->tgl_pinjam}}</td>
+                                <td>{{$data->tgl_kembali}}</td>
                                 <td>
                                     <a href="{{url('detil-peminjaman/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-eye"></i></a>
                                     <a>/</a>
                                     <a href="{{url('edit-peminjaman/'.$data->id)}}" class="on-default remove-row"><i class="fa fa-pencil"></i></a>/
                                     <a href="{{url('delete-peminjaman/'.$data->id)}}" class="on-default edit-row" >
                                         <i class="fa fa-trash-o" ></i>
+                                    </a>/
+                                    <a href="{{url('pesanWA/'.$data->id)}}" class="on-default edit-row" target="_blank">
+                                        <i class="fa fa-commenting-o" ></i>
                                     </a>
                                 </td>
                             </tr>
