@@ -239,23 +239,23 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="text-center">
-{{--                                        {{$top}}--}}
+{{--                                        {{$datatopjenis}}--}}
                                     </p>
 
                                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
                                     <div class="box-footer">
                                         <div class="row">
-                                            @foreach($detil as $dt)
-                                            <div class="col-sm-3 col-xs-6">
-                                                <div class="description-block border-right">
-                                                    <span class="description-percentage text-green"> {{$dt->total}}</span>
-                                                    <h5 class="description-header">{{substr($dt->kode_jenis,0,2)}}</h5>
-                                                    <span class="description-text">{{$dt->nama_dokumen}}</span>
-                                                </div>
-                                                <!-- /.description-block -->
-                                            </div>
-                                            @endforeach
+{{--                                            @foreach($detil as $dt)--}}
+{{--                                            <div class="col-sm-3 col-xs-6">--}}
+{{--                                                <div class="description-block border-right">--}}
+{{--                                                    <span class="description-percentage text-green"> {{$dt->total}}</span>--}}
+{{--                                                    <h5 class="description-header">{{substr($dt->kode_jenis,0,2)}}</h5>--}}
+{{--                                                    <span class="description-text">{{$dt->nama_dokumen}}</span>--}}
+{{--                                                </div>--}}
+{{--                                                <!-- /.description-block -->--}}
+{{--                                            </div>--}}
+{{--                                            @endforeach--}}
 
                                         </div>
                                         <!-- /.row -->
@@ -322,16 +322,15 @@
                 </div>
 
 
-
-{{--                <div class="col-md-12">--}}
-{{--                    <div class="box">--}}
-{{--                        <div class="box-header with-border">--}}
-{{--                            <h3 class="box-title">dokumen yang sering dipinjam</h3>--}}
-{{--                        </div>--}}
-{{--                        <!-- /.box-header -->--}}
-{{--                        <div class="box-body">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-12">--}}
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">dokumen yang sering dipinjam</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
 {{--                                    <div class="col-md-3 col-md-offset-4">--}}
 {{--                                        <form role="form" action="aaaa">--}}
 {{--                                            <div class="input-group input-group-sm">--}}
@@ -340,88 +339,54 @@
 {{--                                                <button type="submit" class="btn btn-info btn-flat">Go!</button>--}}
 {{--                                            </span>--}}
 {{--                                            </div>--}}
-
 {{--                                        </form>--}}
 {{--                                    </div>--}}
-
-{{--                                    <div id="chartContaine" style="height: 370px; width: 100%;"></div>--}}
-
-{{--                                    <div class="box-footer">--}}
-{{--                                        <div class="row">--}}
-{{--                                            --}}{{--                                            @foreach($detil as $dt)--}}
-{{--                                            --}}{{--                                            <div class="col-sm-3 col-xs-6">--}}
-{{--                                            --}}{{--                                                <div class="description-block border-right">--}}
-{{--                                            --}}{{--                                                    <span class="description-percentage text-green"> {{$dt->total}}</span>--}}
-{{--                                            --}}{{--                                                    <h5 class="description-header">{{substr($dt->kode_jenis,0,2)}}</h5>--}}
-{{--                                            --}}{{--                                                    <span class="description-text">{{$dt->nama_dokumen}}</span>--}}
-{{--                                            --}}{{--                                                </div>--}}
-{{--                                            --}}{{--                                                <!-- /.description-block -->--}}
-{{--                                            --}}{{--                                            </div>--}}
-{{--                                            --}}{{--                                            @endforeach--}}
-
-{{--                                        </div>--}}
-{{--                                        <!-- /.row -->--}}
-{{--                                    </div>--}}
+{{--                                    {{$topdetil}}--}}
+                                    <div class="col-md-12">
+                                    <div id="detildokumen0" style="height: 370px; width: 100%;"></div>
+                                    </div>
 
 
+                                    <div class="col-md-12">
+                                    <div id="detildokumen1" style="height: 370px; width: 100%;"></div>
+                                    </div>
 
-{{--                                    <!-- /.chart-responsive -->--}}
-{{--                                </div>--}}
-{{--                                <!-- /.col -->--}}
+                                    <div class="box-footer">
+                                        <div class="row">
+{{--                                            @foreach($detil as $dt)--}}
+{{--                                            <div class="col-sm-3 col-xs-6">--}}
+{{--                                                <div class="description-block border-right">--}}
+{{--                                                    <span class="description-percentage text-green"> {{$dt->total}}</span>--}}
+{{--                                                    <h5 class="description-header">{{substr($dt->kode_jenis,0,2)}}</h5>--}}
+{{--                                                    <span class="description-text">{{$dt->nama_dokumen}}</span>--}}
+{{--                                                </div>--}}
+{{--                                                <!-- /.description-block -->--}}
+{{--                                            </div>--}}
+{{--                                            @endforeach--}}
 
-{{--                                <!-- /.col -->--}}
-{{--                            </div>--}}
-{{--                            <!-- /.row -->--}}
-{{--                        </div>--}}
-{{--                        <!-- ./box-body -->--}}
-{{--                    --}}{{--                        <div class="box-footer">--}}
-{{--                    --}}{{--                            <div class="row">--}}
-{{--                    --}}{{--                                <div class="col-sm-3 col-xs-6">--}}
-{{--                    --}}{{--                                    <div class="description-block border-right">--}}
-{{--                    --}}{{--                                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>--}}
-{{--                    --}}{{--                                        <h5 class="description-header">$35,210.43</h5>--}}
-{{--                    --}}{{--                                        <span class="description-text">TOTAL REVENUE</span>--}}
-{{--                    --}}{{--                                    </div>--}}
-{{--                    --}}{{--                                    <!-- /.description-block -->--}}
-{{--                    --}}{{--                                </div>--}}
-{{--                    --}}{{--                                <!-- /.col -->--}}
-{{--                    --}}{{--                                <div class="col-sm-3 col-xs-6">--}}
-{{--                    --}}{{--                                    <div class="description-block border-right">--}}
-{{--                    --}}{{--                                        <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>--}}
-{{--                    --}}{{--                                        <h5 class="description-header">$10,390.90</h5>--}}
-{{--                    --}}{{--                                        <span class="description-text">TOTAL COST</span>--}}
-{{--                    --}}{{--                                    </div>--}}
-{{--                    --}}{{--                                    <!-- /.description-block -->--}}
-{{--                    --}}{{--                                </div>--}}
-{{--                    --}}{{--                                <!-- /.col -->--}}
-{{--                    --}}{{--                                <div class="col-sm-3 col-xs-6">--}}
-{{--                    --}}{{--                                    <div class="description-block border-right">--}}
-{{--                    --}}{{--                                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>--}}
-{{--                    --}}{{--                                        <h5 class="description-header">$24,813.53</h5>--}}
-{{--                    --}}{{--                                        <span class="description-text">TOTAL PROFIT</span>--}}
-{{--                    --}}{{--                                    </div>--}}
-{{--                    --}}{{--                                    <!-- /.description-block -->--}}
-{{--                    --}}{{--                                </div>--}}
-{{--                    --}}{{--                                <!-- /.col -->--}}
-{{--                    --}}{{--                                <div class="col-sm-3 col-xs-6">--}}
-{{--                    --}}{{--                                    <div class="description-block">--}}
-{{--                    --}}{{--                                        <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>--}}
-{{--                    --}}{{--                                        <h5 class="description-header">1200</h5>--}}
-{{--                    --}}{{--                                        <span class="description-text">GOAL COMPLETIONS</span>--}}
-{{--                    --}}{{--                                    </div>--}}
-{{--                    --}}{{--                                    <!-- /.description-block -->--}}
-{{--                    --}}{{--                                </div>--}}
-{{--                    --}}{{--                            </div>--}}
-{{--                    --}}{{--                            <!-- /.row -->--}}
-{{--                    --}}{{--                        </div>--}}
-{{--                    <!-- /.box-footer -->--}}
-{{--                    </div>--}}
-{{--                    <!-- /.box -->--}}
+                                        </div>
+                                        <!-- /.row -->
+                                    </div>
+
+
+
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./box-body -->
+                    <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
 
 
 
 
-{{--                </div>--}}
+                </div>
 
 
 
@@ -483,7 +448,7 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
+<!-- chart grafik -->
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <script>
@@ -559,27 +524,44 @@
                 indexLabelPlacement: "inside",
                 indexLabelFontWeight: "bolder",
                 indexLabelFontColor: "white",
-                dataPoints: <?php echo $top ?>
+                dataPoints: <?php echo $datatopjenis ?>
             }]
         });
         chart.render();
 
-        {{--var chart = new CanvasJS.Chart("chartContaine", {--}}
-        {{--    animationEnabled: true,--}}
-        {{--    theme: "light2",--}}
-        {{--    title:{--}}
-        {{--        text: "Gold Reserves"--}}
-        {{--    },--}}
-        {{--    axisY: {--}}
-        {{--        title: "Gold Reserves (in tonnes)"--}}
-        {{--    },--}}
-        {{--    data: [{--}}
-        {{--        type: "column",--}}
-        {{--        yValueFormatString: "#,##0.## tonnes",--}}
-        {{--        dataPoints: --}}
-        {{--    }]--}}
-        {{--});--}}
-        {{--chart.render();--}}
+        var chart = new CanvasJS.Chart("detildokumen0", {
+            animationEnabled: true,
+            theme: "light2",
+            title:{
+                text: "HM.01"
+            },
+            axisY: {
+                title: "Jumlah"
+            },
+            data: [{
+                type: "column",
+                yValueFormatString: "#,##0.## tonnes",
+                dataPoints: <?php echo $top[0][0] ?>
+            }]
+        });
+        chart.render();
+
+        var chart = new CanvasJS.Chart("detildokumen1", {
+            animationEnabled: true,
+            theme: "light2",
+            title:{
+                text: "KP.00.06"
+            },
+            axisY: {
+                title: "Jumlah"
+            },
+            data: [{
+                type: "column",
+                yValueFormatString: "#,##0.",
+                dataPoints: <?php echo $top[1][0] ?>
+            }]
+        });
+        chart.render();
     }
 </script>
 

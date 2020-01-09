@@ -79,20 +79,52 @@ class HomeController extends Controller
         $pinjamDec =DB::table('peminjamen')->where([['bulan','=','Dec'],['tahun','=',$tahun]])->count();
 //        dd($tahun);
 
-
-
-        $top5 = DB::table('peminjamen as p')
-            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+        //berdasarkan kode
+        $topjenis = DB::table('peminjamen as p')
+            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
 //            ->where('d.kondisi_dokumen','=',3)
             ->whereIn('d.kondisi_dokumen', [0,1,2])
-            ->groupBy('p.id_dokumen')
+            ->groupBy('jd.kode_jenis')
             ->orderBy('p.id_dokumen')
             ->limit(4)
             ->get();
-        $top=json_encode($top5,JSON_NUMERIC_CHECK);
-//        dd($top5);
+        $datatopjenis=json_encode($topjenis,JSON_NUMERIC_CHECK);
+
+        foreach ($topjenis as $tp){
+            $top[] = array( DB::table('peminjamen as p')
+//                ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+                ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+                ->join('dokumens as d','p.id_dokumen','=','d.id')
+                ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+                ->where('jd.kode_jenis','=',$tp->label)
+                ->whereIn('d.kondisi_dokumen', [0,1,2])
+                ->groupBy('p.id_dokumen')
+                ->orderBy('p.id_dokumen')
+//                ->limit(4)
+                ->get()
+        );
+
+        }
+            $topdetil=$top[0][0];
+//        dd($top);
+
+
+
+
+//        $top5 = DB::table('peminjamen as p')
+//            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+//            ->join('dokumens as d','p.id_dokumen','=','d.id')
+//            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+////            ->where('d.kondisi_dokumen','=',3)
+//            ->whereIn('d.kondisi_dokumen', [0,1,2])
+//            ->groupBy('p.id_dokumen')
+//            ->orderBy('p.id_dokumen')
+//            ->limit(4)
+//            ->get();
+//        $top=json_encode($top5,JSON_NUMERIC_CHECK);
+////        dd($top5);
         $detil = DB::table('peminjamen as p')
 //            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
             ->select(DB::raw('COUNT(*) as total'),'d.nama_dokumen', 'jd.kode_jenis')
@@ -118,13 +150,14 @@ class HomeController extends Controller
 //            ->limit(3)
 //            ->get();
 //        $topjs=json_encode($top5,JSON_NUMERIC_CHECK);
-////        dd($topjenis);
+//        dd($topjenis);
 //
 
 
         return view('dashboard',compact('jumlahDokumen','jumDokumenAktif','jumDokumenIn','jumDokumenMusnah','jumlahUser','jumPinjam',
             'pinjamdJan','pinjamnFeb','pinjamMar','pinjamApr','pinjamMay','pinjamJun','pinjamJul','pinjamAug','pinjamSep','pinjamOct','pinjamNov','pinjamDec',
-            'tahun','top','detil'));
+            'tahun','top','topdetil',
+            'datatopjenis','detil'));
     }
 
     public function seringdiPinjam(){
