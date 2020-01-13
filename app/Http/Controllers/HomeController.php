@@ -33,7 +33,7 @@ class HomeController extends Controller
             return redirect('home-kepala');
         }else{
             return redirect('form-pengajuan');
-//            return view('karyawan.home');
+
         }
     }
 
@@ -56,14 +56,6 @@ class HomeController extends Controller
         $bulan = $pecah[1];
         $tgl = $pecah[2];
         $bln = date('M, 2019-01-01' );
-//
-//        $bulan1 = $pecah[1]-1;
-//        $bulan2 = $pecah[1]-2;
-//        $bulan3 = $pecah[1]-3;
-//
-//        $periode1 = date($tahun.'-'.$bulan1.'-'.$tgl);
-//        $periode2 = date($tahun.'-'.$bulan2.'-'.$tgl);
-//        $periode3 = date($tahun.'-'.$bulan3.'-'.$tgl);
 
         $pinjamdJan =DB::table('peminjamen')->where([['bulan','=','Jan'],['tahun','=',$tahun]])->count();
         $pinjamnFeb =DB::table('peminjamen')->where([['bulan','=','Feb'],['tahun','=',$tahun]])->count();
@@ -81,7 +73,12 @@ class HomeController extends Controller
 
         //berdasarkan kode
         $topjenis = DB::table('peminjamen as p')
-            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label')
+            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label','d.nama_dokumen'
+//                DB::raw("(select jd1.kode_jenis from peminjamen as p1 INNER JOIN dokumens as d1 ON p1.id_dokumen = d1.id
+//                 jOIN jenis_dokumens as jd1 ON d1.no_takah = jd1.no_takah where kondisi_dokumen = 1 or
+//                 kondisi_dokumen = 2 or kondisi_dokumen = 0 group by kode_jenis LIMIT 4) as total")
+                )
+
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
 //            ->where('d.kondisi_dokumen','=',3)
@@ -92,23 +89,62 @@ class HomeController extends Controller
             ->get();
         $datatopjenis=json_encode($topjenis,JSON_NUMERIC_CHECK);
 
+        $detil = DB::table('peminjamen as p')
+//            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+            ->select(DB::raw('COUNT(*) as total'),'d.nama_dokumen', 'jd.kode_jenis')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where('jd.kode_jenis','=','HM.01')
+//            ->where('d.kondisi_dokumen','=',3)
+            ->whereIn('d.kondisi_dokumen', [0,1,2])
+            ->groupBy('p.id_dokumen')
+            ->orderBy('p.id_dokumen')
+//            ->limit(4)
+            ->get();
+
+        $detil2 = DB::table('peminjamen as p')
+//            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+            ->select(DB::raw('COUNT(*) as total'),'d.nama_dokumen', 'jd.kode_jenis')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where('jd.kode_jenis','=','KP.00.06')
+//            ->where('d.kondisi_dokumen','=',3)
+            ->whereIn('d.kondisi_dokumen', [0,1,2])
+            ->groupBy('p.id_dokumen')
+            ->orderBy('p.id_dokumen')
+//            ->limit(4)
+            ->get();
+//        dd($topjenis,$detil);
+
+
+
+
+
+
+
+
+
+
         foreach ($topjenis as $tp){
-            $top[] = array( DB::table('peminjamen as p')
+            $top[] =
+                array( DB::table('peminjamen as p')
 //                ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
-                ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
-                ->join('dokumens as d','p.id_dokumen','=','d.id')
-                ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
-                ->where('jd.kode_jenis','=',$tp->label)
-                ->whereIn('d.kondisi_dokumen', [0,1,2])
-                ->groupBy('p.id_dokumen')
-                ->orderBy('p.id_dokumen')
+                    ->select('d.nama_dokumen as nama_dokumen',DB::raw('COUNT(*) as tot'))
+                    ->join('dokumens as d','p.id_dokumen','=','d.id')
+                    ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+                    ->where('jd.kode_jenis','=',$tp->label)
+                    ->whereIn('d.kondisi_dokumen', [0,1,2])
+                    ->groupBy('p.id_dokumen')
+                    ->orderBy('p.id_dokumen')
 //                ->limit(4)
-                ->get()
+                    ->get()
+
+
         );
 
         }
             $topdetil=$top[0][0];
-//        dd($top);
+//dd($top);
 
 
 
@@ -125,17 +161,7 @@ class HomeController extends Controller
 //            ->get();
 //        $top=json_encode($top5,JSON_NUMERIC_CHECK);
 ////        dd($top5);
-        $detil = DB::table('peminjamen as p')
-//            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
-            ->select(DB::raw('COUNT(*) as total'),'d.nama_dokumen', 'jd.kode_jenis')
-            ->join('dokumens as d','p.id_dokumen','=','d.id')
-            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
-//            ->where('d.kondisi_dokumen','=',3)
-            ->whereIn('d.kondisi_dokumen', [0,1,2])
-            ->groupBy('p.id_dokumen')
-            ->orderBy('p.id_dokumen')
-            ->limit(4)
-            ->get();
+
 
 //        $topjenis = DB::table('peminjamen as p')
 //            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label')
@@ -156,8 +182,8 @@ class HomeController extends Controller
 
         return view('dashboard',compact('jumlahDokumen','jumDokumenAktif','jumDokumenIn','jumDokumenMusnah','jumlahUser','jumPinjam',
             'pinjamdJan','pinjamnFeb','pinjamMar','pinjamApr','pinjamMay','pinjamJun','pinjamJul','pinjamAug','pinjamSep','pinjamOct','pinjamNov','pinjamDec',
-            'tahun','top','topdetil',
-            'datatopjenis','detil'));
+            'tahun','top','topdetil','topjenis',
+            'datatopjenis','detil','detil2'));
     }
 
     public function seringdiPinjam(){
@@ -182,6 +208,35 @@ class HomeController extends Controller
         dd($top5);
     }
 
+    public function gravik(){
+        $topjenis = DB::table('peminjamen as p')
+            ->select('jd.kode_jenis as name',DB::raw('COUNT(*) as y'),'jd.kode_jenis as drilldown')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+//            ->where('d.kondisi_dokumen','=',3)
+            ->whereIn('d.kondisi_dokumen', [0,1,2])
+            ->groupBy('jd.kode_jenis')
+            ->orderBy('p.id_dokumen')
+            ->limit(4)
+            ->get();
+        $datatopjenis=json_encode($topjenis,JSON_NUMERIC_CHECK);
+//        dd($datatopjenis);
+
+        $top = DB::table('peminjamen as p')
+//                ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
+            ->join('dokumens as d','p.id_dokumen','=','d.id')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->where('jd.kode_jenis','=','HM.01')
+            ->whereIn('d.kondisi_dokumen', [0,1,2])
+            ->groupBy('p.id_dokumen')
+            ->orderBy('p.id_dokumen')
+//                ->limit(4)
+            ->get();
+//        $endcode = json_encode($top,JSON_NUMERIC_CHECK);
+        //var_dump($top);
+        return view('chart',compact('datatopjenis','top'));
+    }
     public function coba(){
         $tglnow=date('Y-m-d');
         $exthn = explode('-',$tglnow);
@@ -206,20 +261,20 @@ class HomeController extends Controller
 //            dd($thninaktif);
             if ($thnaktif  > $inttahun){
 //                DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'aktif']);
-                var_dump( 'Aktif');
+                //var_dump( 'Aktif');
             }elseif ($thninaktif > $inttahun){
                 DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'inaktif']);
-                var_dump( 'Inaktif');
+                //var_dump( 'Inaktif');
             }
 //            elseif ($inttahun > $thninaktif){
             else{
-//                var_dump('tes');
+//                //var_dump('tes');
                 if ($data->sifat_dokumen == 'Musnah'){
                     DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'musnah']);
-//                    var_dump( 'Musnah');
+//                  //  var_dump( 'Musnah');
                 }elseif ($data->sifat_dokumen == 'Ditinjau Ulang'){
                     DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'ditinjau ulang']);
-//                    var_dump( 'Ditinjau Ulang');
+//                //    var_dump( 'Ditinjau Ulang');
                 }elseif ($data->sifat_dokumen == 'permanen'){
                     DB::table('dokumens')->where('id','=',$data->id)->update(['status' => 'permanen']);
                 }

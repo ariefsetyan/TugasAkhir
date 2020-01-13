@@ -1,4 +1,279 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<!-- <script src="highcharts.js"></script> -->
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        Chart showing browser market shares. Clicking on individual columns
+        brings up more detailed data. This chart makes use of the drilldown
+        feature in Highcharts to easily switch between datasets.
+    </p>
+</figure>
+<script>
+    // Create the chart
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Browser market shares. January, 2018'
+        },
+        subtitle: {
+            text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+        },
+        accessibility: {
+            announceNewData: {
+                enabled: true
+            }
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total percent market share'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        },
+
+        series: [
+            {
+                name: "Browsers",
+                colorByPoint: true,
+                // data: [
+                //     {
+                //         name: "Chrome",
+                //         y: 62.74,
+                //         drilldown: "Chrome"
+                //     },
+                //     {
+                //         name: "Firefox",
+                //         y: 10.57,
+                //         drilldown: "Firefox"
+                //     },
+                //     {
+                //         name: "Internet Explorer",
+                //         y: 7.23,
+                //         drilldown: "Internet Explorer"
+                //     },
+                //     {
+                //         name: "Safari",
+                //         y: 5.58,
+                //         drilldown: "Safari"
+                //     },
+                //     {
+                //         name: "Edge",
+                //         y: 4.02,
+                //         drilldown: "Edge"
+                //     },
+                //     {
+                //         name: "Opera",
+                //         y: 1.92,
+                //         drilldown: "Opera"
+                //     },
+                //     {
+                //         name: "Other",
+                //         y: 7.62,
+                //         drilldown: null
+                //     }
+                // ]
+                data: <?php echo $datatopjenis; ?>
+            }
+        ],
+        drilldown: {
+            series: [
+                {
+                    name: "HM.01",
+                    id: "HM.01",
+                    data: [
+                        @foreach($top as $tops)
+                        [
+                        "{{$tops->label}}",{{$tops->y}}
+                        ],
+                        @endforeach
+
+                    ]
+                },
+                {
+                    name: "KP.00.06",
+                    id: "KP.00.06",
+                    data: [
+                        [
+                            "v58.0",
+                            1.02
+                        ],
+                        [
+                            "v57.0",
+                            7.36
+                        ],
+                        [
+                            "v56.0",
+                            0.35
+                        ],
+                        [
+                            "v55.0",
+                            0.11
+                        ],
+                        [
+                            "v54.0",
+                            0.1
+                        ],
+                        [
+                            "v52.0",
+                            0.95
+                        ],
+                        [
+                            "v51.0",
+                            0.15
+                        ],
+                        [
+                            "v50.0",
+                            0.1
+                        ],
+                        [
+                            "v48.0",
+                            0.31
+                        ],
+                        [
+                            "v47.0",
+                            0.12
+                        ]
+                    ]
+                },
+                {
+                    name: "Internet Explorer",
+                    id: "Internet Explorer",
+                    data: [
+                        [
+                            "v11.0",
+                            6.2
+                        ],
+                        [
+                            "v10.0",
+                            0.29
+                        ],
+                        [
+                            "v9.0",
+                            0.27
+                        ],
+                        [
+                            "v8.0",
+                            0.47
+                        ]
+                    ]
+                },
+                {
+                    name: "Safari",
+                    id: "Safari",
+                    data: [
+                        [
+                            "v11.0",
+                            3.39
+                        ],
+                        [
+                            "v10.1",
+                            0.96
+                        ],
+                        [
+                            "v10.0",
+                            0.36
+                        ],
+                        [
+                            "v9.1",
+                            0.54
+                        ],
+                        [
+                            "v9.0",
+                            0.13
+                        ],
+                        [
+                            "v5.1",
+                            0.2
+                        ]
+                    ]
+                },
+                {
+                    name: "Edge",
+                    id: "Edge",
+                    data: [
+                        [
+                            "v16",
+                            2.6
+                        ],
+                        [
+                            "v15",
+                            0.92
+                        ],
+                        [
+                            "v14",
+                            0.4
+                        ],
+                        [
+                            "v13",
+                            0.1
+                        ]
+                    ]
+                },
+                {
+                    name: "Opera",
+                    id: "Opera",
+                    data: [
+                        [
+                            "v50.0",
+                            0.96
+                        ],
+                        [
+                            "v49.0",
+                            0.82
+                        ],
+                        [
+                            "v12.1",
+                            0.14
+                        ]
+                    ]
+                }
+            ]
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -43,11 +318,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-    @include('navbar.navbar')
-    <!-- Left side column. contains the logo and sidebar -->
-    @include('menu.menu')
+@include('navbar.navbar')
+<!-- Left side column. contains the logo and sidebar -->
+@include('menu.menu')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -124,21 +399,21 @@
                     </div>
                 </div>
                 <!-- ./col -->
-{{--                <div class="col-lg-3 col-xs-6">--}}
-{{--                    <!-- small box -->--}}
-{{--                    <div class="small-box bg-aqua">--}}
-{{--                        <div class="inner">--}}
-{{--                            <h3>{{$jumlahUser}}</h3>--}}
+            {{--                <div class="col-lg-3 col-xs-6">--}}
+            {{--                    <!-- small box -->--}}
+            {{--                    <div class="small-box bg-aqua">--}}
+            {{--                        <div class="inner">--}}
+            {{--                            <h3>{{$jumlahUser}}</h3>--}}
 
-{{--                            <p>Users</p>--}}
-{{--                        </div>--}}
-{{--                        <div class="icon">--}}
-{{--                            <i class="ion ion-person-add"></i>--}}
-{{--                        </div>--}}
-{{--                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-                <!-- ./col -->
+            {{--                            <p>Users</p>--}}
+            {{--                        </div>--}}
+            {{--                        <div class="icon">--}}
+            {{--                            <i class="ion ion-person-add"></i>--}}
+            {{--                        </div>--}}
+            {{--                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            <!-- ./col -->
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
                     <div class="small-box bg-aqua">
@@ -189,6 +464,53 @@
                 </div>
                 <!-- /.col -->
 
+                {{--                <div class="col-md-12">--}}
+                {{--                    <div class="box">--}}
+                {{--                        <div class="box-header with-border">--}}
+                {{--                            <h3 class="box-title">jenis dokumen yang sering dipinjam</h3>--}}
+                {{--                        </div>--}}
+                {{--                        <!-- /.box-header -->--}}
+                {{--                        <div class="box-body">--}}
+                {{--                            <div class="row">--}}
+                {{--                                <div class="col-md-12">--}}
+                {{--                                    <p class="text-center">--}}
+                {{--                                        {{$datatopjenis}}--}}
+                {{--                                    </p>--}}
+
+                {{--                                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>--}}
+
+                {{--                                    <div class="box-footer">--}}
+                {{--                                        <div class="row">--}}
+                {{--                                            @foreach($detil as $dt)--}}
+                {{--                                            <div class="col-sm-3 col-xs-6">--}}
+                {{--                                                <div class="description-block border-right">--}}
+                {{--                                                    <span class="description-percentage text-green"> {{$dt->total}}</span>--}}
+                {{--                                                    <h5 class="description-header">{{substr($dt->kode_jenis,0,2)}}</h5>--}}
+                {{--                                                    <span class="description-text">{{$dt->nama_dokumen}}</span>--}}
+                {{--                                                </div>--}}
+                {{--                                                <!-- /.description-block -->--}}
+                {{--                                            </div>--}}
+                {{--                                            @endforeach--}}
+
+                {{--                                        </div>--}}
+                {{--                                        <!-- /.row -->--}}
+                {{--                                    </div>--}}
+
+
+
+                {{--                                    <!-- /.chart-responsive -->--}}
+                {{--                                </div>--}}
+                {{--                                <!-- /.col -->--}}
+
+                {{--                                <!-- /.col -->--}}
+                {{--                            </div>--}}
+                {{--                            <!-- /.row -->--}}
+                {{--                        </div>--}}
+                {{--                        <!-- ./box-body -->--}}
+                {{--                    </div>--}}
+                {{--                    <!-- /.box -->--}}
+                {{--                </div>--}}
+
 
                 <div class="col-md-12">
                     <div class="box">
@@ -213,7 +535,7 @@
                             <!-- /.row -->
                         </div>
                         <!-- ./box-body -->
-                    <!-- /.box-footer -->
+                        <!-- /.box-footer -->
                     </div>
                     <!-- /.box -->
 
@@ -233,14 +555,15 @@
             <!-- /.row (main row) -->
 
         </section>
-
-        <!-- /.content -->
+    {{--    <?php $we = (array)$top[0][0][1];?>--}}
+    {{--    <?php echo var_dump($we["nama_dokumen"]);?>--}}
+    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    @include('footer')
+@include('footer')
 
 
-    <!-- Add the sidebar's background. This div must be placed
+<!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
@@ -382,14 +705,14 @@
                 borderWidth: 0,
                 dataLabels: {
                     enabled: true,
-                    format: '{point.y:.1f}'
+                    format: '{point.y:.1f}%'
                 }
             }
         },
 
         tooltip: {
             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
         },
 
         series: [
@@ -397,7 +720,7 @@
                 name: "Browsers",
                 colorByPoint: true,
                 data: [
-                    @foreach($topjenis as $jenis)
+                        @foreach($topjenis as $jenis)
                     {
                         name: "{{$jenis->label}}",
                         y: {{$jenis->y}},
@@ -410,24 +733,24 @@
         ],
         drilldown: {
             series: [
-{{--                    @foreach($detil as $detils)--}}
+                    {{--                    @foreach($detil as $detils)--}}
                 {
                     {{--name: "{{$detils->kode_jenis}}",--}}
-                    {{--id: "{{$detils->kode_jenis}}",--}}
+                            {{--id: "{{$detils->kode_jenis}}",--}}
                     name: "HM.01",
                     id: "HM.01",
                     data:
                         [
-                            @foreach($detil as $detils)
-                        [
-                            "{{$detils->nama_dokumen}}",
-                            {{$detils->total}}
+                                @foreach($detil as $detils)
+                            [
+                                "{{$detils->nama_dokumen}}",
+                                {{$detils->total}}
+                            ],
+                            @endforeach
                         ],
-                        @endforeach
-                    ],
 
                 },
-{{--                    @endforeach--}}
+                    {{--                    @endforeach--}}
                 {
                     name: "KP.00.06",
                     id: "KP.00.06",
@@ -437,7 +760,7 @@
                             "{{$detils->nama_dokumen}}",
                             {{$detils->total}}
                         ],
-                            @endforeach
+                        @endforeach
                     ]
                 },
                 {

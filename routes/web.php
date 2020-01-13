@@ -124,4 +124,5 @@ Route::get('arcive-dokumen','DokumenController@arcive');
 Route::get('view-arc/{id}','DokumenController@ViewArc');
 //pesan
 Route::get('pesanWA/{id}',"PeminjamanController@notifwa");
-Route::get('coba-coba',"HomeController@seringdiPinjam");
+//Route::get('coba-coba',"HomeController@seringdiPinjam");
+Route::get('coba-coba',"HomeController@gravik");
