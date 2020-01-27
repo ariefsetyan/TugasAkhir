@@ -64,8 +64,8 @@
             <!-- /.box -->
             <div class="box">
                 <div class="box-header">
-                    <a href="{{url('eksekusi')}}"><button type="submit" class="btn btn-default">Eksekusi</button></a>
-                    <a href="{{url('pdf')}}"><button type="submit" class="btn btn-default">Print</button></a>
+{{--                    <a href="{{url('eksekusi')}}"><button type="submit" class="btn btn-default">Eksekusi</button></a>--}}
+{{--                    <a href="{{url('pdf')}}"><button type="submit" class="btn btn-default">Print</button></a>--}}
 
                 </div>
                 <!-- /.box-header -->
@@ -110,7 +110,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('/'.$data->id)}}" class="on-default edit-row">
+                                    <a href="{{url('preview-dokumen/'.$data->id)}}" class="on-default edit-row">
                                         <i class="fa fa-eye" > View</i>
                                     </a>
                                 </td>

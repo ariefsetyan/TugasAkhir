@@ -128,7 +128,7 @@ class DokumenController extends Controller
     {
 
         $jra = JRA::where('kode_jenis',$id_jra)->pluck('nm_jenis_jra','id','inaktif','aktif');
-//        dd($jra);
+    //    dd($jra);
         return json_encode($jra);
     }
 
@@ -289,6 +289,35 @@ class DokumenController extends Controller
             ->get();
 //        dd($datas);
         return view('dokumen.daftardokumen',compact('datas'));
+    }
+    public function view($id){
+        $data = DB::table('dokumens as d')
+            ->select('file')
+            ->where('d.id','=',$id)
+            ->get();
+//        dd($data);
+        $decode = json_decode($data,true);
+        $berkas = $decode[0]['file'];
+
+        try {
+            //menyiapkan link
+            $link = $this->dropbox->listSharedLinks('public/berkas/'.$berkas);
+            //membuat link untuk melihat berkas
+            $raw = explode("?", $link[0]['url']);
+            $gambar = $raw[0].'?raw=1';
+//            dd($gambar);
+            $tempGambar = tempnam(sys_get_temp_dir(), $berkas);
+            copy($gambar, $tempGambar);
+            //menampilkan berkas
+            $file = response()->file($tempGambar);
+//            dd(file($tempGambar));
+//            return response()->file($tempGambar);
+
+        } catch (Exception $e) {
+            //abort jika tidak ada berkas
+            return abort(404);
+        }
+        return view('dokumen.perviewdokumen',compact('gambar'));
     }
 
     public function arcive(){

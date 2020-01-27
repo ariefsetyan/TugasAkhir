@@ -120,6 +120,7 @@ Route::get('approve','KepalaController@setuju');
 
 //dokumen
 Route::get('daftar-dokumen','DokumenController@daftardokumen');
+Route::get('preview-dokumen/{id}','DokumenController@view');
 Route::get('arcive-dokumen','DokumenController@arcive');
 Route::get('view-arc/{id}','DokumenController@ViewArc');
 //pesan

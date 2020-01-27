@@ -201,9 +201,7 @@
                                 <figure class="highcharts-figure">
                                     <div id="container"></div>
                                     <p class="highcharts-description">
-                                        Chart showing browser market shares. Clicking on individual columns
-                                        brings up more detailed data. This chart makes use of the drilldown
-                                        feature in Highcharts to easily switch between datasets.
+
                                     </p>
                                 </figure>
                                 <!-- /.col -->
@@ -355,11 +353,11 @@
             type: 'column'
         },
         title: {
-            text: 'Browser market shares. January, 2018'
+            text: ''
         },
-        subtitle: {
-            text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
-        },
+        // subtitle: {
+        //     text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+        // },
         accessibility: {
             announceNewData: {
                 enabled: true
@@ -370,7 +368,7 @@
         },
         yAxis: {
             title: {
-                text: 'Total percent market share'
+                text: 'Total '
             }
 
         },
@@ -394,7 +392,7 @@
 
         series: [
             {
-                name: "Browsers",
+                name: "",
                 colorByPoint: true,
                 data: [
                     @foreach($topjenis as $jenis)

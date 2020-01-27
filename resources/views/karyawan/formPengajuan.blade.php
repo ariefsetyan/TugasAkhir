@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required></textarea>w
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Pinjam</label>
@@ -102,7 +102,7 @@
                                     <label>Tanggal Kembali</label>
                                     <input type="date" class="form-control" name="tglkembali" min="{{$date}}" required>
                                 </div>
-                                
+
                             </div>
                             <!-- /.box-body -->
 

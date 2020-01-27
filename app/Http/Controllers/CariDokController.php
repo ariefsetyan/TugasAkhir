@@ -29,16 +29,17 @@ class CariDokController extends Controller
         $kode = $request->kode;
         $surat = $request->surat;
         $tahun = $request->tahun;
+//        dd($kode,$tahun,$surat);
         if (!empty($kode) and !empty($surat) and !empty($tahun)){
             $cari = DB::table('dokumens as d')->where([
                 ['d.no_takah','=',$kode],
-                ['nama_dokumen','=',$surat],
+                ['nama_dokumen','like','%'.$surat.'%'],
                 ['kurun_waktu','=',$tahun]
             ])
                 ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
 //                ->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')
                 ->get();
-        }elseif(!empty($kode) and !empty($tahun)){
+        }elseif(!empty($kode) and empty($surat) and !empty($tahun)){
             $cari = DB::table('dokumens as d')->where([
                 ['d.no_takah','=',$kode],
                 ['kurun_waktu','=',$tahun]
@@ -49,7 +50,7 @@ class CariDokController extends Controller
         }elseif(!empty($kode) and !empty($surat)) {
             $cari = DB::table('dokumens as d')->where([
                 ['d.no_takah', '=', $kode],
-                ['nama_dokumen', '=', $surat],
+                ['nama_dokumen', 'like', '%'.$surat.'%'],
             ])
                 ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
 //                ->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')
@@ -62,6 +63,7 @@ class CariDokController extends Controller
 //                ->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')
                 ->get();
         }
+//        dd($cari);
         return view('cariDok.hasliCari',compact('cari','kodedokumen'));
 //elseif (!empty($tahun)){
 //            $cari = DB::table('dokumens')->where('kurun_waktu',$tahun)->get();
