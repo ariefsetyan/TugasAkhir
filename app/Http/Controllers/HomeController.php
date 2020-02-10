@@ -10,21 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         if(auth()->user()->isAdmin == 1){
@@ -73,11 +63,7 @@ class HomeController extends Controller
 
         //berdasarkan kode
         $topjenis = DB::table('peminjamen as p')
-            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label','d.nama_dokumen'
-//                DB::raw("(select jd1.kode_jenis from peminjamen as p1 INNER JOIN dokumens as d1 ON p1.id_dokumen = d1.id
-//                 jOIN jenis_dokumens as jd1 ON d1.no_takah = jd1.no_takah where kondisi_dokumen = 1 or
-//                 kondisi_dokumen = 2 or kondisi_dokumen = 0 group by kode_jenis LIMIT 4) as total")
-                )
+            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label','d.nama_dokumen')
 
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
@@ -89,6 +75,7 @@ class HomeController extends Controller
             ->get();
         $datatopjenis=json_encode($topjenis,JSON_NUMERIC_CHECK);
 
+        //grafik ke dua
         $detil = DB::table('peminjamen as p')
 //            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
             ->select(DB::raw('COUNT(*) as total'),'d.nama_dokumen', 'jd.kode_jenis')
@@ -117,14 +104,6 @@ class HomeController extends Controller
 //        dd($topjenis,$detil);
 
 
-
-
-
-
-
-
-
-
         foreach ($topjenis as $tp){
             $top[] =
                 array( DB::table('peminjamen as p')
@@ -144,47 +123,17 @@ class HomeController extends Controller
 
         }
             $topdetil=$top[0][0];
-//dd($top);
-
-
-
-
-//        $top5 = DB::table('peminjamen as p')
-//            ->select(DB::raw('COUNT(*) as y'),'d.nama_dokumen as label')
-//            ->join('dokumens as d','p.id_dokumen','=','d.id')
-//            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
-////            ->where('d.kondisi_dokumen','=',3)
-//            ->whereIn('d.kondisi_dokumen', [0,1,2])
-//            ->groupBy('p.id_dokumen')
-//            ->orderBy('p.id_dokumen')
-//            ->limit(4)
-//            ->get();
-//        $top=json_encode($top5,JSON_NUMERIC_CHECK);
-////        dd($top5);
-
-
-//        $topjenis = DB::table('peminjamen as p')
-//            ->select(DB::raw('COUNT(*) as y'),'jd.kode_jenis as label')
-////            ->select(DB::raw('COUNT(*) as total'),'d.nama_dokumen', 'jd.kode_jenis')
-//            ->join('dokumens as d','p.id_dokumen','=','d.id')
-//            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
-////            ->where('KP.00.06','=','')
-//            ->whereIn('d.kondisi_dokumen', [0,1,2])
-////            ->groupBy('p.id_dokumen')
-//            ->groupBy('jd.kode_jenis')
-//            ->orderBy('p.id_dokumen')
-//            ->limit(3)
-//            ->get();
-//        $topjs=json_encode($top5,JSON_NUMERIC_CHECK);
-//        dd($topjenis);
-//
-
 
         return view('dashboard',compact('jumlahDokumen','jumDokumenAktif','jumDokumenIn','jumDokumenMusnah','jumlahUser','jumPinjam',
             'pinjamdJan','pinjamnFeb','pinjamMar','pinjamApr','pinjamMay','pinjamJun','pinjamJul','pinjamAug','pinjamSep','pinjamOct','pinjamNov','pinjamDec',
             'tahun','top','topdetil','topjenis',
             'datatopjenis','detil','detil2'));
     }
+
+
+
+
+
 
     public function seringdiPinjam(){
         $top5 = DB::table('peminjamen as p')
@@ -237,6 +186,10 @@ class HomeController extends Controller
         //var_dump($top);
         return view('chart',compact('datatopjenis','top'));
     }
+
+
+
+
     public function coba(){
         $tglnow=date('Y-m-d');
         $exthn = explode('-',$tglnow);

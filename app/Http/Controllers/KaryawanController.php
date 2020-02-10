@@ -77,7 +77,9 @@ class KaryawanController extends Controller
         if (session('info')){
             Alert::info('Gagal simpan', 'Tanggal Pinjam tidak boleh melebihi Kanggal Kembali');
         };
-        $dokumens = DB::table('dokumens as d')->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')->get();
+        $dokumens = DB::table('dokumens as d')
+            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
+            ->get();
 //        dd($dokumens);
         $date = date('Y-m-d');
         return view('karyawan.formPengajuan',compact('dokumens','date'));
@@ -87,6 +89,37 @@ class KaryawanController extends Controller
         $datas->diskripsi_peminjaman = $request->deskripsi;
         $datas->tgl_pinjam = $request->tglpinjam;
         $datas->tgl_kembali = $request->tglkembali;
+
+        $pecah = explode('-', $request->tglpinjam);
+//        dd($pecah);
+        if ($pecah[1] == '01'){
+            $bln = 'Jan';
+        }elseif ($pecah[1] == '02'){
+            $bln = 'Feb';
+        }elseif ($pecah[1] == '03'){
+            $bln = 'Mar';
+        }elseif ($pecah[1] == '04'){
+            $bln = 'Apr';
+        }elseif ($pecah[1] == '05'){
+            $bln = 'May';
+        }elseif ($pecah[1] == '06'){
+            $bln = 'Jun';
+        }elseif ($pecah[1] == '07'){
+            $bln = 'Jul';
+        }elseif ($pecah[1] == '08'){
+            $bln = 'Aug';
+        }elseif ($pecah[1] == '09'){
+            $bln = 'Sep';
+        }elseif ($pecah[1] == '10'){
+            $bln = 'Oct';
+        }elseif ($pecah[1] == '11'){
+            $bln = 'Nov';
+        }elseif ($pecah[1] == '12'){
+            $bln = 'Dec';
+        }
+        $datas->bulan = $bln;
+        $datas->tahun = $pecah[0];
+
         $datas->id_karyawan = $request->idUser;
         $datas->id_dokumen = $request->dokumen;
         $datas->id_status = 3;

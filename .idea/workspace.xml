@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75aa1d73-f224-4a31-91ce-12b641e75164" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/dokumen/perviewdokumen.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TA.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CariDokController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CariDokController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DokumenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DokumenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cariDok/formCari.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cariDok/formCari.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dokumen/daftardokumen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dokumen/daftardokumen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/KaryawanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/KaryawanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PeminjamanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PeminjamanController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/karyawan/formPengajuan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/karyawan/formPengajuan.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/peminjaman/formPeminjaman.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/peminjaman/formPeminjaman.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +161,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../arsip-umum" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kpwakyu" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -293,6 +290,23 @@
       <workItem from="1579605257457" duration="2827000" />
       <workItem from="1579860679704" duration="390000" />
       <workItem from="1580106369354" duration="5560000" />
+      <workItem from="1580139438365" duration="1069000" />
+      <workItem from="1580181577323" duration="101000" />
+      <workItem from="1580184562832" duration="163000" />
+      <workItem from="1580187392901" duration="14000" />
+      <workItem from="1580218724824" duration="1367000" />
+      <workItem from="1580222875266" duration="20000" />
+      <workItem from="1580223692028" duration="61000" />
+      <workItem from="1580224471659" duration="9289000" />
+      <workItem from="1580345594527" duration="866000" />
+      <workItem from="1580392189798" duration="148000" />
+      <workItem from="1580395867866" duration="158000" />
+      <workItem from="1580396217179" duration="115000" />
+      <workItem from="1580396365504" duration="1351000" />
+      <workItem from="1580621913922" duration="1011000" />
+      <workItem from="1580880006058" duration="1154000" />
+      <workItem from="1580899739881" duration="3946000" />
+      <workItem from="1581132849700" duration="5175000" />
     </task>
     <servers />
   </component>
@@ -300,19 +314,20 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="363" y="152" key="FileChooserDialogImpl" timestamp="1579066066971">
+    <state x="363" y="152" key="FileChooserDialogImpl" timestamp="1580896155458">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="363" y="152" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1579066066971" />
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1579066032874">
+    <state x="363" y="152" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1580896155458" />
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1581351235363">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1578933738803" />
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1579066032874" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1580108936842">
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581351235363" />
+    <state x="1766" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@1366.-37.1440.870" timestamp="1580139445916" />
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1581132888386" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1581137848310">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1580108936842" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1581137848310" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -349,8 +364,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php</url>
-          <line>74</line>
+          <line>64</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php</url>
+          <line>78</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

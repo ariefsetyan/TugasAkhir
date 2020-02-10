@@ -22,6 +22,8 @@
 //    Route::post('/edit-jra', 'JRAController@Update');
 //    Route::get('/delete-jra/{id}', 'JRAController@Delete');
 ////});
+Route::get('dinamicInput','CobaController@dinamicInput');
+Route::get('prosesget','CobaController@ProsesdinamicInput');
 
 Route::get('/', function () {
     return redirect('login');

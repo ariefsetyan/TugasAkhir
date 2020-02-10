@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Deskripsi</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required></textarea>w
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Pinjam</label>

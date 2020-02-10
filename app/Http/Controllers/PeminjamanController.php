@@ -292,6 +292,6 @@ class PeminjamanController extends Controller
 //        dd($datas);
         $decode = json_decode($datas,true);
         $tlp = $decode[0]['tlp'];
-        return redirect('https://wa.me/'.$tlp);
+        return redirect('https://wa.me/'.$tlpwe);
     }
 }
