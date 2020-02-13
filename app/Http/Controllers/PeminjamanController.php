@@ -27,11 +27,6 @@ class PeminjamanController extends Controller
         $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $karyawans = User::all();
@@ -46,18 +41,8 @@ class PeminjamanController extends Controller
         return view('peminjaman.formPeminjaman',compact('karyawans','dokumens','date'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
-        $peminjaman = new Peminjaman();
-        $peminjaman->id_karyawan = $request->nip;
-        $peminjaman->id_dokumen = $request->dokumen;
-        $peminjaman->diskripsi_peminjaman = $request->deskripsi;
-        $peminjaman->tgl_pinjam = $request->wPinjam;
         $pecah = explode('-', $request->wPinjam);
         if ($pecah[1] == '01'){
             $bln = 'Jan';
@@ -84,21 +69,35 @@ class PeminjamanController extends Controller
         }elseif ($pecah[1] == '12'){
             $bln = 'Dec';
         }
-        $peminjaman->bulan = $bln;
-        $peminjaman->tahun = $pecah[0];
-        $peminjaman->tgl_kembali = $request->wKembali;
-        $peminjaman->id_status = 1;
-//        dd($peminjaman);
-        $peminjaman->save();
+        $tahun = $pecah[0];
+
+        $dokumen = $request->dokumen;
+        for($count = 0; $count < count($dokumen); $count++){
+            $data = array(
+//                'diskripsi_peminjaman' => $request->deskripsi,
+//                'tgl_pinjam' => $request->tglpinjam,
+//                'tgl_kembali' => $request->tglkembali,
+//                'bulan' => $bln,
+//                'tahun'=> $thn,
+//                'id_karyawan' => $request->idUser,
+//                'id_dokumen' => $dokumen[$count],
+//                'id_status' => 3,
+
+                'id_karyawan' => $request->nip,
+                'id_dokumen' => $dokumen[$count],
+                'diskripsi_peminjaman' => $request->deskripsi,
+                'tgl_pinjam' => $request->wPinjam,
+                'bulan' => $bln,
+                'tahun' => $tahun,
+                'tgl_kembali' => $request->wKembali,
+                'id_status' => 1
+            );
+//            dd($data);
+            Peminjaman::insert($data);
+        }
         return redirect('daftar-peminjaman')->withSuccess('Successfully add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function daftar()
     {
         if (session('success')){
@@ -122,12 +121,7 @@ class PeminjamanController extends Controller
         return view('peminjaman.daftar',compact('datas','karyawans','dokumens'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $datas = DB::table('peminjamen as p')->where('p.id','=',$id)
@@ -292,6 +286,6 @@ class PeminjamanController extends Controller
 //        dd($datas);
         $decode = json_decode($datas,true);
         $tlp = $decode[0]['tlp'];
-        return redirect('https://wa.me/'.$tlpwe);
+        return redirect('https://wa.me/'.$tlp);
     }
 }

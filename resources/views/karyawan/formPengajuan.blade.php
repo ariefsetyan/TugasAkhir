@@ -39,6 +39,7 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -81,15 +82,42 @@
                                 <input type="hidden" class="form-control" name="email" value="{{ Auth::user()->email }}">
                                 <input type="hidden" class="form-control" name="nomer" value="{{ Auth::user()->tlp }}">
 
-                                <div class="form-group">
-                                    <label>Nama Dokumen</label>
-                                    <select class="form-control select2" style="width: 100%;" name="dokumen">
-                                        <option selected="selected">Select ...</option>
-                                        @foreach($dokumens as $dokumen)
-                                            <option value="{{$dokumen->id}}">{{$dokumen->kode_jenis}}/{{$dokumen->nama_dokumen}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <table class="table" id="user_table" border="0">
+                                    <thead>
+                                    <tr>
+                                        <th width="100%">First Name</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+
+                                </table>
+
+{{--------------------------------------------------------------------------------------------------------------------------------}}
+{{--                                <table id="dynamic">--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <input type="text" name="name[]" class="form-control">--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <button type="button" name="add" id="add" class="btn btn-success">Add More</button>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                </table>--}}
+{{--                                -------------------------------------------------------}}
+
+
+{{--                                <div class="form-group">--}}
+{{--                                    <label>Nama Dokumen</label>--}}
+{{--                                    <select class="form-control select2" style="width: 100%;" name="dokumen">--}}
+{{--                                        <option selected="selected">Select ...</option>--}}
+{{--                                        @foreach($dokumens as $dokumen)--}}
+{{--                                            <option value="{{$dokumen->id}}">{{$dokumen->kode_jenis}}/{{$dokumen->nama_dokumen}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
                                 <div class="form-group">
                                     <label>Deskripsi</label>
                                     <textarea class="form-control" rows="3" placeholder="Enter ..." name="deskripsi" required></textarea>
@@ -107,7 +135,8 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+{{--                                <button type="submit" class="btn btn-primary">Submit</button>--}}
+                                <input type="submit" name="save" id="save" class="btn btn-primary" value="Submit" />
                             </div>
                         </form>
                     </div>
@@ -220,6 +249,136 @@
             showInputs: false
         })
     })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postURL= "<?php echo url('form-pengajuan'); ?>"
+        var i=1;
+
+        $('#add').click(function(){
+            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
+
+        $(document).on('click', '.btn_remove', function(){
+            var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+        $('#submit').click(function(){
+            $.ajax({
+                url:postURL,
+                method:"POST",
+                data:$('#add_name').serialize(),
+                type:'json',
+                success:function(data)
+                {
+                    if(data.error){
+                        printErrorMsg(data.error);
+                    }else{
+                        i=1;
+                        $('.dynamic-added').remove();
+                        $('#add_name')[0].reset();
+                        $(".print-success-msg").find("ul").html('');
+                        $(".print-success-msg").css('display','block');
+                        $(".print-error-msg").css('display','none');
+                        $(".print-success-msg").find("ul").append('<li>Record Inserted Successfully.</li>');
+                    }
+                }
+            });
+        });
+
+
+        function printErrorMsg (msg) {
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','block');
+            $(".print-success-msg").css('display','none');
+            $.each( msg, function( key, value ) {
+                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+            });
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+
+        var count = 1;
+
+        dynamic_field(count);
+
+        function dynamic_field(number)
+        {
+            html = '<tr>';
+            html += '<td><select class="form-control select2" style="width: 100%;" name="dokumen[]">\n' +
+                '                                        <option selected="selected">Select ...</option>\n' +
+                '                                        @foreach($dokumens as $dokumen)\n' +
+                '                                            <option value="{{$dokumen->id}}">{{$dokumen->kode_jenis}}/{{$dokumen->nama_dokumen}}</option>\n' +
+                '                                        @endforeach\n' +
+                '                                    </select></td>';
+            // html += '<td><input type="text" name="first_name[]" class="form-control" /></td>';
+            // html += '<td><input type="text" name="last_name[]" class="form-control" /></td>';
+            if(number > 1)
+            {
+                html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
+                $('tbody').append(html);
+            }
+            else
+            {
+                html += '<td><button type="button" name="add" id="add" class="btn btn-success">Add</button></td></tr>';
+                $('tbody').html(html);
+            }
+        }
+
+        $(document).on('click', '#add', function(){
+            count++;
+            dynamic_field(count);
+        });
+
+        $(document).on('click', '.remove', function(){
+            count--;
+            $(this).closest("tr").remove();
+        });
+
+        $('#dynamic_form').on('submit', function(event){
+            event.preventDefault();
+            $.ajax({
+                url:'{{ route("proses-pengajuan") }}',
+                method:'post',
+                data:$(this).serialize(),
+                dataType:'json',
+                beforeSend:function(){
+                    $('#save').attr('disabled','disabled');
+                },
+                success:function(data)
+                {
+                    if(data.error)
+                    {
+                        var error_html = '';
+                        for(var count = 0; count < data.error.length; count++)
+                        {
+                            error_html += '<p>'+data.error[count]+'</p>';
+                        }
+                        $('#result').html('<div class="alert alert-danger">'+error_html+'</div>');
+                    }
+                    else
+                    {
+                        dynamic_field(1);
+                        $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
+                    }
+                    $('#save').attr('disabled', false);
+                }
+            })
+        });
+
+    });
 </script>
 </body>
 </html>

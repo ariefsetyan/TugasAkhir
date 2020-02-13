@@ -73,7 +73,11 @@ class KaryawanController extends Controller
         return back()->withSuccess2('Successfully update');
     }
 
-    public function pengajuan(){
+    public function pengajuan(Request $request){
+//        dd($request->all());
+
+
+//--------------------------------------------------------------------------------------------------
         if (session('info')){
             Alert::info('Gagal simpan', 'Tanggal Pinjam tidak boleh melebihi Kanggal Kembali');
         };
@@ -84,12 +88,8 @@ class KaryawanController extends Controller
         $date = date('Y-m-d');
         return view('karyawan.formPengajuan',compact('dokumens','date'));
     }
-    public function prosesPengajuan(Request $request){
-        $datas = new Peminjaman();
-        $datas->diskripsi_peminjaman = $request->deskripsi;
-        $datas->tgl_pinjam = $request->tglpinjam;
-        $datas->tgl_kembali = $request->tglkembali;
 
+    public function prosesPengajuan(Request $request){
         $pecah = explode('-', $request->tglpinjam);
 //        dd($pecah);
         if ($pecah[1] == '01'){
@@ -117,22 +117,34 @@ class KaryawanController extends Controller
         }elseif ($pecah[1] == '12'){
             $bln = 'Dec';
         }
-        $datas->bulan = $bln;
-        $datas->tahun = $pecah[0];
+        $thn = $pecah[0];
 
-        $datas->id_karyawan = $request->idUser;
-        $datas->id_dokumen = $request->dokumen;
-        $datas->id_status = 3;
+        $dokumen = $request->dokumen;
 
+        for($count = 0; $count < count($dokumen); $count++){
+            $data = array(
+                'diskripsi_peminjaman' => $request->deskripsi,
+                'tgl_pinjam' => $request->tglpinjam,
+                'tgl_kembali' => $request->tglkembali,
+                'bulan' => $bln,
+                'tahun'=> $thn,
+                'id_karyawan' => $request->idUser,
+                'id_dokumen' => $dokumen[$count],
+                'id_status' => 3
+            );
+
+            Peminjaman::insert($data);
+
+        }
 
         $namakaryawan = $request->nama;
         $email = $request->email;
-         $namaDokumen = DB::table('dokumens')
-             ->select('nama_dokumen')
-             ->where('id','=',$request->dokumen)
-             ->get();
-         $dokumen = json_decode($namaDokumen, true);
-         $nmDokumen = $dokumen[0]['nama_dokumen'];
+        $namaDokumen = DB::table('dokumens')
+            ->select('nama_dokumen')
+            ->where('id','=',$request->dokumen)
+            ->get();
+        $dokumen = json_decode($namaDokumen, true);
+        $nmDokumen = $dokumen[0]['nama_dokumen'];
 //        dd($datas,$namaDokumen,$nmDokumen);
         $data = array('name'=>"Kepada Bapak Admin", "body" => "Saya Mengajukan permohonan peminjaman dokuemna ".$nmDokumen." ".$request->deskripsi.
             "pada ".$request->tglpinjam." hingga ".$request->tglkembali);
@@ -142,19 +154,17 @@ class KaryawanController extends Controller
             $message->to($email,'Arief Setya');
             // $message->cc('john@johndoe.com', 'John Doe');
             // $message->bcc('john@johndoe.com', 'John Doe');
-             $message->replyTo($email, 'John Doe');
+            $message->replyTo($email, 'John Doe');
             $message->subject('Permohonan Peminjaman Dokumen');
 //            $message->priority(3);
             // $message->attach('pathToFile');
         });
-        if ( $datas->tgl_pinjam > $datas->tgl_kembali){
+        if ( $request->tgl_pinjam > $request->tgl_kembali){
             return redirect('form-pengajuan')->withInfo('Successfully add');
         }else{
-
-        $datas->save();
-
         return redirect('https://wa.me/'.$request->nomer.'?text=test connet app to WhatsApp');
         }
+
     }
     public function daftarPengajuan(){
         $datas = DB::table('peminjamen as p')

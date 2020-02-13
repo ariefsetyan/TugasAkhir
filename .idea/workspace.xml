@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="75aa1d73-f224-4a31-91ce-12b641e75164" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/KaryawanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/KaryawanController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PeminjamanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PeminjamanController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/karyawan/formPengajuan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/karyawan/formPengajuan.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/peminjaman/formPeminjaman.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/peminjaman/formPeminjaman.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/penyimpanan/penyimpanan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/penyimpanan/penyimpanan.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -307,6 +307,9 @@
       <workItem from="1580880006058" duration="1154000" />
       <workItem from="1580899739881" duration="3946000" />
       <workItem from="1581132849700" duration="5175000" />
+      <workItem from="1581351183097" duration="12204000" />
+      <workItem from="1581565429149" duration="7295000" />
+      <workItem from="1581585808804" duration="7092000" />
     </task>
     <servers />
   </component>
@@ -314,20 +317,29 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1766" y="127" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1581565376057">
+      <screen x="1366" y="-37" width="1440" height="870" />
+    </state>
+    <state x="1766" y="127" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738/1366.-37.1440.870@1366.-37.1440.870" timestamp="1581565376057" />
     <state x="363" y="152" key="FileChooserDialogImpl" timestamp="1580896155458">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="363" y="152" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1580896155458" />
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1581351235363">
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1581600925804">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581351235363" />
-    <state x="1766" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@1366.-37.1440.870" timestamp="1580139445916" />
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581600925804" />
+    <state x="1766" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@1366.-37.1440.870" timestamp="1581565481237" />
     <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1581132888386" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1581137848310">
+    <state x="339" y="165" key="run.anything.popup" timestamp="1581603079499">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1581137848310" />
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581603079499" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1581562569705">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581562569705" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1581494461080" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
