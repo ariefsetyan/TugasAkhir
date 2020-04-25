@@ -72,7 +72,7 @@
                         <!-- form start -->
                         <embed width="100%" height="450" src="{{$gambar}}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
                     <!-- /.box-footer -->
-                        </form>
+{{--                        </form>--}}
                     </div>
                 </div>
 

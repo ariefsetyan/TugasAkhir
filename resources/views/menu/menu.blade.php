@@ -53,7 +53,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{url('penyimpanan')}}"><i class="fa fa-circle-o"></i> Form Penyimpanan</a></li>
                     <li><a href="{{url('daftar-penyimpanan')}}"><i class="fa fa-circle-o"></i> Daftar Penyimpanan</a></li>
-                    
+
                 </ul>
             </li>
 

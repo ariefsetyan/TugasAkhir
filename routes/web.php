@@ -55,7 +55,10 @@ Route::post('/update-lokasi', 'LokasiController@update');
 Route::get('/hapus-lokasi/{id}', 'LokasiController@delete');
 //penyimpanan
 Route::get('/penyimpanan', 'DokumenController@index');
-Route::get('dynamic/{id_jra}', 'DokumenController@show');
+Route::get('dynamic/{id_pp}', 'DokumenController@show');
+Route::get('dynamicp/{id_ap}', 'DokumenController@showperihal');
+Route::get('dynamicjra/{id_jra}', 'DokumenController@jjra');
+Route::get('dynamicjra2/{id_jra}', 'DokumenController@jjra2');
 Route::post('simpan-dokumen', 'DokumenController@store');
 Route::get('lokasi-penyimpanan', 'DokumenController@lokasiSimpan');
 Route::get('daftar-penyimpanan', 'DokumenController@daftar');

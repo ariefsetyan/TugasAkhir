@@ -34,22 +34,12 @@ class PengembalianController extends Controller
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->join('users as u','p.id_karyawan','=','u.id')
             ->get();
-//        dd($peminjaman);
         return view('pengembalian.hasilpencarian',compact('peminjaman'));
     }
 
     public function kembali(Request $request){
-
-//        $datas = new Pengembalian();
-//        $datas->id_peminjaman = $request->idpeminjaman;
-//        $datas->id_dokumen = $request->iddokumen;
-//        $datas->id_pegawai = $request->idpeminjaman;
-//        $datas->save();
-//        dd($datas);
         $datas = DB::table('peminjamen')->where('id','=',$request->id)
             ->update(['id_status' => 2]);
-//        dd($datas);
-
         return redirect('daftar-pengembalian')->withSuccess('Successfully update');
     }
 
@@ -63,12 +53,8 @@ class PengembalianController extends Controller
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->get();
-//            ->join('users as u')
-//        dd($datas);
+
         return view('pengembalian.daftar',compact('datas'));
     }
-//    public function kembaliDigital(){
-//
-//    }
 }
 

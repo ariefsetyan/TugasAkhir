@@ -28,7 +28,6 @@ class KepalaController extends Controller
                 ['kondisi_dokumen','=','1']
             ])
             ->get();
-//        dd($datas);
         return view('kepalaBalai.home',compact('datas'));
     }
     public function setuju(){

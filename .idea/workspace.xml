@@ -3,9 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="75aa1d73-f224-4a31-91ce-12b641e75164" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/everDay.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/everDay.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CariDokController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CariDokController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DokumenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DokumenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JenisDokumenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JenisDokumenController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/KaryawanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/KaryawanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/KepalaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/KepalaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LokasiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LokasiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PDfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PDfController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PeminjamanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PeminjamanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PengembalianController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PengembalianController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RetensiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RetensiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_06_005129_create_retensis_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/2019_11_06_005129_create_retensis_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/cariDok/hasliCari.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cariDok/hasliCari.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/jenisDokumen/jenisDokumen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/jenisDokumen/jenisDokumen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/karyawan/dokumen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/karyawan/dokumen.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/karyawan/formPengajuan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/karyawan/formPengajuan.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menu/menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/menu.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/peminjaman/formPeminjaman.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/peminjaman/formPeminjaman.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/penyimpanan/penyimpanan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/penyimpanan/penyimpanan.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -161,7 +176,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kpwakyu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../forn-end/onewebpage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -173,19 +188,19 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\TA\database" />
+      <recent name="C:\xampp\htdocs\TA\resources\views\dokumen" />
+      <recent name="C:\xampp\htdocs\TA\app\Http" />
+      <recent name="C:\xampp\htdocs\TA\database\migrations" />
+      <recent name="C:\xampp\htdocs\TA\resources\views\lokasiSimpan" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\TA\public\js" />
       <recent name="C:\xampp\htdocs\TA\resources\views" />
       <recent name="C:\xampp\htdocs\TA\resources\views\karyawan" />
       <recent name="C:\xampp\htdocs\TA\public" />
       <recent name="C:\xampp\htdocs\TA\database\migrations" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\TA\resources\views\dokumen" />
-      <recent name="C:\xampp\htdocs\TA\app\Http" />
-      <recent name="C:\xampp\htdocs\TA\database\migrations" />
-      <recent name="C:\xampp\htdocs\TA\database" />
-      <recent name="C:\xampp\htdocs\TA\resources\views\lokasiSimpan" />
     </key>
   </component>
   <component name="RunManager">
@@ -309,7 +324,25 @@
       <workItem from="1581132849700" duration="5175000" />
       <workItem from="1581351183097" duration="12204000" />
       <workItem from="1581565429149" duration="7295000" />
-      <workItem from="1581585808804" duration="7092000" />
+      <workItem from="1581585808804" duration="7733000" />
+      <workItem from="1581682982023" duration="24274000" />
+      <workItem from="1582166638939" duration="4113000" />
+      <workItem from="1582471644013" duration="2009000" />
+      <workItem from="1582509289537" duration="12610000" />
+      <workItem from="1582671187720" duration="1942000" />
+      <workItem from="1582725380949" duration="2631000" />
+      <workItem from="1582815884511" duration="2497000" />
+      <workItem from="1582890272733" duration="1053000" />
+      <workItem from="1583213944052" duration="620000" />
+      <workItem from="1585190705615" duration="19380000" />
+      <workItem from="1585573736593" duration="2921000" />
+      <workItem from="1585710739253" duration="4268000" />
+      <workItem from="1585740414966" duration="19526000" />
+      <workItem from="1585830575406" duration="232000" />
+      <workItem from="1585980636073" duration="45000" />
+      <workItem from="1585980847558" duration="12590000" />
+      <workItem from="1586064184256" duration="5687000" />
+      <workItem from="1586142562811" duration="2378000" />
     </task>
     <servers />
   </component>
@@ -317,29 +350,37 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1766" y="127" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1581565376057">
-      <screen x="1366" y="-37" width="1440" height="870" />
+    <state x="362" y="145" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1585980655426">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="362" y="145" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1304.768@0.0.1304.768" timestamp="1585980655426" />
     <state x="1766" y="127" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738/1366.-37.1440.870@1366.-37.1440.870" timestamp="1581565376057" />
-    <state x="363" y="152" key="FileChooserDialogImpl" timestamp="1580896155458">
+    <state x="367" y="25" width="645" height="688" key="#phpunit.xml" timestamp="1582816129026">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="367" y="25" width="645" height="688" key="#phpunit.xml/0.0.1366.738@0.0.1366.738" timestamp="1582816129026" />
+    <state x="347" y="158" key="FileChooserDialogImpl" timestamp="1586165054011">
+      <screen x="0" y="0" width="1304" height="768" />
+    </state>
+    <state x="347" y="158" key="FileChooserDialogImpl/0.0.1304.768@0.0.1304.768" timestamp="1586165054011" />
     <state x="363" y="152" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1580896155458" />
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1581600925804">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="362" y="202" key="com.intellij.ide.util.TipDialog" timestamp="1586142563180">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581600925804" />
+    <state x="362" y="202" key="com.intellij.ide.util.TipDialog/0.0.1304.768@0.0.1304.768" timestamp="1586142563180" />
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1582671185049" />
     <state x="1766" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.-37.1440.870@1366.-37.1440.870" timestamp="1581565481237" />
-    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1581132888386" />
-    <state x="339" y="165" key="run.anything.popup" timestamp="1581603079499">
+    <state x="379" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1585573736107" />
+    <state x="339" y="165" key="run.anything.popup" timestamp="1581743096843">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="339" y="165" key="run.anything.popup/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581603079499" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1581562569705">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581743096843" />
+    <state x="330" y="61" width="672" height="706" key="search.everywhere.popup" timestamp="1585793029115">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581562569705" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1581494461080" />
+    <state x="330" y="61" width="672" height="706" key="search.everywhere.popup/0.0.1304.768@0.0.1304.768" timestamp="1585793029115" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/1366.-37.1440.870@0.0.1366.738" timestamp="1581744687020" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1581686541592" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -361,7 +402,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/jenisDokumen/jenisDokumen.blade.php</url>
-          <line>173</line>
+          <line>186</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -376,12 +417,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php</url>
-          <line>64</line>
+          <line>54</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php</url>
-          <line>78</line>
+          <line>64</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>

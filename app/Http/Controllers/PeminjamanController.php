@@ -31,12 +31,6 @@ class PeminjamanController extends Controller
     {
         $karyawans = User::all();
         $dokumens = Dokumen::all();
-//        $datas = DB::table('peminjamen as p')
-//            ->join('users as u','p.id_karyawan','=','u.id')
-//            ->join('dokumens as d','p.id_dokumen','=','d.id')
-//            ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
-//            ->get();
-//        dd($dokumens);
         $date = date('Y-m-d');
         return view('peminjaman.formPeminjaman',compact('karyawans','dokumens','date'));
     }
@@ -74,15 +68,6 @@ class PeminjamanController extends Controller
         $dokumen = $request->dokumen;
         for($count = 0; $count < count($dokumen); $count++){
             $data = array(
-//                'diskripsi_peminjaman' => $request->deskripsi,
-//                'tgl_pinjam' => $request->tglpinjam,
-//                'tgl_kembali' => $request->tglkembali,
-//                'bulan' => $bln,
-//                'tahun'=> $thn,
-//                'id_karyawan' => $request->idUser,
-//                'id_dokumen' => $dokumen[$count],
-//                'id_status' => 3,
-
                 'id_karyawan' => $request->nip,
                 'id_dokumen' => $dokumen[$count],
                 'diskripsi_peminjaman' => $request->deskripsi,
@@ -92,7 +77,6 @@ class PeminjamanController extends Controller
                 'tgl_kembali' => $request->wKembali,
                 'id_status' => 1
             );
-//            dd($data);
             Peminjaman::insert($data);
         }
         return redirect('daftar-peminjaman')->withSuccess('Successfully add');
@@ -117,7 +101,6 @@ class PeminjamanController extends Controller
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
             ->where('id_status','=','1')
             ->get();
-//        dd($datas);
         return view('peminjaman.daftar',compact('datas','karyawans','dokumens'));
     }
 
@@ -129,67 +112,39 @@ class PeminjamanController extends Controller
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->join('jenis_dokumens as jd','d.no_takah','=','jd.no_takah')
             ->get();
-//        dd($datas);
 
         $decode = json_decode($datas,true);
         $berkas = $decode[0]['file'];
 
         try {
-            //menyiapkan link
             $link = $this->dropbox->listSharedLinks('public/berkas/'.$berkas);
-            //membuat link untuk melihat berkas
             $raw = explode("?", $link[0]['url']);
             $gambar = $raw[0].'?raw=1';
-//            dd($gambar);
             $tempGambar = tempnam(sys_get_temp_dir(), $berkas);
             copy($gambar, $tempGambar);
-            //menampilkan berkas
             $file = response()->file($tempGambar);
-//            dd(file($tempGambar));
-//            return response()->file($tempGambar);
 
         } catch (Exception $e) {
-            //abort jika tidak ada berkas
             return abort(404);
         }
 
         return view('peminjaman.detil',compact('datas','gambar'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $karyawans = User::all();
         $dokumens = Dokumen::all();
-//        dd($id);
         $datas = DB::table('peminjamen as p')->where('p.id', '=', $id)
             ->select('p.id','diskripsi_peminjaman','tgl_pinjam','tgl_kembali','id_karyawan','nip','id_dokumen','nama_dokumen')
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','d.id','=','p.id_dokumen')
             ->get();
-//        dd($datas);
         return view('peminjaman.formedit',compact('datas','karyawans','dokumens'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-//        dd($request->deskripsi);
-//        dd($request->wPinjam);
-//        dd($request->wKembali);
-//        dd($request->nip);
-//        dd($request->dokumen);
         $data = DB::table('peminjamen')->where('id','=',$id)->update([
             'diskripsi_peminjaman'=>$request->deskripsi,
             'tgl_pinjam'=>$request->wPinjam,
@@ -199,13 +154,6 @@ class PeminjamanController extends Controller
             ]);
         return redirect('daftar-peminjaman')->withSuccess1('Successfully');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $peminjaman = DB::table('peminjamen')->where('id','=',$id)->delete();
@@ -219,11 +167,9 @@ class PeminjamanController extends Controller
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
             ->get();
-//        dd($pengajuan);
         return view('peminjaman.pengajuan',compact('pengajuan'));
     }
     public function detil_pengajuan($id){
-//        dd($id);
         $pengajuan = DB::table('peminjamen as p')
             ->select('p.id','nip','name','nama_dokumen','tgl_pinjam','tgl_kembali','diskripsi_peminjaman')
             ->where('id_status','=',3)
@@ -234,22 +180,6 @@ class PeminjamanController extends Controller
         return view('peminjaman.detailPengajuan',compact('pengajuan'));
     }
     public function terima($id){
-
-        //email
-//        $nama='Server';
-//        $mail='arief.setya57@gmail';
-//        $data = array('name'=>"Kepada Bapak john", "body" => "Saya Mengajukan permohonan peminjaman dokumen ");
-//        Mail::send('email.mail',$data,function ($message) use ($nama) {
-//            $message->from('agung@mail.id','Admin');
-//            // $message->sender('john@johndoe.com', 'John Doe');
-//            $message->to('agung.prasatu@gmail.com','');
-//            // $message->cc('john@johndoe.com', 'John Doe');
-//            // $message->bcc('john@johndoe.com', 'John Doe');
-//            $message->replyTo('ariefsetyan@gmail.com', 'John Doe');
-//            $message->subject('Permohonan Peminjaman Dokumen');
-////            $message->priority(3);
-//            // $message->attach('pathToFile');
-//        });
 
         $terima = DB::table('peminjamen')->where('id',$id)
             ->update(
@@ -270,12 +200,7 @@ class PeminjamanController extends Controller
             ->select('p.id','p.diskripsi_peminjaman','p.tgl_pinjam','p.tgl_kembali','d.nama_dokumen','p.id_status')
             ->join('users as u','p.id_karyawan','=','u.id')
             ->join('dokumens as d','p.id_dokumen','=','d.id')
-//            ->where([
-//                ['id_status','=','3'],
-//                ['id_status','=',4]
-//            ])
             ->get();
-//        dd($datas);
         return view('peminjaman.daftarpengajuan',compact('datas'));
     }
     public function notifwa($id){
@@ -283,7 +208,6 @@ class PeminjamanController extends Controller
         $datas = DB::table('peminjamen as p')
             ->join('users as u','p.id_karyawan','=','u.id')
             ->where('p.id','=',$id)->get();
-//        dd($datas);
         $decode = json_decode($datas,true);
         $tlp = $decode[0]['tlp'];
         return redirect('https://wa.me/'.$tlp);

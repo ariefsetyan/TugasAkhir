@@ -111,10 +111,17 @@
                                     <input type="text" class="form-control" name="kode" placeholder="No PP.No AP.No P" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nama Jenis</label>
-                                    <input type="text" class="form-control" name="nama" placeholder="PP/AP/P" required>
+                                    <label>Pokok Persoalan</label>
+                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="PP" required >
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Anak Persoalan</label>
+                                    <input type="text" class="form-control" name="anak" id="anak" placeholder="AP" required >
+                                </div>
+                                <div class="form-group">
+                                    <label>perihal</label>
+                                    <input type="text" class="form-control" name="perihal" id="perihal" placeholder="P" >
+                                </div>
                             </div>
                             <!-- /.box-body -->
 
@@ -138,7 +145,9 @@
                         <tr>
                             <th>No Takah</th>
                             <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
+                            <th>Pokok Persoalan</th>
+                            <th>anak pokok</th>
+                            <th>perihal</th>
                             <th>Lokasi</th>
                             <th>Tools</th>
 
@@ -152,6 +161,8 @@
                             <td>{{$data->no_takah}}</td>
                             <td>{{$data->kode_jenis}}</td>
                             <td>{{$data->nama_jenis}}</td>
+                            <td>{{$data->anak_pokok}}</td>
+                            <td>{{$data->perihal}}</td>
                             <td>{{$data->gedung}}/{{$data->rak}}/{{$data->baris}}/{{$data->bok}}/{{$data->folder}}</td>
                             <td>
                                 <a href="#" class="on-default edit-row"
@@ -159,6 +170,8 @@
                                    data-notakah="{{$data->no_takah}}"
                                    data-kdjenis="{{$data->kode_jenis}}"
                                    data-nmjenis="{{$data->nama_jenis}}"
+                                   data-anak="{{$data->anak_pokok}}"
+                                   data-perihal="{{$data->perihal}}"
                                    data-toggle="modal" data-target="#modal-default">
                                     <i class="fa fa-pencil" ></i>
                                 </a>
@@ -204,10 +217,27 @@
                                                 <div class="form-group">
                                                     <label>Kode Jenis</label>
                                                     <input type="text" class="form-control" name="kode" id="kode" placeholder="No PP.No AP.No P" required >
+{{--                                                    <select class="form-control select2" style="width: 100%;" id="jenis" name="jenis">--}}
+{{--                                                        <option class="selected" >Select...</option>--}}
+{{--                                                        @if(!empty($PP))--}}
+{{--                                                            @foreach($PP as $data)--}}
+{{--                                                                <option  class="selected" value="{{$data->id}}">{{$data->persoalan}}</option>--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @else--}}
+{{--                                                        @endif--}}
+{{--                                                    </select>--}}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Nama Jenis</label>
-                                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="PP/AP/P" required >
+                                                    <label>Pokok Persoalan</label>
+                                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="PP" required >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anak Persoalan</label>
+                                                    <input type="text" class="form-control" name="anak" id="anak" placeholder="AP" required >
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>perihal</label>
+                                                    <input type="text" class="form-control" name="perihal" id="perihal" placeholder="P" >
                                                 </div>
                                             </div>
                                             <!-- /.box-body -->
@@ -286,11 +316,15 @@
         var noTakah = button.data('notakah')
         var kdJenis = button.data('kdjenis')
         var nmJenis = button.data('nmjenis')
+        var nmAnak = button.data('anak')
+        var nmPerihal = button.data('perihal')
         var modal = $(this)
 
         modal.find('.modal-body #noTakah').val(noTakah)
         modal.find('.modal-body #kode').val(kdJenis)
         modal.find('.modal-body #nama').val(nmJenis)
+        modal.find('.modal-body #anak').val(nmAnak)
+        modal.find('.modal-body #perihal').val(nmPerihal)
     })
 </script>
 <script>

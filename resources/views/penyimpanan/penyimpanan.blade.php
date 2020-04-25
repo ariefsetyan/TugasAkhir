@@ -73,31 +73,46 @@
                             {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>Kode Dokumen</label>
+                                    <label>jenis dokumen</label>
                                     <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" id="kode" name="kode" required>
                                         <option selected="selected">select ...</option>
+{{--                                        <option selected="selected">perancangan</option>--}}
                                         @if(!empty($nomerdoc))
                                         @foreach($nomerdoc as $datano)
-                                        <option value="{{$datano->no_takah}}">{{$datano->kode_jenis}}/{{$datano->nama_jenis}}</option>
+{{--                                        <option value="{{$datano->no_takah}}">{{$datano->kode_jenis}}/{{$datano->nama_jenis}}</option>--}}
+                                        <option value="{{$datano->nama_jenis}}">{{$datano->nama_jenis}}</option>
                                             @endforeach
                                         @endif
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Jenis Dokumen</label>
-                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode" required>
+                                    <label>anak persoalan</label>
+{{--                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kode" required>--}}
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kd" required>
                                         <option selected="selected">Select ...</option>
+{{--                                        <option selected="selected">PENYUSUNAN RENCANA PROGRAM DAN KINERJA</option>--}}
 
                                     </select>
                                 </div>
 
-{{--                                <div class="form-group">--}}
-{{--                                    <label>Jenis aktif</label>--}}
-{{--                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="aktif" id="kode">--}}
-{{--                                        <option selected="selected">Select ...</option>--}}
+                                <div class="form-group">
+                                    <label>perihal</label>
+                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="perihal" name="perihal" id="perihal">
+                                        <option selected="selected">Select ...</option>
+{{--                                        <option selected="selected">PENYUSUNAN RENCANA PROGRAM DAN KINERJA</option>--}}
 
-{{--                                    </select>--}}
-{{--                                </div>--}}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Jenis JRA</label>
+                                        <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenisJra" name="jenisJra" required>
+{{--                                    <select class="form-control select2 dynamic" style="width: 100%;" data-dependent="jenis" name="jenis" id="kd" required>--}}
+                                        <option selected="selected">Select ...</option>
+                                        {{--                                        <option selected="selected">PENYUSUNAN RENCANA PROGRAM DAN KINERJA</option>--}}
+
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
                                     <label>Nama Dokumen</label>
@@ -208,28 +223,125 @@
         })
     })
 </script>
+{{--an p--}}
 <script>
+    var setter;
     $(document).ready(function () {
         $('select[name="kode"]').on('change', function () {
-            var id_jra = $(this).val();
+            var id_pp = $(this).val();
             var tgl_retensi = $(this).data('')
-            if (id_jra){
-                console.log(id_jra);
+            if (id_pp){
+                // console.log(id_pp);
+                console.log("data : kode 1");
                 $.ajax({
-                    url:'dynamic/'+id_jra,
+                    url:'dynamic/'+id_pp,
+                    type:'GET',
+                    dataType:'json',
+                    success:function (data) {
+                        // console.log(data.length)
+                        console.log(data)
+                        $('select[name="jenis"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="jenis"]').append('<option value="'+ value +'">'+ value +'</option>');
+                        });
+                    }
+                })
+            }else {
+                console.log("masuk kode 2");
+                $('select[name="jenis"]').empty();
+            }
+        })
+    })
+</script>
+{{--p--}}
+<script>
+    // var deter = false;
+    $(document).ready(function () {
+        $('select[name="jenis"]').on('change', function () {
+            var id_ap = $(this).val();
+            var tgl_retensi = $(this).data('')
+            console.log(id_ap)
+            if (id_ap){
+                // console.log(id_jra);
+                console.log("masuk jenis 1");
+                window.deter = true;
+                $.ajax({
+                    url:'dynamicp/'+id_ap,
                     type:'GET',
                     dataType:'json',
                     success:function (data) {
                         console.log(data.length)
                         console.log(data)
-                        $('select[name="jenis"]').empty();
+                        $('select[name="perihal"]').empty();
                         $.each(data, function (key, value) {
-                            $('select[name="jenis"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            $('select[name="perihal"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                })
+            }
+            if(deter && id_ap !== "null"){
+                // console.log("mantup")
+                $(document).ready(function () {
+                    $('select[name="jenis"]').on('change', function () {
+                        var id_jra = $(this).val();
+                        // var id_jrak = $(this).key();
+                        var tgl_retensi = $(this).data('')
+                        console.log('id '+id_jra);
+
+                        if (id_jra){
+                            // console.log(id_jra);
+                            console.log("masuk periihal 1");
+                            $.ajax({
+                                url:'dynamicjra2/'+id_jra,
+                                type:'GET',
+                                dataType:'json',
+                                success:function (data) {
+                                    // console.log(data.length)
+                                    console.log(data)
+                                    $('select[name="jenisJra"]').empty();
+                                    $.each(data, function (key, value) {
+                                        $('select[name="jenisJra"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                    });
+                                }
+                            })
+                        }else {
+                            console.log("masuk perihal 2");
+                            $('select[name="jenisJra"]').empty();
+                        }
+                    })
+                })
+            }
+        })
+    })
+
+</script>
+{{--jra--}}
+<script>
+    $(document).ready(function () {
+        $('select[name="perihal"]').on('change', function () {
+            var id_jra = $(this).val();
+            var tgl_retensi = $(this).data('')
+            console.log(id_jra);
+
+            if (id_jra){
+                // console.log(id_jra);
+                console.log("masuk periihal 1");
+                $.ajax({
+                    url:'dynamicjra/'+id_jra,
+                    type:'GET',
+                    dataType:'json',
+                    success:function (data) {
+                        // console.log(data.length)
+                        console.log(data)
+                        $('select[name="jenisJra"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="jenisJra"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                     }
                 })
             }else {
-                $('select[name="jenis"]').empty();
+                console.log("masuk perihal 2");
+                $('select[name="jenisJra"]').empty();
             }
         })
     })

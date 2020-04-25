@@ -82,20 +82,20 @@
                             <h3 class="box-title">Quick Example</h3>
                         </div>
                         <!-- form start -->
-                        <form role="form">
+                        <form role="form" action="{{url('prosescari')}}">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Kode</label>
-                                    <select class="form-control select2" style="width: 100%;">
+                                    <select class="form-control select2" style="width: 100%;" name="kode">
                                         @foreach($kodedokumen as $kodedok)
-                                            <option>{{$kodedok->kode_jenis}}/{{$kodedok->nama_jenis}}</option>
+                                            <option value="{{$kodedok->no_takah}}">{{$kodedok->kode_jenis}}/{{$kodedok->nama_jenis}}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Surat</label>
-                                    <input type="text" class="form-control" id="surat" placeholder="" name="surat">
+                                    <input type="text" class="form-control" id="surat" placeholder="" name="surat" required>
                                 </div>
 
                                 <div class="form-group">
@@ -407,22 +407,22 @@
     })
 </script>
 <!-- Select2 -->
-<script src="{{url('}bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{url('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <!-- InputMask -->
-<script src="{{url('}plugins/input-mask/jquery.inputmask.js')}}"></script>
-<script src="{{url('}plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
-<script src="{{url('}plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+<script src="{{url('plugins/input-mask/jquery.inputmask.js')}}"></script>
+<script src="{{url('plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
+<script src="{{url('plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
 <!-- date-range-picker -->
-<script src="{{url('}bower_components/moment/min/moment.min.js')}}"></script>
-<script src="{{url('}bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{url('bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{url('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 <!-- bootstrap datepicker -->
-<script src="{{url('}bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <!-- bootstrap color picker -->
-<script src="{{url('}bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
+<script src="{{url('bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js')}}"></script>
 <!-- bootstrap time picker -->
-<script src="{{url('}plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+<script src="{{url('plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 <!-- iCheck 1.0.1 -->
-<script src="{{url('}plugins/iCheck/icheck.min.js')}}"></script>
+<script src="{{url('plugins/iCheck/icheck.min.js')}}"></script>
 <!-- Page script -->
 <script>
     $(function () {

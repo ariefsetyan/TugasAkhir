@@ -26,9 +26,7 @@ class LokasiController extends Controller
         return view('lokasiSimpan.lokasiSimpan',compact('lokasi','jenisDokumen'));
     }
     public function simpan(Request $request){
-//        dd($request->all());
         $lokasi = new LokasiSimpan();
-//        $lokasi->no_takah = $request->jenis;
         $lokasi->gedung = $request->gedung;
         $lokasi->rak = $request->rak;
         $lokasi->baris = $request->baris;

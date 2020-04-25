@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\JenisDokumen;
 use App\LokasiSimpan;
+use App\PokokPersoalan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,9 +18,7 @@ class JenisDokumenController extends Controller
     }
     public function FormJenisData(){
         $lokasi = LokasiSimpan::all();
-//        dd($lokasi);
         $cekdata = DB::table('jenis_dokumens')->count('no_takah');
-//        $datas = JenisDokumen::all();
         $datas = DB::table('jenis_dokumens as jd')->join('lokasi_simpans as ls','jd.id_lokasi','=','ls.id')->get();
         if (session('success_message')){
             Alert::success('Data Berhasil Disimpan', session('Success Message'));
@@ -28,8 +27,8 @@ class JenisDokumenController extends Controller
         }elseif (session('success1')){
             alert()->success('Data Berhasil Diupdate','');
         }
-//        dd($datas);
-        return view('jenisDokumen.jenisDokumen',compact('datas','cekdata','lokasi'));
+        $PP = PokokPersoalan::all();
+        return view('jenisDokumen.jenisDokumen',compact('datas','cekdata','lokasi','PP'));
     }
     public function Simpan(Request $request){
         $datas = new JenisDokumen();
@@ -37,7 +36,8 @@ class JenisDokumenController extends Controller
         $datas->no_takah = $request->noTakah;
         $datas->kode_jenis = $request->kode;
         $datas->nama_jenis = $request->nama;
-//        dd($datas);
+        $datas->anak_pokok = $request->anak;
+        $datas->perihal = $request->perihal;
         $datas->save();
         return redirect('jenis-dokumen')->withSuccessMessage('Successfully added');
     }
@@ -53,9 +53,10 @@ class JenisDokumenController extends Controller
            'no_takah' => $request->noTakah,
            'kode_jenis' => $request->kode,
            'nama_jenis' => $request->nama,
+           'anak_pokok' => $request->anak,
+           'perihal' => $request->perihal,
         ]);
 
-//        dd($request->all());
         return back()->withSuccess1('Successfully update');
 
     }

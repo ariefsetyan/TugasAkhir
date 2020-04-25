@@ -85,7 +85,7 @@
                                 <table class="table" id="user_table" border="0">
                                     <thead>
                                     <tr>
-                                        <th width="100%">First Name</th>
+                                        <th width="100%">Dokumen</th>
 
                                     </tr>
                                     </thead>
@@ -320,9 +320,15 @@
             html += '<td><select class="form-control select2" style="width: 100%;" name="dokumen[]">\n' +
                 '                                        <option selected="selected">Select ...</option>\n' +
                 '                                        @foreach($dokumens as $dokumen)\n' +
-                '                                            <option value="{{$dokumen->id}}">{{$dokumen->kode_jenis}}/{{$dokumen->nama_dokumen}}</option>\n' +
+                '                                            <option value="{{$dokumen->id}}">{{$dokumen->nama_dokumen}}</option>\n' +
                 '                                        @endforeach\n' +
                 '                                    </select></td>';
+                {{--html += '<td><select class="form-control select2" style="width: 100%;" name="dokumen[]">\n' +--}}
+                {{--'                                        <option selected="selected">Select ...</option>\n' +--}}
+                {{--'                                        @foreach($dokumens as $dokumen)\n' +--}}
+                {{--'                                            <option value="{{$dokumen->id}}">{{$dokumen->kode_jenis}}/{{$dokumen->nama_dokumen}}</option>\n' +--}}
+                {{--'                                        @endforeach\n' +--}}
+                {{--'                                    </select></td>';--}}
             // html += '<td><input type="text" name="first_name[]" class="form-control" /></td>';
             // html += '<td><input type="text" name="last_name[]" class="form-control" /></td>';
             if(number > 1)

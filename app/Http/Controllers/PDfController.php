@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use App\Pdf;
-//use App\Models\Pdf;
-//use Barryvdh\DomPDF\PDF as PDF
 use Barryvdh\DomPDF\Facade as PDF;
 
 
@@ -25,8 +22,6 @@ class PDfController extends Controller
 
         $pdf = PDF::loadView('pdf.beritaAcara',compact('datas'));
         return $pdf->download('beritaAcara.pdf');
-//        return view('pdf.beritaAcara',compact('datas'));
-//        dd($datas);
     }
 }
 

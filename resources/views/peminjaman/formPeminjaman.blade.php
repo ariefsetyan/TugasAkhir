@@ -98,7 +98,7 @@
                                 <table class="table" id="user_table" border="0">
                                     <thead>
                                     <tr>
-                                        <th width="100%">First Name</th>
+                                        <th width="100%">Dokumen</th>
 
                                     </tr>
                                     </thead>
